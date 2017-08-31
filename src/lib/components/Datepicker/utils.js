@@ -61,6 +61,13 @@ var DateUtilities = {
     );
   },
 
+  dateIn: function(datesArray, date) {
+    return (
+      datesArray.filter(day => !DateUtilities.isSameDay(day, date)).length !==
+      datesArray.length
+    );
+  },
+
   isBefore: function(first, second) {
     return first.getTime() < second.getTime();
   },

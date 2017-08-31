@@ -3,27 +3,49 @@ import styled from 'styled-components';
 import DateUtilities from './utils';
 
 const StyledWeek = styled.div`
-  float: left;
-  width: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  height: 34px;
+  margin-bottom: 2px;
+`;
+
+const DayButton = styled.button`
+  border: 10px;
+  box-sizing: border-box;
+  display: inline-block;
+  font-family: Roboto, sans-serif;
+  -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+  cursor: pointer;
+  text-decoration: none;
+  margin: 0px;
+  padding: 4px 0px;
+  outline: none;
+  font-size: inherit;
+  font-weight: 400;
+  position: relative;
+  z-index: 1;
+  width: 42px;
+  background: none;
+`;
+
+const DayBackdrop = styled.div`
+  background-color: rgb(0, 151, 167);
+  height: 34px;
+  left: 4px;
+  opacity: ${({ selected }) => (selected ? '1' : '0')};
+  position: absolute;
+  top: 0px;
+  transform: scale(${({ selected }) => (selected ? '1' : '0')});
+  transition: all 450ms cubic-bezier(0.23, 1, 0.32, 1) 0ms;
+  width: 34px;
 `;
 
 const Day = styled.div`
-  float: left;
-  width: 14.285714285714286%;
-  font-size: 0.8em;
-  padding: 4px 0;
-  cursor: pointer;
-  text-align: center;
-  border-radius: 3px;
-  :hover {
-    background: #eaeaea;
-  }
-  ${({ disabled }) =>
-    disabled &&
-    'color: #E0E0E0; cursor: default; :hover { background: transparent !important; }'};
-  ${({ today }) => today && `background: #68b53e; color: white;`};
-  ${({ selected }) => selected && `background: #026aa7; color: white;`};
-  ${({ otherMonth }) => otherMonth && `color: #AAA;`};
+  color: ${({ selected }) =>
+    selected ? 'rgb(255, 255, 255)' : 'rgba(0, 0, 0, 0.87)'};
+  font-weight: 400;
+  position: relative;
 `;
 
 class Week extends Component {
@@ -53,24 +75,28 @@ class Week extends Component {
     );
   };
 
+  isSelected = day => {
+    return (
+      this.props.selectedDates &&
+      DateUtilities.dateIn(this.props.selectedDates, day)
+    );
+  };
+
   render() {
     const days = this.buildDays(this.props.start);
     return (
       <StyledWeek>
         {days.map((day, i) => (
-          <Day
+          <DayButton
             key={i}
-            onClick={this.onSelect.bind(null, day)}
+            onClick={() => this.onSelect(day)}
             disabled={this.isDisabled(day)}
-            today={DateUtilities.isSameDay(day, new Date())}
-            otherMonth={this.props.month !== day.getMonth()}
-            selected={
-              this.props.selected &&
-              DateUtilities.isSameDay(day, this.props.selected)
-            }
           >
-            {DateUtilities.toDayOfMonthString(day)}
-          </Day>
+            <DayBackdrop selected={this.isSelected(day)} />
+            <Day selected={this.isSelected(day)}>
+              {DateUtilities.toDayOfMonthString(day)}
+            </Day>
+          </DayButton>
         ))}
       </StyledWeek>
     );

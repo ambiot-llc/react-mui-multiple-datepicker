@@ -2,26 +2,19 @@ import React from 'react';
 import styled from 'styled-components';
 
 const StyledDiv = styled.div`
-  float: left;
-  width: 100%;
-  margin-top: 8px;
-  display: table;
-  padding-bottom: 3px;
-  border-bottom: solid 1px #ccc;
-  margin-bottom: 3px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  font-weight: 500;
+  height: 20px;
+  line-height: 15px;
+  opacity: 0.5;
+  textAlign: center;
 `;
 
-const StyledSpan = styled.span`
-  float: left;
-  width: 14.285714285714286%;
-  font-size: 0.6em;
-  text-transform: uppercase;
-  color: #026aa7;
-  font-weight: bold;
-  text-align: center;
-`;
+const StyledSpan = styled.span`width: 42px;`;
 
-const WeekHeader = () =>
+const WeekHeader = () => (
   <StyledDiv>
     <StyledSpan>Sun</StyledSpan>
     <StyledSpan>Mon</StyledSpan>
@@ -30,6 +23,7 @@ const WeekHeader = () =>
     <StyledSpan>Thu</StyledSpan>
     <StyledSpan>Fri</StyledSpan>
     <StyledSpan>Sat</StyledSpan>
-  </StyledDiv>;
+  </StyledDiv>
+);
 
 export default WeekHeader;

@@ -4,12 +4,16 @@ import Week from './Week';
 import DateUtilities from './utils';
 import ReactDOM from 'react-dom';
 
-const StyledWeeksWrapper = styled.div`
-  float: left;
-  width: 100%;
-  overflow: hidden;
+const MonthWrapper = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  font-weight: 400;
+  height: 228;
+  line-height: 2;
   position: relative;
-  height: 140px;
+  text-align: center;
+  moz-padding-start: 0;
 `;
 const StyledWeeks = styled.div`
   position: absolute;
@@ -29,23 +33,6 @@ class Weeks extends Component {
       sliding: null
     };
   }
-
-  componentDidMount = () => {
-    ReactDOM.findDOMNode(this.refs.current).addEventListener(
-      'transitionend',
-      this.onTransitionEnd
-    );
-    console.log('mounted', this.refs.current);
-  };
-
-  onTransitionEnd = () => {
-    console.log('called');
-    this.setState({
-      sliding: null,
-      view: DateUtilities.clone(this.state.other)
-    });
-    this.props.onTransitionEnd();
-  };
 
   getWeekStartDates = view => {
     view.setDate(1);
@@ -70,40 +57,33 @@ class Weeks extends Component {
       sliding: isForward ? 'left' : 'right',
       other: DateUtilities.clone(view)
     });
+    this.onTransitionEnd;
   };
 
   render() {
     return (
-      <StyledWeeksWrapper>
-        <StyledWeeks ref="current" slide={this.state.sliding}>
-          {this.renderWeeks(this.state.view)}
-        </StyledWeeks>
-        <StyledWeeks
-          ref="other"
-          right={this.state.sliding === 'right'}
-          other
-          slide={this.state.sliding}
-        >
-          {this.renderWeeks(this.state.other)}
-        </StyledWeeks>
-      </StyledWeeksWrapper>
+      <MonthWrapper>{this.renderWeeks(this.props.displayDate)}</MonthWrapper>
     );
   }
 
   renderWeeks = view => {
     const starts = this.getWeekStartDates(view),
       month = starts[1].getMonth();
-    return starts.map((s, i) => (
-      <Week
-        key={i}
-        start={s}
-        month={month}
-        selected={this.props.selected}
-        onSelect={this.props.onSelect}
-        minDate={this.props.minDate}
-        maxDate={this.props.maxDate}
-      />
-    ));
+    return starts.map(
+      (s, i) => (
+        <Week
+          key={i}
+          start={s}
+          month={month}
+          selected={this.props.selected}
+          selectedDates={this.props.selectedDates}
+          onSelect={this.props.onSelect}
+          minDate={this.props.minDate}
+          maxDate={this.props.maxDate}
+        />
+      ),
+      this
+    );
   };
 }
 

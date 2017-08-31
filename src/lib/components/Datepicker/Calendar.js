@@ -2,25 +2,30 @@ import React, { Component } from 'react';
 import styled from 'styled-components';
 import MonthHeader from './MonthHeader';
 import WeekHeader from './WeekHeader';
-import Weeks from './Weeks';
+import Month from './Month';
+import { defaultUtils as utils } from './dateUtils';
+import CalendarToolbar from './CalendarToolbar';
+
+const Root = styled.div`
+  color: rgba(0, 0, 0, 0.87);
+  user-select: none;
+  ${({ hideCalendarDate }) => !hideCalendarDate && 'width: 479px'};
+`;
+
+const CalendarContainer = styled.div`
+  display: flex;
+  align-content: space-between;
+  justify-content: space-between;
+  flex-direction: column;
+  font-size: 12px;
+  font-weight: 400;
+  padding: 0px 8px;
+  transition: all 450ms cubic-bezier(0.23, 1, 0.32, 1) 0ms;
+`;
 
 const StyledCalendar = styled.div`
-  position: absolute;
-  z-index: 10;
-  background: white;
-  width: 260px;
-  padding: 5px;
-  color: #244152;
-  border-radius: 3px;
-  height: 203px;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.5);
-  overflow: hidden;
-  visibility: ${({ visible }) => (visible ? 'visible' : 'hidden')};
-  opacity: ${({ visible }) => (visible ? 1 : 0)};
-  transition: ${({ visible }) =>
-    visible
-      ? 'opacity 100ms linear'
-      : 'visibility 0s 100ms, opacity 100ms linear'};
+  display: flex;
+  flex-direction: column;
 `;
 
 class Calendar extends Component {
@@ -28,29 +33,104 @@ class Calendar extends Component {
     this.refs.weeks.moveTo(view, isForward);
   };
 
+  static defaultProps = {
+    disableYearSelection: false,
+    initialDate: new Date()
+  };
+
+  state = {
+    displayDate: undefined,
+    displayMonthDay: undefined,
+    selectedDate: undefined,
+    transitionDirection: 'left',
+    transitionEnter: true
+  };
+
+  componentWillMount() {
+    this.setState({
+      displayDate: utils.getFirstDayOfMonth(this.props.initialDate),
+      selectedDate: this.props.initialDate,
+      displayMonthDay: !this.props.openToYearSelection
+    });
+  }
+
+  componentWillReceiveProps(nextProps) {
+    if (nextProps.initialDate !== this.props.initialDate) {
+      const date = nextProps.initialDate || new Date();
+      this.setState({
+        displayDate: utils.getFirstDayOfMonth(date),
+        selectedDate: date
+      });
+    }
+  }
+
+  getMinDate() {
+    return this.props.minDate || utils.addYears(new Date(), -100);
+  }
+
+  getMaxDate() {
+    return this.props.maxDate || utils.addYears(new Date(), 100);
+  }
+
+  getSelectedDate() {
+    return this.state.selectedDate;
+  }
+
   onTransitionEnd = () => {
     this.refs.monthHeader.enable();
   };
 
+  getToolbarInteractions() {
+    return {
+      prevMonth: utils.monthDiff(this.state.displayDate, this.getMinDate()) > 0,
+      nextMonth: utils.monthDiff(this.state.displayDate, this.getMaxDate()) < 0
+    };
+  }
+
+  handleMonthChange = months => {
+    const direction = months >= 0 ? 'left' : 'right';
+    this.setState({
+      transitionDirection: direction,
+      displayDate: utils.addMonths(this.state.displayDate, months)
+    });
+  };
+
+  calendarRefs = {};
+
   render() {
+    const toolbarInteractions = this.getToolbarInteractions();
     return (
-      <StyledCalendar visible={this.props.visible}>
-        <MonthHeader
-          ref="monthHeader"
-          view={this.props.view}
-          onMove={this.onMove}
-        />
-        <WeekHeader />
-        <Weeks
-          ref="weeks"
-          view={this.props.view}
-          selected={this.props.selected}
-          onTransitionEnd={this.onTransitionEnd}
-          onSelect={this.props.onSelect}
-          minDate={this.props.minDate}
-          maxDate={this.props.maxDate}
-        />
-      </StyledCalendar>
+      <Root
+        hideCalendarDate={this.props.hideCalendarDate}
+        visible={this.props.visible}
+      >
+        <StyledCalendar>
+          <CalendarContainer>
+            <CalendarToolbar
+              displayDate={this.state.displayDate}
+              onMonthChange={this.handleMonthChange}
+              prevMonth={toolbarInteractions.prevMonth}
+              nextMonth={toolbarInteractions.nextMonth}
+            />
+            <WeekHeader />
+            <Month
+              ref="weeks"
+              view={this.props.view}
+              selected={this.props.selected}
+              displayDate={this.state.displayDate}
+              key={this.state.displayDate.toDateString()}
+              selectedDates={this.props.selectedDates}
+              onTransitionEnd={this.onTransitionEnd}
+              minDate={this.getMinDate()}
+              maxDate={this.getMaxDate()}
+              onSelect={this.props.onSelect}
+              ref={ref => (this.calendarRefs.calendar = ref)}
+              minDate={this.props.minDate}
+              maxDate={this.props.maxDate}
+            />
+          </CalendarContainer>
+        </StyledCalendar>
+      </Root>
     );
   }
 }

@@ -38,6 +38,7 @@
     "styled-components": "^2.1.2",
     "sw-precache-webpack-plugin": "0.11.4",
     "url-loader": "0.5.9",
+    "warning": "^3.0.0",
     "webpack": "3.5.1",
     "webpack-dev-server": "2.7.1",
     "webpack-manifest-plugin": "1.2.1",
