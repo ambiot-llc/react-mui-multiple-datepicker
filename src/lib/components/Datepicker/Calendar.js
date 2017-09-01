@@ -1,21 +1,23 @@
-import React, { Component } from 'react';
-import styled from 'styled-components';
-import MonthHeader from './MonthHeader';
-import WeekHeader from './WeekHeader';
-import Month from './Month';
-import { defaultUtils as utils } from './dateUtils';
-import CalendarToolbar from './CalendarToolbar';
+import React, { Component } from "react";
+import styled from "styled-components";
+import MonthHeader from "./MonthHeader";
+import WeekHeader from "./WeekHeader";
+import Month from "./Month";
+import { defaultUtils as utils } from "./dateUtils";
+import CalendarToolbar from "./CalendarToolbar";
+import CalendarButtons from "./CalendarButtons";
+import DateDisplay from "./DateDisplay";
 
 const Root = styled.div`
   color: rgba(0, 0, 0, 0.87);
   user-select: none;
-  ${({ hideCalendarDate }) => !hideCalendarDate && 'width: 479px'};
+  ${({ hideCalendarDate }) => !hideCalendarDate && "width: 479px"};
+  overflow: hidden;
 `;
 
 const CalendarContainer = styled.div`
   display: flex;
-  align-content: space-between;
-  justify-content: space-between;
+  place-content: space-between;
   flex-direction: column;
   font-size: 12px;
   font-weight: 400;
@@ -26,6 +28,7 @@ const CalendarContainer = styled.div`
 const StyledCalendar = styled.div`
   display: flex;
   flex-direction: column;
+  min-height: 330px;
 `;
 
 class Calendar extends Component {
@@ -42,7 +45,8 @@ class Calendar extends Component {
     displayDate: undefined,
     displayMonthDay: undefined,
     selectedDate: undefined,
-    transitionDirection: 'left',
+    transitionDirection: "left",
+    open: false,
     transitionEnter: true
   };
 
@@ -88,7 +92,7 @@ class Calendar extends Component {
   }
 
   handleMonthChange = months => {
-    const direction = months >= 0 ? 'left' : 'right';
+    const direction = months >= 0 ? "left" : "right";
     this.setState({
       transitionDirection: direction,
       displayDate: utils.addMonths(this.state.displayDate, months)
@@ -104,6 +108,7 @@ class Calendar extends Component {
         hideCalendarDate={this.props.hideCalendarDate}
         visible={this.props.visible}
       >
+        <DateDisplay selectedDates={this.props.selectedDates} />
         <StyledCalendar>
           <CalendarContainer>
             <CalendarToolbar
@@ -129,6 +134,10 @@ class Calendar extends Component {
               maxDate={this.props.maxDate}
             />
           </CalendarContainer>
+          <CalendarButtons
+            onTouchTapCancel={this.props.onTouchTapCancel}
+            onTouchTapOk={this.props.onTouchTapOk}
+          />
         </StyledCalendar>
       </Root>
     );

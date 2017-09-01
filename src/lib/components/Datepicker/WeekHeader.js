@@ -1,5 +1,5 @@
-import React from 'react';
-import styled from 'styled-components';
+import React from "react";
+import styled from "styled-components";
 
 const StyledDiv = styled.div`
   display: flex;
@@ -9,21 +9,20 @@ const StyledDiv = styled.div`
   height: 20px;
   line-height: 15px;
   opacity: 0.5;
-  textAlign: center;
+  text-align: center;
 `;
 
 const StyledSpan = styled.span`width: 42px;`;
 
-const WeekHeader = () => (
+const WeekHeader = () =>
   <StyledDiv>
-    <StyledSpan>Sun</StyledSpan>
-    <StyledSpan>Mon</StyledSpan>
-    <StyledSpan>Tue</StyledSpan>
-    <StyledSpan>Wed</StyledSpan>
-    <StyledSpan>Thu</StyledSpan>
-    <StyledSpan>Fri</StyledSpan>
-    <StyledSpan>Sat</StyledSpan>
-  </StyledDiv>
-);
+    <StyledSpan>S</StyledSpan>
+    <StyledSpan>M</StyledSpan>
+    <StyledSpan>T</StyledSpan>
+    <StyledSpan>W</StyledSpan>
+    <StyledSpan>T</StyledSpan>
+    <StyledSpan>F</StyledSpan>
+    <StyledSpan>S</StyledSpan>
+  </StyledDiv>;
 
 export default WeekHeader;

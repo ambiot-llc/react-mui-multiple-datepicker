@@ -1,7 +1,7 @@
-import React, { Component } from 'react';
-import PropTypes from 'prop-types';
-import { dateTimeFormat } from './dateUtils';
-import styled from 'styled-components';
+import React, { Component } from "react";
+import PropTypes from "prop-types";
+import { dateTimeFormat } from "./dateUtils";
+import styled from "styled-components";
 
 const Icon = styled.i`
   font-weight: bold;
@@ -49,13 +49,13 @@ class CalendarToolbar extends Component {
   };
 
   state = {
-    transitionDirection: 'up'
+    transitionDirection: "up"
   };
 
   componentWillReceiveProps(nextProps) {
     if (nextProps.displayDate !== this.props.displayDate) {
       const direction =
-        nextProps.displayDate > this.props.displayDate ? 'left' : 'right';
+        nextProps.displayDate > this.props.displayDate ? "left" : "right";
       this.setState({
         transitionDirection: direction
       });
@@ -77,9 +77,9 @@ class CalendarToolbar extends Component {
   render() {
     const { displayDate } = this.props;
 
-    const dateTimeFormatted = new dateTimeFormat('en-US', {
-      month: 'long',
-      year: 'numeric'
+    const dateTimeFormatted = new dateTimeFormat("en-US", {
+      month: "long",
+      year: "numeric"
     }).format(displayDate);
 
     return (
@@ -92,7 +92,9 @@ class CalendarToolbar extends Component {
         </Icon>
 
         <TitleDiv>
-          <TitleText key={dateTimeFormatted}>{dateTimeFormatted}</TitleText>
+          <TitleText key={dateTimeFormatted}>
+            {dateTimeFormatted}
+          </TitleText>
         </TitleDiv>
         <Icon
           disabled={!this.props.nextMonth}
