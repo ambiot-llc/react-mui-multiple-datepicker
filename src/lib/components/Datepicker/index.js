@@ -1,7 +1,7 @@
-import React, { Component } from "react";
-import styled from "styled-components";
-import DateUtilities from "./utils";
-import Calendar from "./Calendar";
+import React, { Component } from 'react';
+import styled from 'styled-components';
+import DateUtilities from './utils';
+import Calendar from './Calendar';
 
 const StyledDatePicker = styled.div`
   position: fixed;
@@ -16,6 +16,7 @@ const StyledDatePicker = styled.div`
   padding: 16px 0px 0px;
   min-height: 330px;
   min-width: 479px;
+  ${({ open }) => !open && 'display: none'};
 `;
 
 const Backdrop = styled.div`
@@ -82,7 +83,7 @@ class DatePicker extends Component {
       selectedDates: [DateUtilities.clone(def)],
       minDate: null,
       maxDate: null,
-      visible: true
+      open: false
     };
   }
 
@@ -99,15 +100,13 @@ class DatePicker extends Component {
     }
   };
 
-  onSubmit = () => {
-    this.props.onSubmit(this.state.selectedDates);
+  onSubmit = () => {};
+
+  toggleOpen = () => {
+    this.setState({ open: !this.state.open });
   };
 
-  toggleVisible = () => {
-    this.setState({ visible: !this.state.visible });
-  };
-
-  handleTouchTapCancel = () => {
+  handleCancel = () => {
     this.dismiss();
   };
 
@@ -115,9 +114,9 @@ class DatePicker extends Component {
     this.dismiss();
   };
 
-  handleTouchTapOk = () => {
-    if (this.props.onAccept && !this.refs.calendar.isSelectedDateDisabled()) {
-      this.props.onAccept(this.refs.calendar.getSelectedDate());
+  handleOk = () => {
+    if (this.props.onSubmit) {
+      this.props.onSubmit(this.state.selectedDates);
     }
 
     this.setState({
@@ -136,34 +135,36 @@ class DatePicker extends Component {
 
   render() {
     return (
-      <StyledDatePicker>
+      <div>
         <input
           type="text"
           readOnly={true}
           value={this.state.selectedDates
             .map(date => DateUtilities.toString(date))
-            .join(", ")}
-          onClick={this.toggleVisible}
+            .join(', ')}
+          onClick={this.toggleOpen}
         />
-        <Dialog>
-          <DialogInnerWrap>
-            <DialogContent>
-              <Calendar
-                visible={this.state.visible}
-                view={this.state.view}
-                selected={this.state.selected}
-                selectedDates={this.state.selectedDates}
-                onSelect={this.onSelect}
-                minDate={this.state.minDate}
-                maxDate={this.state.maxDate}
-                handleTouchTapCancel={this.handleTouchTapCancel}
-                handleTouchTapOk={this.handleTouchTapOk}
-              />
-            </DialogContent>
-          </DialogInnerWrap>
-        </Dialog>
-        <Backdrop />
-      </StyledDatePicker>
+        <StyledDatePicker open={this.state.open}>
+          <Dialog>
+            <DialogInnerWrap>
+              <DialogContent>
+                <Calendar
+                  visible={this.state.visible}
+                  view={this.state.view}
+                  selected={this.state.selected}
+                  selectedDates={this.state.selectedDates}
+                  onSelect={this.onSelect}
+                  minDate={this.props.minDate}
+                  maxDate={this.props.maxDate}
+                  onCancel={this.handleCancel}
+                  onOk={this.handleOk}
+                />
+              </DialogContent>
+            </DialogInnerWrap>
+          </Dialog>
+          <Backdrop />
+        </StyledDatePicker>
+      </div>
     );
   }
 }

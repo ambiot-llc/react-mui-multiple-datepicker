@@ -1,5 +1,5 @@
-import React, { Component } from "react";
-import styled from "styled-components";
+import React, { Component } from 'react';
+import styled from 'styled-components';
 
 const Root = styled.div`
   display: flex;
@@ -10,7 +10,7 @@ const Root = styled.div`
   padding: 0px;
 `;
 
-const Button = styled.div`
+const Button = styled.button`
   border: 10px;
   box-sizing: border-box;
   display: inline-block;
@@ -42,8 +42,8 @@ class CalendarActionButton extends Component {
   render() {
     return (
       <Root>
-        <Button onClick={this.props.onTouchTapCancel}>Cancel</Button>
-        <Button onClick={this.props.onTouchTapOk}>ok</Button>
+        <Button onClick={this.props.onCancel}>Cancel</Button>
+        <Button onClick={this.props.onOk}>ok</Button>
       </Root>
     );
   }

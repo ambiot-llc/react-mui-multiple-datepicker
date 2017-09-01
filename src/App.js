@@ -12,7 +12,7 @@ class App extends Component {
           <h2>Welcome to React</h2>
         </div>
         <DatePicker
-          onSelect={date => {
+          onSubmit={date => {
             console.log(date);
           }}
         />

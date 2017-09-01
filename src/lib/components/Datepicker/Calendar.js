@@ -1,17 +1,17 @@
-import React, { Component } from "react";
-import styled from "styled-components";
-import MonthHeader from "./MonthHeader";
-import WeekHeader from "./WeekHeader";
-import Month from "./Month";
-import { defaultUtils as utils } from "./dateUtils";
-import CalendarToolbar from "./CalendarToolbar";
-import CalendarButtons from "./CalendarButtons";
-import DateDisplay from "./DateDisplay";
+import React, { Component } from 'react';
+import styled from 'styled-components';
+import MonthHeader from './MonthHeader';
+import WeekHeader from './WeekHeader';
+import Month from './Month';
+import { defaultUtils as utils } from './dateUtils';
+import CalendarToolbar from './CalendarToolbar';
+import CalendarButtons from './CalendarButtons';
+import DateDisplay from './DateDisplay';
 
 const Root = styled.div`
   color: rgba(0, 0, 0, 0.87);
   user-select: none;
-  ${({ hideCalendarDate }) => !hideCalendarDate && "width: 479px"};
+  ${({ hideCalendarDate }) => !hideCalendarDate && 'width: 479px'};
   overflow: hidden;
 `;
 
@@ -45,7 +45,7 @@ class Calendar extends Component {
     displayDate: undefined,
     displayMonthDay: undefined,
     selectedDate: undefined,
-    transitionDirection: "left",
+    transitionDirection: 'left',
     open: false,
     transitionEnter: true
   };
@@ -92,7 +92,7 @@ class Calendar extends Component {
   }
 
   handleMonthChange = months => {
-    const direction = months >= 0 ? "left" : "right";
+    const direction = months >= 0 ? 'left' : 'right';
     this.setState({
       transitionDirection: direction,
       displayDate: utils.addMonths(this.state.displayDate, months)
@@ -135,8 +135,8 @@ class Calendar extends Component {
             />
           </CalendarContainer>
           <CalendarButtons
-            onTouchTapCancel={this.props.onTouchTapCancel}
-            onTouchTapOk={this.props.onTouchTapOk}
+            onCancel={this.props.onCancel}
+            onOk={this.props.onOk}
           />
         </StyledCalendar>
       </Root>

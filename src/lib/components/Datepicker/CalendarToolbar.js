@@ -1,9 +1,21 @@
-import React, { Component } from "react";
-import PropTypes from "prop-types";
-import { dateTimeFormat } from "./dateUtils";
-import styled from "styled-components";
+import React, { Component } from 'react';
+import PropTypes from 'prop-types';
+import { dateTimeFormat } from './dateUtils';
+import styled from 'styled-components';
 
-const Icon = styled.i`
+const Icon = styled.button`
+  border: none;
+  font-family: Roboto, sans-serif;
+  text-decoration: none;
+  outline: none;
+  position: relative;
+  z-index: 1;
+  height: 36px;
+  line-height: 36px;
+  overflow: hidden;
+  background-color: rgba(0, 0, 0, 0);
+  text-align: center;
+
   font-weight: bold;
   padding: 5px 8px;
   border-radius: 3px;
@@ -11,8 +23,7 @@ const Icon = styled.i`
   font-style: normal;
   font-size: 0.7em;
   :hover {
-    background-color: #026aa7;
-    color: white;
+    color: rgb(0, 188, 212);
   }
 `;
 
@@ -49,13 +60,13 @@ class CalendarToolbar extends Component {
   };
 
   state = {
-    transitionDirection: "up"
+    transitionDirection: 'up'
   };
 
   componentWillReceiveProps(nextProps) {
     if (nextProps.displayDate !== this.props.displayDate) {
       const direction =
-        nextProps.displayDate > this.props.displayDate ? "left" : "right";
+        nextProps.displayDate > this.props.displayDate ? 'left' : 'right';
       this.setState({
         transitionDirection: direction
       });
@@ -77,9 +88,9 @@ class CalendarToolbar extends Component {
   render() {
     const { displayDate } = this.props;
 
-    const dateTimeFormatted = new dateTimeFormat("en-US", {
-      month: "long",
-      year: "numeric"
+    const dateTimeFormatted = new dateTimeFormat('en-US', {
+      month: 'long',
+      year: 'numeric'
     }).format(displayDate);
 
     return (
@@ -92,9 +103,7 @@ class CalendarToolbar extends Component {
         </Icon>
 
         <TitleDiv>
-          <TitleText key={dateTimeFormatted}>
-            {dateTimeFormatted}
-          </TitleText>
+          <TitleText key={dateTimeFormatted}>{dateTimeFormatted}</TitleText>
         </TitleDiv>
         <Icon
           disabled={!this.props.nextMonth}
