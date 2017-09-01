@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import styled from 'styled-components';
-import MonthHeader from './MonthHeader';
 import WeekHeader from './WeekHeader';
 import Month from './Month';
 import { defaultUtils as utils } from './dateUtils';
@@ -32,10 +31,6 @@ const StyledCalendar = styled.div`
 `;
 
 class Calendar extends Component {
-  onMove = (view, isForward) => {
-    this.refs.weeks.moveTo(view, isForward);
-  };
-
   static defaultProps = {
     disableYearSelection: false,
     initialDate: new Date()
@@ -80,10 +75,6 @@ class Calendar extends Component {
     return this.state.selectedDate;
   }
 
-  onTransitionEnd = () => {
-    this.refs.monthHeader.enable();
-  };
-
   getToolbarInteractions() {
     return {
       prevMonth: utils.monthDiff(this.state.displayDate, this.getMinDate()) > 0,
@@ -119,19 +110,15 @@ class Calendar extends Component {
             />
             <WeekHeader />
             <Month
-              ref="weeks"
               view={this.props.view}
               selected={this.props.selected}
               displayDate={this.state.displayDate}
               key={this.state.displayDate.toDateString()}
               selectedDates={this.props.selectedDates}
-              onTransitionEnd={this.onTransitionEnd}
               minDate={this.getMinDate()}
               maxDate={this.getMaxDate()}
               onSelect={this.props.onSelect}
               ref={ref => (this.calendarRefs.calendar = ref)}
-              minDate={this.props.minDate}
-              maxDate={this.props.maxDate}
             />
           </CalendarContainer>
           <CalendarButtons

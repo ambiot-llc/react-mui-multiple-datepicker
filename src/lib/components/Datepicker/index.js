@@ -134,16 +134,28 @@ class DatePicker extends Component {
   };
 
   render() {
+    const { children } = this.props;
+
     return (
       <div>
-        <input
-          type="text"
-          readOnly={true}
-          value={this.state.selectedDates
-            .map(date => DateUtilities.toString(date))
-            .join(', ')}
-          onClick={this.toggleOpen}
-        />
+        {children ? (
+          React.cloneElement(React.Children.only(children), {
+            onClick: this.toggleOpen,
+            value: this.state.selectedDates
+              .map(date => DateUtilities.toString(date))
+              .join(', '),
+            readOnly: true
+          })
+        ) : (
+          <input
+            type="text"
+            readOnly={true}
+            value={this.state.selectedDates
+              .map(date => DateUtilities.toString(date))
+              .join(', ')}
+            onClick={this.toggleOpen}
+          />
+        )}{' '}
         <StyledDatePicker open={this.state.open}>
           <Dialog>
             <DialogInnerWrap>

@@ -68,18 +68,6 @@ const Day = styled.div`
 `;
 
 class Week extends Component {
-  buildDays = start => {
-    var days = [DateUtilities.clone(start)],
-      clone = DateUtilities.clone(start);
-
-    for (var i = 1; i <= 6; i++) {
-      clone = DateUtilities.clone(clone);
-      clone.setDate(clone.getDate() + 1);
-      days.push(clone);
-    }
-    return days;
-  };
-
   onSelect = day => {
     if (!this.isDisabled(day)) this.props.onSelect(day);
   };
@@ -102,14 +90,13 @@ class Week extends Component {
   };
 
   render() {
-    // const days = this.buildDays(this.props.start);
     return (
       <StyledWeek>
         {this.props.week.map(
           (day, i) =>
             day ? (
               <DayButton
-                key={i}
+                key={`${i}-${day}`}
                 onClick={() => this.onSelect(day)}
                 disabled={this.isDisabled(day)}
                 selected={this.isSelected(day)}
@@ -122,7 +109,7 @@ class Week extends Component {
                 </Day>
               </DayButton>
             ) : (
-              <Blank />
+              <Blank key={i} />
             )
         )}
       </StyledWeek>

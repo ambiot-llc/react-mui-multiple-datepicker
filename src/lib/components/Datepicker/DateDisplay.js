@@ -1,6 +1,6 @@
-import React, { Component } from "react";
-import styled from "styled-components";
-import { dateTimeFormat } from "./dateUtils";
+import React, { Component } from 'react';
+import styled from 'styled-components';
+import { dateTimeFormat } from './dateUtils';
 
 const Root = styled.div`
   width: 165px;
@@ -41,10 +41,10 @@ class DateDisplay extends Component {
   }
 
   getFormatedDate = date => {
-    const dateTime = new dateTimeFormat("en-US", {
-      year: "numeric",
-      month: "short",
-      day: "2-digit"
+    const dateTime = new dateTimeFormat('en-US', {
+      year: 'numeric',
+      month: 'short',
+      day: '2-digit'
     }).format(date);
 
     return `${dateTime}`;
@@ -55,11 +55,11 @@ class DateDisplay extends Component {
 
     return (
       <Root>
-        {selectedDates.map(date =>
-          <DateTime>
+        {selectedDates.map(date => (
+          <DateTime key={`${date.toString()}`}>
             {this.getFormatedDate(date)}
           </DateTime>
-        )}
+        ))}
       </Root>
     );
   }

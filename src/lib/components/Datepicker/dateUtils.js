@@ -1,68 +1,67 @@
-import warning from "warning";
+import warning from 'warning';
 
-const dayAbbreviation = ["S", "M", "T", "W", "T", "F", "S"];
-const dayList = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
+const dayAbbreviation = ['S', 'M', 'T', 'W', 'T', 'F', 'S'];
 const monthList = [
-  "Jan",
-  "Feb",
-  "Mar",
-  "Apr",
-  "May",
-  "Jun",
-  "Jul",
-  "Aug",
-  "Sep",
-  "Oct",
-  "Nov",
-  "Dec"
+  'Jan',
+  'Feb',
+  'Mar',
+  'Apr',
+  'May',
+  'Jun',
+  'Jul',
+  'Aug',
+  'Sep',
+  'Oct',
+  'Nov',
+  'Dec'
 ];
 const monthLongList = [
-  "January",
-  "February",
-  "March",
-  "April",
-  "May",
-  "June",
-  "July",
-  "August",
-  "September",
-  "October",
-  "November",
-  "December"
+  'January',
+  'February',
+  'March',
+  'April',
+  'May',
+  'June',
+  'July',
+  'August',
+  'September',
+  'October',
+  'November',
+  'December'
 ];
 
 export function dateTimeFormat(locale, options) {
   warning(
-    locale === "en-US",
+    locale === 'en-US',
     `Material-UI: The ${locale} locale is not supported by the built-in DateTimeFormat.
   Use the \`DateTimeFormat\` prop to supply an alternative implementation.`
   );
 
   this.format = function(date) {
     if (
-      options.month === "short" &&
-      options.day === "2-digit" &&
-      options.year === "numeric"
+      options.month === 'short' &&
+      options.day === '2-digit' &&
+      options.year === 'numeric'
     ) {
       return `${date.getDate()} ${monthList[
         date.getMonth()
       ]} ${date.getFullYear()}`;
     } else if (
-      options.year === "numeric" &&
-      options.month === "numeric" &&
-      options.day === "numeric"
+      options.year === 'numeric' &&
+      options.month === 'numeric' &&
+      options.day === 'numeric'
     ) {
       return `${date.getMonth() + 1}/${date.getDate()}/${date.getFullYear()}`;
-    } else if (options.year === "numeric" && options.month === "long") {
+    } else if (options.year === 'numeric' && options.month === 'long') {
       return `${monthLongList[date.getMonth()]} ${date.getFullYear()}`;
-    } else if (options.weekday === "narrow") {
+    } else if (options.weekday === 'narrow') {
       return dayAbbreviation[date.getDay()];
-    } else if (options.year === "numeric") {
+    } else if (options.year === 'numeric') {
       return date.getFullYear().toString();
-    } else if (options.day === "numeric") {
+    } else if (options.day === 'numeric') {
       return date.getDate();
     } else {
-      warning(false, "Material-UI: Wrong usage of DateTimeFormat");
+      warning(false, 'Material-UI: Wrong usage of DateTimeFormat');
     }
   };
 }
@@ -136,7 +135,7 @@ export function getWeekArray(d, firstDayOfWeek) {
   const addWeek = week => {
     const emptyDays = 7 - week.length;
     for (let i = 0; i < emptyDays; ++i) {
-      week[weekArray.length ? "push" : "unshift"](null);
+      week[weekArray.length ? 'push' : 'unshift'](null);
     }
     weekArray.push(week);
   };
@@ -156,7 +155,7 @@ export function getWeekArray(d, firstDayOfWeek) {
 }
 
 export function localizedWeekday(DateTimeFormat, locale, day, firstDayOfWeek) {
-  const weekdayFormatter = new DateTimeFormat(locale, { weekday: "narrow" });
+  const weekdayFormatter = new DateTimeFormat(locale, { weekday: 'narrow' });
   const firstDayDate = getFirstDayOfWeek();
 
   return weekdayFormatter.format(addDays(firstDayDate, day + firstDayOfWeek));
