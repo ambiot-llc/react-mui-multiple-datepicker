@@ -1,8 +1,0 @@
-{
-  "private": true,
-  "name": "datepicker",
-  "main": "./index.js",
-  "dependencies": {
-    "styled-components": "2.0.0"
-  }
-}
