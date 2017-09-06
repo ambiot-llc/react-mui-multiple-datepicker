@@ -1,6 +1,6 @@
 {
   "name": "react-multiple-datepicker",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "Multiple Datepicker React",
   "main": "./build/index.js",
   "scripts": {
