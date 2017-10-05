@@ -1,12 +1,12 @@
 {
   "name": "react-multiple-datepicker",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "description": "Multiple Datepicker React",
   "main": "./build/index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "cd example && yarn install && yarn start",
-    "build": "babel ./lib -d ./build/"
+    "build": "./node_modules/.bin/babel ./lib -d ./build"
   },
   "repository": {
     "type": "git",
@@ -22,7 +22,7 @@
   "author": {
     "name": "Bilal Budhani",
     "email": "bilalbudhani@gmail.com",
-    "url": "https//bilalbudhani.com"
+    "url": "https://bilalbudhani.com"
   },
   "contributors": [
     "Amit Solanki <amit.fash@gmail.com> (http://solankiamit.com)"
@@ -35,7 +35,8 @@
   "dependencies": {
     "react": "^16.0.0",
     "react-dom": "^16.0.0",
-    "styled-components": "^2.1.2"
+    "styled-components": "^2.1.2",
+    "warning": "^3.0.0"
   },
   "devDependencies": {
     "babel-cli": "^7.0.0-beta.2",
