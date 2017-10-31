@@ -17,7 +17,7 @@ var _templateObject = _taggedTemplateLiteral(["\n  display: flex;\n  flex-direct
     _templateObject2 = _taggedTemplateLiteral(["\n  border: 10px;\n  box-sizing: border-box;\n  display: inline-block;\n  font-family: Roboto, sans-serif;\n  -webkit-tap-highlight-color: rgba(0, 0, 0, 0);\n  cursor: pointer;\n  text-decoration: none;\n  margin: 0px;\n  padding: 4px 0px;\n  outline: none;\n  font-size: inherit;\n  font-weight: 400;\n  position: relative;\n  z-index: 1;\n  width: 42px;\n  background: none;\n"], ["\n  border: 10px;\n  box-sizing: border-box;\n  display: inline-block;\n  font-family: Roboto, sans-serif;\n  -webkit-tap-highlight-color: rgba(0, 0, 0, 0);\n  cursor: pointer;\n  text-decoration: none;\n  margin: 0px;\n  padding: 4px 0px;\n  outline: none;\n  font-size: inherit;\n  font-weight: 400;\n  position: relative;\n  z-index: 1;\n  width: 42px;\n  background: none;\n"]),
     _templateObject3 = _taggedTemplateLiteral(["\n  border: 10px;\n  box-sizing: border-box;\n  display: inline-block;\n  font-family: Roboto, sans-serif;\n  -webkit-tap-highlight-color: rgba(0, 0, 0, 0);\n  text-decoration: none;\n  margin: 0px;\n  padding: 4px 0px;\n  outline: none;\n  font-size: inherit;\n  font-weight: 400;\n  position: relative;\n  z-index: 1;\n  width: 42px;\n  background: none;\n"], ["\n  border: 10px;\n  box-sizing: border-box;\n  display: inline-block;\n  font-family: Roboto, sans-serif;\n  -webkit-tap-highlight-color: rgba(0, 0, 0, 0);\n  text-decoration: none;\n  margin: 0px;\n  padding: 4px 0px;\n  outline: none;\n  font-size: inherit;\n  font-weight: 400;\n  position: relative;\n  z-index: 1;\n  width: 42px;\n  background: none;\n"]),
     _templateObject4 = _taggedTemplateLiteral(["\n  background-color: rgb(0, 151, 167);\n  height: 34px;\n  border-radius: 50%;\n  left: 4px;\n  opacity: ", ";\n  position: absolute;\n  top: 0px;\n  transform: scale(", ");\n  transition: all 450ms cubic-bezier(0.23, 1, 0.32, 1) 0ms;\n  width: 34px;\n"], ["\n  background-color: rgb(0, 151, 167);\n  height: 34px;\n  border-radius: 50%;\n  left: 4px;\n  opacity: ", ";\n  position: absolute;\n  top: 0px;\n  transform: scale(", ");\n  transition: all 450ms cubic-bezier(0.23, 1, 0.32, 1) 0ms;\n  width: 34px;\n"]),
-    _templateObject5 = _taggedTemplateLiteral(["\n  color: ", ";\n  font-weight: ", ";\n  font-size: ", ";\n  position: relative;\n"], ["\n  color: ", ";\n  font-weight: ", ";\n  font-size: ", ";\n  position: relative;\n"]);
+    _templateObject5 = _taggedTemplateLiteral(["\n  color: ", ";\n  font-weight: ", ";\n  font-size: ", ";\n  position: relative;\n  color: ", ";\n"], ["\n  color: ", ";\n  font-weight: ", ";\n  font-size: ", ";\n  position: relative;\n  color: ", ";\n"]);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -45,21 +45,24 @@ var Blank = _styledComponents.default.div(_templateObject3);
 
 var DayBackdrop = _styledComponents.default.div(_templateObject4, function (_ref) {
   var selected = _ref.selected;
-  return selected ? "1" : "0";
+  return selected ? '1' : '0';
 }, function (_ref2) {
   var selected = _ref2.selected;
-  return selected ? "1" : "0";
+  return selected ? '1' : '0';
 });
 
 var Day = _styledComponents.default.div(_templateObject5, function (_ref3) {
   var selected = _ref3.selected;
-  return selected ? "rgb(255, 255, 255)" : "rgba(0, 0, 0, 0.87)";
+  return selected ? 'rgb(255, 255, 255)' : 'rgba(0, 0, 0, 0.87)';
 }, function (_ref4) {
   var today = _ref4.today;
-  return today ? "bold" : "400";
+  return today ? 'bold' : '400';
 }, function (_ref5) {
   var today = _ref5.today;
-  return today ? "1.1rem" : "auto";
+  return today ? '1.1rem' : 'auto';
+}, function (_ref6) {
+  var disabled = _ref6.disabled;
+  return disabled ? 'lightgrey' : 'auto';
 });
 
 var Week =
@@ -68,7 +71,7 @@ function (_Component) {
   _inherits(Week, _Component);
 
   function Week() {
-    var _ref6;
+    var _ref7;
 
     var _temp, _this;
 
@@ -78,7 +81,7 @@ function (_Component) {
       args[_key] = arguments[_key];
     }
 
-    return _possibleConstructorReturn(_this, (_temp = _this = _possibleConstructorReturn(this, (_ref6 = Week.__proto__ || Object.getPrototypeOf(Week)).call.apply(_ref6, [this].concat(args))), _this.onSelect = function (day) {
+    return _possibleConstructorReturn(_this, (_temp = _this = _possibleConstructorReturn(this, (_ref7 = Week.__proto__ || Object.getPrototypeOf(Week)).call.apply(_ref7, [this].concat(args))), _this.onSelect = function (day) {
       if (!_this.isDisabled(day)) _this.props.onSelect(day);
     }, _this.isDisabled = function (day) {
       var minDate = _this.props.minDate,
@@ -94,30 +97,40 @@ function (_Component) {
     value: function render() {
       var _this2 = this;
 
-      var dateInNumberic = new _dateUtils.dateTimeFormat("en-US", {
-        day: "numeric",
-        month: "numeric",
-        year: "numeric"
+      var dateInNumberic = new _dateUtils.dateTimeFormat('en-US', {
+        day: 'numeric',
+        month: 'numeric',
+        year: 'numeric'
       });
       var dateToday = dateInNumberic.format(new Date());
-      var dayInNumeric = new _dateUtils.dateTimeFormat("en-US", {
-        day: "numeric"
+      var dayInNumeric = new _dateUtils.dateTimeFormat('en-US', {
+        day: 'numeric'
       });
       return _react.default.createElement(StyledWeek, null, this.props.week.map(function (day, i) {
-        var isToday = day && dateToday === dateInNumberic.format(day);
-        return day ? _react.default.createElement(DayButton, {
-          key: "day-".concat(day),
-          onClick: function onClick() {
-            return _this2.onSelect(day);
-          },
-          disabled: _this2.isDisabled(day),
-          selected: _this2.isSelected(day)
-        }, _react.default.createElement(DayBackdrop, {
-          selected: _this2.isSelected(day)
-        }), _react.default.createElement(Day, {
-          selected: _this2.isSelected(day),
-          today: isToday
-        }, dayInNumeric.format(day))) : _react.default.createElement(Blank, {
+        if (day) {
+          var isToday = day && dateToday === dateInNumberic.format(day);
+
+          var isDisabled = _this2.isDisabled(day);
+
+          var isSelected = _this2.isSelected(day);
+
+          return _react.default.createElement(DayButton, {
+            key: "day-".concat(day),
+            onClick: function onClick() {
+              return _this2.onSelect(day);
+            },
+            disabled: isDisabled,
+            selected: isSelected
+          }, _react.default.createElement(DayBackdrop, {
+            selected: isSelected
+          }), _react.default.createElement(Day, {
+            selected: isSelected,
+            disabled: isDisabled,
+            today: isToday
+          }, dayInNumeric.format(day)));
+        }
+
+        return _react.default.createElement(Blank, {
           key: "blank-".concat(i)
         });
       }));

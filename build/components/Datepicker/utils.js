@@ -41,6 +41,7 @@ var DateUtilities = {
     }).length !== datesArray.length;
   },
   isBefore: function isBefore(first, second) {
+    if (this.isSameDay(first, second)) return;
     return first.getTime() < second.getTime();
   },
   isAfter: function isAfter(first, second) {
