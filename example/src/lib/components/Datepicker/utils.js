@@ -63,6 +63,7 @@ const DateUtilities = {
   },
 
   isBefore(first, second) {
+    if (this.isSameDay(first, second)) return;
     return first.getTime() < second.getTime();
   },
 
