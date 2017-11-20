@@ -82,10 +82,8 @@ export function cloneAsDate(d) {
 
 export function getDaysInMonth(d) {
   const resultDate = getFirstDayOfMonth(d);
-
   resultDate.setMonth(resultDate.getMonth() + 1);
   resultDate.setDate(resultDate.getDate() - 1);
-
   return resultDate.getDate();
 }
 
@@ -117,7 +115,7 @@ export function getWeekArray(d, firstDayOfWeek) {
   };
 
   dayArray.forEach(day => {
-    if (week.length > 0 && day.getDay() === firstDayOfWeek) {
+    if (week.length > 0 && day.getDay() === 0) {
       addWeek(week);
       week = [];
     }
