@@ -130,7 +130,7 @@ function getWeekArray(d, firstDayOfWeek) {
   };
 
   dayArray.forEach(function (day) {
-    if (week.length > 0 && day.getDay() === firstDayOfWeek) {
+    if (week.length > 0 && day.getDay() === 0) {
       addWeek(week);
       week = [];
     }
