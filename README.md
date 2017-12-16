@@ -1,12 +1,15 @@
 # React Multiple Datepicker 📅
-![](https://raw.githubusercontent.com/codeinfuse/react-multiple-datepicker/master/demo/react-multiple-datepicker-screenshot.png)
+
+[![](https://raw.githubusercontent.com/codeinfuse/react-multiple-datepicker/master/demo/react-multiple-datepicker-screenshot.png)](https://codesandbox.io/s/p7q599zlqq)
 
 Let's the user pick more than one date from the date picker.
 
-### Why?
-We created React Multiple Datepicker after we couldn't find a realiable datepicker which supports multiple datepicking option as required in one of our client project [Codeinfuse](https://www.codeinfuse.com).
+## Motivation
 
-### Usage
+After looking at various date picking libraries out there I couldn't find a single one who lets users pick more than one date without enforcing a range, so I decided to write one myself.
+
+## Usage
+
 ```
 yarn add react-multiple-datepicker
 ```
@@ -23,12 +26,11 @@ render() {
 ```
 
 ## Roadmap
-- [ ] Make it responsive
-- [ ] Support for `onDateSelect` prop.
-- [ ] Add test cases
 
-## Development
+* [ ] Make it responsive
+* [ ] Support for `onDateSelect` prop.
+* [ ] Add test cases
 
+## Note From Author
 
-## Brought To You By
-[![](https://www.codeinfuse.com/images/codeinfuse-logo.svg)](https://www.codeinfuse.com)
+Hi, thanks for checking out this library. You can read more about me at https://bilalbudhani.com/about or you can follow me at https://twitter.com/BilalBudhani
