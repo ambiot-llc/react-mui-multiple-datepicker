@@ -106,7 +106,8 @@ class Week extends Component {
             return (
               <DayButton
                 key={`day-${day}`}
-                onClick={() => this.onSelect(day)}
+                onClick={(e) => {e.preventDefault();
+                this.onSelect(day)}
                 disabled={isDisabled}
                 selected={isSelected}
               >
