@@ -110,7 +110,7 @@ class DatePicker extends Component {
     this.dismiss();
   };
 
-  handleOk = () => {
+  handleOk = (e) => {
     e.preventDefault();
     if (this.props.onSubmit) {
       this.props.onSubmit(this.state.selectedDates);
