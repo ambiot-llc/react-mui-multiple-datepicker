@@ -102,7 +102,8 @@ class DatePicker extends Component {
     this.setState({ open: !this.state.open });
   };
 
-  handleCancel = () => {
+  handleCancel = (e) => {
+    e.preventDefault()
     this.dismiss();
   };
 
