@@ -72,13 +72,15 @@ class CalendarToolbar extends Component {
     }
   }
 
-  handleTouchTapPrevMonth = () => {
+  handleTouchTapPrevMonth = e => {
+    e.preventDefault();
     if (this.props.onMonthChange) {
       this.props.onMonthChange(-1);
     }
   };
 
-  handleTouchTapNextMonth = () => {
+  handleTouchTapNextMonth = e => {
+    e.preventDefault();
     if (this.props.onMonthChange) {
       this.props.onMonthChange(1);
     }
