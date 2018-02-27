@@ -1,11 +1,11 @@
 {
   "name": "react-multiple-datepicker",
-  "version": "0.0.6",
+  "version": "0.0.7",
   "description": "Multiple Datepicker React",
   "main": "./build/index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "build": "./node_modules/.bin/babel ./lib -d ./build"
+    "build": "npx babel ./example/src/lib -d ./build"
   },
   "repository": {
     "type": "git",
@@ -28,9 +28,9 @@
   ],
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/codeinfuse/react-multiple-datepicker/issues"
+    "url": "https://github.com/bilalbudhani/react-multiple-datepicker/issues"
   },
-  "homepage": "https://github.com/codeinfuse/react-multiple-datepicker#readme",
+  "homepage": "https://github.com/bilalbudhani/react-multiple-datepicker#readme",
   "dependencies": {
     "styled-components": "^2.1.2",
     "warning": "^3.0.0"

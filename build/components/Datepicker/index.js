@@ -88,7 +88,9 @@ function (_Component) {
       });
     };
 
-    _this.handleCancel = function () {
+    _this.handleCancel = function (e) {
+      e.preventDefault();
+
       _this.dismiss();
     };
 
@@ -96,7 +98,9 @@ function (_Component) {
       _this.dismiss();
     };
 
-    _this.handleOk = function () {
+    _this.handleOk = function (e) {
+      e.preventDefault();
+
       if (_this.props.onSubmit) {
         _this.props.onSubmit(_this.state.selectedDates);
       }

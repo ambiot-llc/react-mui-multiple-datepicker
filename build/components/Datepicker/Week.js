@@ -116,8 +116,10 @@ function (_Component) {
 
           return _react.default.createElement(DayButton, {
             key: "day-".concat(day),
-            onClick: function onClick() {
-              return _this2.onSelect(day);
+            onClick: function onClick(e) {
+              e.preventDefault();
+
+              _this2.onSelect(day);
             },
             disabled: isDisabled,
             selected: isSelected

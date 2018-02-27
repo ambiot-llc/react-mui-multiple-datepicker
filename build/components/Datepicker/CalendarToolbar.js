@@ -62,11 +62,15 @@ function (_Component) {
 
     return _possibleConstructorReturn(_this, (_temp = _this = _possibleConstructorReturn(this, (_ref = CalendarToolbar.__proto__ || Object.getPrototypeOf(CalendarToolbar)).call.apply(_ref, [this].concat(args))), _this.state = {
       transitionDirection: 'up'
-    }, _this.handleTouchTapPrevMonth = function () {
+    }, _this.handleTouchTapPrevMonth = function (e) {
+      e.preventDefault();
+
       if (_this.props.onMonthChange) {
         _this.props.onMonthChange(-1);
       }
-    }, _this.handleTouchTapNextMonth = function () {
+    }, _this.handleTouchTapNextMonth = function (e) {
+      e.preventDefault();
+
       if (_this.props.onMonthChange) {
         _this.props.onMonthChange(1);
       }
