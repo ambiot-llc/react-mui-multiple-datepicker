@@ -6,7 +6,7 @@ import { dateTimeFormat } from './dateUtils';
 const StyledWeek = styled.div`
   display: flex;
   flex-direction: row;
-  justify-content: space-around;
+  justify-content: space-between;
   height: 34px;
   margin-bottom: 2px;
 `;
@@ -19,15 +19,15 @@ const DayButton = styled.button`
   -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
   cursor: pointer;
   text-decoration: none;
-  margin: 0px;
-  padding: 4px 0px;
+  margin: 0;
+  padding: 0.5rem;
   outline: none;
   font-size: inherit;
   font-weight: 400;
   position: relative;
   z-index: 1;
-  width: 42px;
   background: none;
+  text-align: right;
 `;
 
 const Blank = styled.div`
@@ -35,16 +35,14 @@ const Blank = styled.div`
   box-sizing: border-box;
   display: inline-block;
   font-family: Roboto, sans-serif;
-  -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
   text-decoration: none;
-  margin: 0px;
-  padding: 4px 0px;
+  margin: 0;
+  padding: 0.5rem;
   outline: none;
   font-size: inherit;
   font-weight: 400;
   position: relative;
   z-index: 1;
-  width: 42px;
   background: none;
 `;
 
@@ -52,10 +50,10 @@ const DayBackdrop = styled.div`
   background-color: rgb(0, 151, 167);
   height: 34px;
   border-radius: 50%;
-  left: 4px;
+  left: 0;
   opacity: ${({ selected }) => (selected ? '1' : '0')};
   position: absolute;
-  top: 0px;
+  top: 0;
   transform: scale(${({ selected }) => (selected ? '1' : '0')});
   transition: all 450ms cubic-bezier(0.23, 1, 0.32, 1) 0ms;
   width: 34px;

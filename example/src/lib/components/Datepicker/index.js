@@ -6,41 +6,40 @@ import Calendar from './Calendar';
 const StyledDatePicker = styled.div`
   position: fixed;
   box-sizing: border-box;
-  -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
   z-index: 1500;
-  top: 0px;
-  left: 0px;
+  top: 0;
+  left: 0;
   width: 100%;
   height: 100%;
   transition: left 0ms cubic-bezier(0.23, 1, 0.32, 1) 0ms;
   padding: 16px 0px 0px;
-  min-height: 330px;
-  min-width: 479px;
   ${({ open }) => !open && 'display: none'};
+
+  @media (max-width: 400px) {
+    padding: 0 4px;
+  }
 `;
 
 const Backdrop = styled.div`
   position: fixed;
   height: 100%;
   width: 100%;
-  top: 0px;
-  left: 0px;
+  top: 0;
+  left: 0;
   opacity: 1;
   background-color: rgba(0, 0, 0, 0.54);
-  -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
   will-change: opacity;
-  transform: translateZ(0px);
+  transform: translateZ(0);
   transition: left 0ms cubic-bezier(0.23, 1, 0.32, 1) 0ms, opacity 400ms cubic-bezier(0.23, 1, 0.32, 1) 0ms;
   z-index: 1400;
 `;
 
 const Dialog = styled.div`
   box-sizing: border-box;
-  -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
   transition: all 450ms cubic-bezier(0.23, 1, 0.32, 1) 0ms;
   position: relative;
-  width: 479px;
-  max-width: 768px;
+  width: 100%;
+  max-width: 479px;
   margin: 0px auto;
   z-index: 1500;
   opacity: 1;
@@ -66,8 +65,6 @@ const DialogContent = styled.div`
   overflow-y: hidden;
   border-top: none;
   border-bottom: none;
-  min-height: 330px;
-  min-width: 479px;
 `;
 
 class DatePicker extends Component {

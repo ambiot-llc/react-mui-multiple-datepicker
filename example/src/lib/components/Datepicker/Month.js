@@ -9,10 +9,9 @@ const MonthWrapper = styled.div`
   justify-content: flex-start;
   font-weight: 400;
   height: 214px;
-  line-height: 2px;
+  line-height: 1.25;
   position: relative;
   text-align: center;
-  moz-padding-start: 0;
 `;
 
 class Weeks extends Component {

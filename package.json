@@ -9,7 +9,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/codeinfuse/react-multiple-datepicker.git"
+    "url": "git+https://github.com/bilalbudhani/react-multiple-datepicker.git"
   },
   "keywords": [
     "multi-datepicker",

@@ -9,8 +9,8 @@ var _react = _interopRequireDefault(require("react"));
 
 var _styledComponents = _interopRequireDefault(require("styled-components"));
 
-var _templateObject = _taggedTemplateLiteral(["\n  display: flex;\n  flex-direction: row;\n  justify-content: space-between;\n  font-weight: 500;\n  height: 20px;\n  line-height: 15px;\n  opacity: 0.5;\n  text-align: center;\n"], ["\n  display: flex;\n  flex-direction: row;\n  justify-content: space-between;\n  font-weight: 500;\n  height: 20px;\n  line-height: 15px;\n  opacity: 0.5;\n  text-align: center;\n"]),
-    _templateObject2 = _taggedTemplateLiteral(["\n  width: 42px;\n"], ["\n  width: 42px;\n"]);
+var _templateObject = _taggedTemplateLiteral(["\n  display: flex;\n  align-items: center;\n  flex-direction: row;\n  justify-content: space-between;\n  font-weight: 500;\n  line-height: 1.25;\n  opacity: 0.8;\n  text-align: center;\n"], ["\n  display: flex;\n  align-items: center;\n  flex-direction: row;\n  justify-content: space-between;\n  font-weight: 500;\n  line-height: 1.25;\n  opacity: 0.8;\n  text-align: center;\n"]),
+    _templateObject2 = _taggedTemplateLiteral(["\n  padding: 0.5rem;\n"], ["\n  padding: 0.5rem;\n"]);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 

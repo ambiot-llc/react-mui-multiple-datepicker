@@ -11,17 +11,18 @@ const Icon = styled.button`
   position: relative;
   z-index: 1;
   height: 36px;
-  line-height: 36px;
+  line-height: 1.25;
   overflow: hidden;
   background-color: rgba(0, 0, 0, 0);
   text-align: center;
 
   font-weight: bold;
   padding: 5px 8px;
-  border-radius: 3px;
+  border-radius: 4px;
   cursor: pointer;
   font-style: normal;
   font-size: 0.7em;
+
   :hover {
     color: rgb(0, 188, 212);
   }

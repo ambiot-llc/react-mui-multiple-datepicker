@@ -13,7 +13,7 @@ var _Week = _interopRequireDefault(require("./Week"));
 
 var _dateUtils = require("./dateUtils");
 
-var _templateObject = _taggedTemplateLiteral(["\n  display: flex;\n  flex-direction: column;\n  justify-content: flex-start;\n  font-weight: 400;\n  height: 214px;\n  line-height: 2px;\n  position: relative;\n  text-align: center;\n  moz-padding-start: 0;\n"], ["\n  display: flex;\n  flex-direction: column;\n  justify-content: flex-start;\n  font-weight: 400;\n  height: 214px;\n  line-height: 2px;\n  position: relative;\n  text-align: center;\n  moz-padding-start: 0;\n"]);
+var _templateObject = _taggedTemplateLiteral(["\n  display: flex;\n  flex-direction: column;\n  justify-content: flex-start;\n  font-weight: 400;\n  height: 214px;\n  line-height: 1.25;\n  position: relative;\n  text-align: center;\n"], ["\n  display: flex;\n  flex-direction: column;\n  justify-content: flex-start;\n  font-weight: 400;\n  height: 214px;\n  line-height: 1.25;\n  position: relative;\n  text-align: center;\n"]);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 

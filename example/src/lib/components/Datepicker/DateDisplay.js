@@ -16,6 +16,9 @@ const Root = styled.div`
   padding: 20px;
   box-sizing: border-box;
   overflow-y: auto;
+  @media (max-width: 400px) {
+    display: none;
+  }
 `;
 
 const DateTime = styled.div`

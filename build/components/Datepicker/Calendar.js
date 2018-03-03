@@ -21,9 +21,9 @@ var _CalendarButtons = _interopRequireDefault(require("./CalendarButtons"));
 
 var _DateDisplay = _interopRequireDefault(require("./DateDisplay"));
 
-var _templateObject = _taggedTemplateLiteral(["\n  color: rgba(0, 0, 0, 0.87);\n  user-select: none;\n  ", ";\n  overflow: hidden;\n"], ["\n  color: rgba(0, 0, 0, 0.87);\n  user-select: none;\n  ", ";\n  overflow: hidden;\n"]),
-    _templateObject2 = _taggedTemplateLiteral(["\n  display: flex;\n  place-content: space-between;\n  flex-direction: column;\n  font-size: 12px;\n  font-weight: 400;\n  padding: 0px 8px;\n  transition: all 450ms cubic-bezier(0.23, 1, 0.32, 1) 0ms;\n"], ["\n  display: flex;\n  place-content: space-between;\n  flex-direction: column;\n  font-size: 12px;\n  font-weight: 400;\n  padding: 0px 8px;\n  transition: all 450ms cubic-bezier(0.23, 1, 0.32, 1) 0ms;\n"]),
-    _templateObject3 = _taggedTemplateLiteral(["\n  display: flex;\n  flex-direction: column;\n  min-height: 330px;\n"], ["\n  display: flex;\n  flex-direction: column;\n  min-height: 330px;\n"]);
+var _templateObject = _taggedTemplateLiteral(["\n  color: rgba(0, 0, 0, 0.87);\n  user-select: none;\n  overflow: auto;\n  max-width: 479px:\n"], ["\n  color: rgba(0, 0, 0, 0.87);\n  user-select: none;\n  overflow: auto;\n  max-width: 479px:\n"]),
+    _templateObject2 = _taggedTemplateLiteral(["\n  display: flex;\n  justify-items: space-between;\n  flex-direction: column;\n  font-size: 12px;\n  font-weight: 400;\n  padding: 0px 8px;\n  transition: all 450ms cubic-bezier(0.23, 1, 0.32, 1) 0ms;\n"], ["\n  display: flex;\n  justify-items: space-between;\n  flex-direction: column;\n  font-size: 12px;\n  font-weight: 400;\n  padding: 0px 8px;\n  transition: all 450ms cubic-bezier(0.23, 1, 0.32, 1) 0ms;\n"]),
+    _templateObject3 = _taggedTemplateLiteral(["\n  display: flex;\n  flex-direction: column;\n"], ["\n  display: flex;\n  flex-direction: column;\n"]);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -43,10 +43,7 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
 
 function _taggedTemplateLiteral(strings, raw) { return Object.freeze(Object.defineProperties(strings, { raw: { value: Object.freeze(raw) } })); }
 
-var Root = _styledComponents.default.div(_templateObject, function (_ref) {
-  var hideCalendarDate = _ref.hideCalendarDate;
-  return !hideCalendarDate && 'width: 479px';
-});
+var Root = _styledComponents.default.div(_templateObject);
 
 var CalendarContainer = _styledComponents.default.div(_templateObject2);
 
@@ -58,7 +55,7 @@ function (_Component) {
   _inherits(Calendar, _Component);
 
   function Calendar() {
-    var _ref2;
+    var _ref;
 
     var _temp, _this;
 
@@ -68,7 +65,7 @@ function (_Component) {
       args[_key] = arguments[_key];
     }
 
-    return _possibleConstructorReturn(_this, (_temp = _this = _possibleConstructorReturn(this, (_ref2 = Calendar.__proto__ || Object.getPrototypeOf(Calendar)).call.apply(_ref2, [this].concat(args))), _this.state = {
+    return _possibleConstructorReturn(_this, (_temp = _this = _possibleConstructorReturn(this, (_ref = Calendar.__proto__ || Object.getPrototypeOf(Calendar)).call.apply(_ref, [this].concat(args))), _this.state = {
       displayDate: undefined,
       displayMonthDay: undefined,
       selectedDate: undefined,
@@ -153,8 +150,8 @@ function (_Component) {
         minDate: this.getMinDate(),
         maxDate: this.getMaxDate(),
         onSelect: this.props.onSelect,
-        ref: function ref(_ref3) {
-          return _this2.calendarRefs.calendar = _ref3;
+        ref: function ref(_ref2) {
+          return _this2.calendarRefs.calendar = _ref2;
         }
       })), _react.default.createElement(_CalendarButtons.default, {
         onCancel: this.props.onCancel,

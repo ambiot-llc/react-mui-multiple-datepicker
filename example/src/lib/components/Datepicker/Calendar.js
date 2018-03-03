@@ -10,13 +10,13 @@ import DateDisplay from './DateDisplay';
 const Root = styled.div`
   color: rgba(0, 0, 0, 0.87);
   user-select: none;
-  ${({ hideCalendarDate }) => !hideCalendarDate && 'width: 479px'};
-  overflow: hidden;
+  overflow: auto;
+  max-width: 479px:
 `;
 
 const CalendarContainer = styled.div`
   display: flex;
-  place-content: space-between;
+  justify-items: space-between;
   flex-direction: column;
   font-size: 12px;
   font-weight: 400;
@@ -27,7 +27,6 @@ const CalendarContainer = styled.div`
 const StyledCalendar = styled.div`
   display: flex;
   flex-direction: column;
-  min-height: 330px;
 `;
 
 class Calendar extends Component {
