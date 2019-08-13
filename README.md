@@ -2,13 +2,11 @@
 
 ![](https://raw.githubusercontent.com/randex/react-multiple-datepicker/master/demo/datepicker-screenshot.png)
 
-Let's the user pick more than one date from the date picker.
+Lets the user pick more than one date from the date picker.
 
 ## Motivation
 
-After looking at various date picking libraries out there I couldn't find a single one who lets users pick more than one date without enforcing a range, so I decided to write one myself.
-
-This is a fork of `react-multiple-datepicker`. I needed a date picker that is built on [Material-UI](https://github.com/mui-org/material-ui) and supports multiple dates selections, couldn't find one, so here it is!
+This is a fork of `react-multiple-datepicker`. I needed a date picker that is built on [Material-UI](https://github.com/mui-org/material-ui) and supports multiple dates selections, couldn't find one, so here it is! 
 
  ## Features
 
@@ -18,11 +16,15 @@ This is a fork of `react-multiple-datepicker`. I needed a date picker that is bu
 - Click on any selected date to remove it (either on calendar or on the list)
 - Customize button labels and titles
 
-## Usage example
+## Installation
+
+To install the component run this command:
 
 ```
 npm i -S @randex/material-ui-multiple-dates-picker
 ```
+
+## Usage example
 
 ```javascript
 import MultipleDatesPicker from '@randex/material-ui-multiple-dates-picker'
