@@ -2,7 +2,7 @@
 
 ![](https://raw.githubusercontent.com/randex/react-multiple-datepicker/master/demo/datepicker-screenshot.png)
 
-Lets the user pick more than one date from the date picker.
+Lets user pick more than one date from the date picker.
 
 ## Motivation
 
