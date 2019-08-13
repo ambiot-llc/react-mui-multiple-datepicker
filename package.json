@@ -1,53 +1,52 @@
 {
-  "name": "react-multiple-datepicker",
+  "name": "@randex/material-ui-multiple-dates-picker",
   "version": "0.1.0",
-  "description": "Multiple Datepicker React",
+  "description": "Date Picker with multiple selection based on Material UI",
   "main": "./build/index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "build": "npx babel ./example/src/lib -d ./build"
+    "build": "npx babel ./lib -d ./build"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/bilalbudhani/react-multiple-datepicker.git"
+    "url": "git+https://github.com/randex/react-multiple-datepicker.git"
   },
   "keywords": [
     "multi-datepicker",
     "react-datepicker",
     "react-multiple-datepicker",
+    "material-ui-multiple-datepicker",
+    "material-ui-multiple-dates-picker",
     "multiple",
     "datepicker"
   ],
   "author": {
-    "name": "Bilal Budhani",
-    "email": "bilalbudhani@gmail.com",
-    "url": "https://bilalbudhani.com"
+    "name": "Ruslan Murin",
+    "email": "randexdev@gmail.com",
+    "url": "http://randexdev.com"
   },
-  "contributors": [
-    "Amit Solanki <amit.fash@gmail.com> (http://solankiamit.com)"
-  ],
+  "contributors": [],
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/bilalbudhani/react-multiple-datepicker/issues"
+    "url": "https://github.com/randex/react-multiple-datepicker/issues"
   },
-  "homepage": "https://github.com/bilalbudhani/react-multiple-datepicker#readme",
+  "homepage": "https://github.com/randex/react-multiple-datepicker#readme",
   "dependencies": {
-    "styled-components": "^2.1.2",
+    "@material-ui/core": "^4.3.2",
+    "@material-ui/icons": "^4.2.1",
+    "@material-ui/styles": "^4.3.0",
     "warning": "^3.0.0"
   },
   "devDependencies": {
-    "babel-cli": "^7.0.0-beta.2",
-    "babel-eslint": "7",
-    "babel-preset-env": "^2.0.0-beta.2",
-    "babel-preset-react": "^7.0.0-beta.2",
-    "babel-preset-stage-1": "^6.24.1",
-    "eslint": "3.x",
-    "eslint-config-airbnb": "^15.1.0",
-    "eslint-config-prettier": "^2.6.0",
-    "eslint-plugin-import": "^2.7.0",
-    "eslint-plugin-jsx-a11y": "^6.0.2",
-    "eslint-plugin-prettier": "^2.3.1",
-    "eslint-plugin-react": "^7.4.0",
-    "prettier-eslint": "^8.2.0"
+    "@babel/cli": "^7.5.5",
+    "@babel/core": "^7.5.5",
+    "@babel/plugin-proposal-class-properties": "^7.5.5",
+    "@babel/preset-env": "^7.5.5",
+    "@babel/preset-react": "^7.0.0",
+    "babel-eslint": "^10.0.2",
+    "standard": "^13.1.0"
+  },
+  "standard": {
+    "parser": "babel-eslint"
   }
 }

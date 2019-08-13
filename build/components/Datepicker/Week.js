@@ -3,7 +3,7 @@
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.default = void 0;
+exports["default"] = void 0;
 
 var _react = _interopRequireWildcard(require("react"));
 
@@ -13,15 +13,9 @@ var _utils = _interopRequireDefault(require("./utils"));
 
 var _dateUtils = require("./dateUtils");
 
-var _templateObject = _taggedTemplateLiteral(["\n  display: flex;\n  flex-direction: row;\n  justify-content: space-between;\n  height: 34px;\n  margin-bottom: 2px;\n"], ["\n  display: flex;\n  flex-direction: row;\n  justify-content: space-between;\n  height: 34px;\n  margin-bottom: 2px;\n"]),
-    _templateObject2 = _taggedTemplateLiteral(["\n  border: 10px;\n  box-sizing: border-box;\n  display: inline-block;\n  font-family: Roboto, sans-serif;\n  -webkit-tap-highlight-color: rgba(0, 0, 0, 0);\n  cursor: pointer;\n  text-decoration: none;\n  margin: 0;\n  padding: 0.5rem;\n  outline: none;\n  font-size: inherit;\n  font-weight: 400;\n  position: relative;\n  z-index: 1;\n  background: none;\n  text-align: right;\n"], ["\n  border: 10px;\n  box-sizing: border-box;\n  display: inline-block;\n  font-family: Roboto, sans-serif;\n  -webkit-tap-highlight-color: rgba(0, 0, 0, 0);\n  cursor: pointer;\n  text-decoration: none;\n  margin: 0;\n  padding: 0.5rem;\n  outline: none;\n  font-size: inherit;\n  font-weight: 400;\n  position: relative;\n  z-index: 1;\n  background: none;\n  text-align: right;\n"]),
-    _templateObject3 = _taggedTemplateLiteral(["\n  border: 10px;\n  box-sizing: border-box;\n  display: inline-block;\n  font-family: Roboto, sans-serif;\n  text-decoration: none;\n  margin: 0;\n  padding: 0.5rem;\n  outline: none;\n  font-size: inherit;\n  font-weight: 400;\n  position: relative;\n  z-index: 1;\n  background: none;\n"], ["\n  border: 10px;\n  box-sizing: border-box;\n  display: inline-block;\n  font-family: Roboto, sans-serif;\n  text-decoration: none;\n  margin: 0;\n  padding: 0.5rem;\n  outline: none;\n  font-size: inherit;\n  font-weight: 400;\n  position: relative;\n  z-index: 1;\n  background: none;\n"]),
-    _templateObject4 = _taggedTemplateLiteral(["\n  background-color: rgb(0, 151, 167);\n  height: 34px;\n  border-radius: 50%;\n  left: 0;\n  opacity: ", ";\n  position: absolute;\n  top: 0;\n  transform: scale(", ");\n  transition: all 450ms cubic-bezier(0.23, 1, 0.32, 1) 0ms;\n  width: 34px;\n"], ["\n  background-color: rgb(0, 151, 167);\n  height: 34px;\n  border-radius: 50%;\n  left: 0;\n  opacity: ", ";\n  position: absolute;\n  top: 0;\n  transform: scale(", ");\n  transition: all 450ms cubic-bezier(0.23, 1, 0.32, 1) 0ms;\n  width: 34px;\n"]),
-    _templateObject5 = _taggedTemplateLiteral(["\n  color: ", ";\n  font-weight: ", ";\n  font-size: ", ";\n  position: relative;\n  color: ", ";\n"], ["\n  color: ", ";\n  font-weight: ", ";\n  font-size: ", ";\n  position: relative;\n  color: ", ";\n"]);
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { "default": obj }; }
 
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) newObj[key] = obj[key]; } } newObj.default = obj; return newObj; } }
+function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) { var desc = Object.defineProperty && Object.getOwnPropertyDescriptor ? Object.getOwnPropertyDescriptor(obj, key) : {}; if (desc.get || desc.set) { Object.defineProperty(newObj, key, desc); } else { newObj[key] = obj[key]; } } } } newObj["default"] = obj; return newObj; } }
 
 function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
 
@@ -31,19 +25,77 @@ function _defineProperties(target, props) { for (var i = 0; i < props.length; i+
 
 function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
 
-function _possibleConstructorReturn(self, call) { if (call && (_typeof(call) === "object" || typeof call === "function")) { return call; } if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
+function _possibleConstructorReturn(self, call) { if (call && (_typeof(call) === "object" || typeof call === "function")) { return call; } return _assertThisInitialized(self); }
 
-function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function"); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return _getPrototypeOf(o); }
 
-function _taggedTemplateLiteral(strings, raw) { return Object.freeze(Object.defineProperties(strings, { raw: { value: Object.freeze(raw) } })); }
+function _assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
 
-var StyledWeek = _styledComponents.default.div(_templateObject);
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function"); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, writable: true, configurable: true } }); if (superClass) _setPrototypeOf(subClass, superClass); }
 
-var DayButton = _styledComponents.default.button(_templateObject2);
+function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return _setPrototypeOf(o, p); }
 
-var Blank = _styledComponents.default.div(_templateObject3);
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
 
-var DayBackdrop = _styledComponents.default.div(_templateObject4, function (_ref) {
+function _templateObject5() {
+  var data = _taggedTemplateLiteral(["\n  color: ", ";\n  font-weight: ", ";\n  font-size: ", ";\n  position: relative;\n  color: ", ";\n"]);
+
+  _templateObject5 = function _templateObject5() {
+    return data;
+  };
+
+  return data;
+}
+
+function _templateObject4() {
+  var data = _taggedTemplateLiteral(["\n  background-color: rgb(0, 151, 167);\n  height: 34px;\n  border-radius: 50%;\n  left: 0;\n  opacity: ", ";\n  position: absolute;\n  top: 0;\n  transform: scale(", ");\n  transition: all 450ms cubic-bezier(0.23, 1, 0.32, 1) 0ms;\n  width: 34px;\n"]);
+
+  _templateObject4 = function _templateObject4() {
+    return data;
+  };
+
+  return data;
+}
+
+function _templateObject3() {
+  var data = _taggedTemplateLiteral(["\n  border: 10px;\n  box-sizing: border-box;\n  display: inline-block;\n  font-family: Roboto, sans-serif;\n  text-decoration: none;\n  margin: 0;\n  padding: 0.5rem;\n  outline: none;\n  font-size: inherit;\n  font-weight: 400;\n  position: relative;\n  z-index: 1;\n  background: none;\n"]);
+
+  _templateObject3 = function _templateObject3() {
+    return data;
+  };
+
+  return data;
+}
+
+function _templateObject2() {
+  var data = _taggedTemplateLiteral(["\n  border: 10px;\n  box-sizing: border-box;\n  display: inline-block;\n  font-family: Roboto, sans-serif;\n  -webkit-tap-highlight-color: rgba(0, 0, 0, 0);\n  cursor: pointer;\n  text-decoration: none;\n  margin: 0;\n  padding: 0.5rem;\n  outline: none;\n  font-size: inherit;\n  font-weight: 400;\n  position: relative;\n  z-index: 1;\n  background: none;\n  text-align: right;\n"]);
+
+  _templateObject2 = function _templateObject2() {
+    return data;
+  };
+
+  return data;
+}
+
+function _templateObject() {
+  var data = _taggedTemplateLiteral(["\n  display: flex;\n  flex-direction: row;\n  justify-content: space-between;\n  height: 34px;\n  margin-bottom: 2px;\n"]);
+
+  _templateObject = function _templateObject() {
+    return data;
+  };
+
+  return data;
+}
+
+function _taggedTemplateLiteral(strings, raw) { if (!raw) { raw = strings.slice(0); } return Object.freeze(Object.defineProperties(strings, { raw: { value: Object.freeze(raw) } })); }
+
+var StyledWeek = _styledComponents["default"].div(_templateObject());
+
+var DayButton = _styledComponents["default"].button(_templateObject2());
+
+var Blank = _styledComponents["default"].div(_templateObject3());
+
+var DayBackdrop = _styledComponents["default"].div(_templateObject4(), function (_ref) {
   var selected = _ref.selected;
   return selected ? '1' : '0';
 }, function (_ref2) {
@@ -51,7 +103,7 @@ var DayBackdrop = _styledComponents.default.div(_templateObject4, function (_ref
   return selected ? '1' : '0';
 });
 
-var Day = _styledComponents.default.div(_templateObject5, function (_ref3) {
+var Day = _styledComponents["default"].div(_templateObject5(), function (_ref3) {
   var selected = _ref3.selected;
   return selected ? 'rgb(255, 255, 255)' : 'rgba(0, 0, 0, 0.87)';
 }, function (_ref4) {
@@ -71,9 +123,9 @@ function (_Component) {
   _inherits(Week, _Component);
 
   function Week() {
-    var _ref7;
+    var _getPrototypeOf2;
 
-    var _temp, _this;
+    var _this;
 
     _classCallCheck(this, Week);
 
@@ -81,15 +133,23 @@ function (_Component) {
       args[_key] = arguments[_key];
     }
 
-    return _possibleConstructorReturn(_this, (_temp = _this = _possibleConstructorReturn(this, (_ref7 = Week.__proto__ || Object.getPrototypeOf(Week)).call.apply(_ref7, [this].concat(args))), _this.onSelect = function (day) {
+    _this = _possibleConstructorReturn(this, (_getPrototypeOf2 = _getPrototypeOf(Week)).call.apply(_getPrototypeOf2, [this].concat(args)));
+
+    _defineProperty(_assertThisInitialized(_this), "onSelect", function (day) {
       if (!_this.isDisabled(day)) _this.props.onSelect(day);
-    }, _this.isDisabled = function (day) {
+    });
+
+    _defineProperty(_assertThisInitialized(_this), "isDisabled", function (day) {
       var minDate = _this.props.minDate,
           maxDate = _this.props.maxDate;
-      return minDate && _utils.default.isBefore(day, minDate) || maxDate && _utils.default.isAfter(day, maxDate);
-    }, _this.isSelected = function (day) {
-      return _this.props.selectedDates && _utils.default.dateIn(_this.props.selectedDates, day);
-    }, _temp));
+      return minDate && _utils["default"].isBefore(day, minDate) || maxDate && _utils["default"].isAfter(day, maxDate);
+    });
+
+    _defineProperty(_assertThisInitialized(_this), "isSelected", function (day) {
+      return _this.props.selectedDates && _utils["default"].dateIn(_this.props.selectedDates, day);
+    });
+
+    return _this;
   }
 
   _createClass(Week, [{
@@ -106,7 +166,7 @@ function (_Component) {
       var dayInNumeric = new _dateUtils.dateTimeFormat('en-US', {
         day: 'numeric'
       });
-      return _react.default.createElement(StyledWeek, null, this.props.week.map(function (day, i) {
+      return _react["default"].createElement(StyledWeek, null, this.props.week.map(function (day, i) {
         if (day) {
           var isToday = day && dateToday === dateInNumberic.format(day);
 
@@ -114,7 +174,7 @@ function (_Component) {
 
           var isSelected = _this2.isSelected(day);
 
-          return _react.default.createElement(DayButton, {
+          return _react["default"].createElement(DayButton, {
             key: "day-".concat(day),
             onClick: function onClick(e) {
               e.preventDefault();
@@ -123,16 +183,16 @@ function (_Component) {
             },
             disabled: isDisabled,
             selected: isSelected
-          }, _react.default.createElement(DayBackdrop, {
+          }, _react["default"].createElement(DayBackdrop, {
             selected: isSelected
-          }), _react.default.createElement(Day, {
+          }), _react["default"].createElement(Day, {
             selected: isSelected,
             disabled: isDisabled,
             today: isToday
           }, dayInNumeric.format(day)));
         }
 
-        return _react.default.createElement(Blank, {
+        return _react["default"].createElement(Blank, {
           key: "blank-".concat(i)
         });
       }));
@@ -143,4 +203,4 @@ function (_Component) {
 }(_react.Component);
 
 var _default = Week;
-exports.default = _default;
+exports["default"] = _default;

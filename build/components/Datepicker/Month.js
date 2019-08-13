@@ -3,7 +3,7 @@
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.default = void 0;
+exports["default"] = void 0;
 
 var _react = _interopRequireWildcard(require("react"));
 
@@ -13,11 +13,9 @@ var _Week = _interopRequireDefault(require("./Week"));
 
 var _dateUtils = require("./dateUtils");
 
-var _templateObject = _taggedTemplateLiteral(["\n  display: flex;\n  flex-direction: column;\n  justify-content: flex-start;\n  font-weight: 400;\n  height: 214px;\n  line-height: 1.25;\n  position: relative;\n  text-align: center;\n"], ["\n  display: flex;\n  flex-direction: column;\n  justify-content: flex-start;\n  font-weight: 400;\n  height: 214px;\n  line-height: 1.25;\n  position: relative;\n  text-align: center;\n"]);
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { "default": obj }; }
 
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) newObj[key] = obj[key]; } } newObj.default = obj; return newObj; } }
+function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) { var desc = Object.defineProperty && Object.getOwnPropertyDescriptor ? Object.getOwnPropertyDescriptor(obj, key) : {}; if (desc.get || desc.set) { Object.defineProperty(newObj, key, desc); } else { newObj[key] = obj[key]; } } } } newObj["default"] = obj; return newObj; } }
 
 function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
 
@@ -27,13 +25,31 @@ function _defineProperties(target, props) { for (var i = 0; i < props.length; i+
 
 function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
 
-function _possibleConstructorReturn(self, call) { if (call && (_typeof(call) === "object" || typeof call === "function")) { return call; } if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
+function _possibleConstructorReturn(self, call) { if (call && (_typeof(call) === "object" || typeof call === "function")) { return call; } return _assertThisInitialized(self); }
 
-function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function"); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return _getPrototypeOf(o); }
 
-function _taggedTemplateLiteral(strings, raw) { return Object.freeze(Object.defineProperties(strings, { raw: { value: Object.freeze(raw) } })); }
+function _assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
 
-var MonthWrapper = _styledComponents.default.div(_templateObject);
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function"); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, writable: true, configurable: true } }); if (superClass) _setPrototypeOf(subClass, superClass); }
+
+function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return _setPrototypeOf(o, p); }
+
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
+function _templateObject() {
+  var data = _taggedTemplateLiteral(["\n  display: flex;\n  flex-direction: column;\n  justify-content: flex-start;\n  font-weight: 400;\n  height: 214px;\n  line-height: 1.25;\n  position: relative;\n  text-align: center;\n"]);
+
+  _templateObject = function _templateObject() {
+    return data;
+  };
+
+  return data;
+}
+
+function _taggedTemplateLiteral(strings, raw) { if (!raw) { raw = strings.slice(0); } return Object.freeze(Object.defineProperties(strings, { raw: { value: Object.freeze(raw) } })); }
+
+var MonthWrapper = _styledComponents["default"].div(_templateObject());
 
 var Weeks =
 /*#__PURE__*/
@@ -41,9 +57,9 @@ function (_Component) {
   _inherits(Weeks, _Component);
 
   function Weeks() {
-    var _ref;
+    var _getPrototypeOf2;
 
-    var _temp, _this;
+    var _this;
 
     _classCallCheck(this, Weeks);
 
@@ -51,11 +67,13 @@ function (_Component) {
       args[_key] = arguments[_key];
     }
 
-    return _possibleConstructorReturn(_this, (_temp = _this = _possibleConstructorReturn(this, (_ref = Weeks.__proto__ || Object.getPrototypeOf(Weeks)).call.apply(_ref, [this].concat(args))), _this.renderWeeks = function () {
+    _this = _possibleConstructorReturn(this, (_getPrototypeOf2 = _getPrototypeOf(Weeks)).call.apply(_getPrototypeOf2, [this].concat(args)));
+
+    _defineProperty(_assertThisInitialized(_this), "renderWeeks", function () {
       var weekArray = _dateUtils.defaultUtils.getWeekArray(_this.props.displayDate, 1);
 
       return weekArray.map(function (s, i) {
-        return _react.default.createElement(_Week.default, {
+        return _react["default"].createElement(_Week["default"], {
           key: i,
           week: s,
           selected: _this.props.selected,
@@ -64,14 +82,16 @@ function (_Component) {
           minDate: _this.props.minDate,
           maxDate: _this.props.maxDate
         });
-      }, _this);
-    }, _temp));
+      }, _assertThisInitialized(_this));
+    });
+
+    return _this;
   }
 
   _createClass(Weeks, [{
     key: "render",
     value: function render() {
-      return _react.default.createElement(MonthWrapper, null, this.renderWeeks(this.props.displayDate));
+      return _react["default"].createElement(MonthWrapper, null, this.renderWeeks(this.props.displayDate));
     }
   }]);
 
@@ -79,4 +99,4 @@ function (_Component) {
 }(_react.Component);
 
 var _default = Weeks;
-exports.default = _default;
+exports["default"] = _default;

@@ -27,14 +27,14 @@ exports.defaultUtils = void 0;
 
 var _warning = _interopRequireDefault(require("warning"));
 
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { "default": obj }; }
 
 var dayAbbreviation = ['S', 'M', 'T', 'W', 'T', 'F', 'S'];
 var monthList = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
 var monthLongList = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
 
 function dateTimeFormat(locale, options) {
-  (0, _warning.default)(locale === 'en-US', "Material-UI: The ".concat(locale, " locale is not supported by the built-in DateTimeFormat.\n  Use the `DateTimeFormat` prop to supply an alternative implementation."));
+  (0, _warning["default"])(locale === 'en-US', "Material-UI: The ".concat(locale, " locale is not supported by the built-in DateTimeFormat.\n  Use the `DateTimeFormat` prop to supply an alternative implementation."));
 
   this.format = function (date) {
     if (options.month === 'short' && options.day === '2-digit' && options.year === 'numeric') {
@@ -51,7 +51,7 @@ function dateTimeFormat(locale, options) {
       return date.getDate();
     }
 
-    (0, _warning.default)(false, 'Material-UI: Wrong usage of DateTimeFormat');
+    (0, _warning["default"])(false, 'Material-UI: Wrong usage of DateTimeFormat');
   };
 }
 

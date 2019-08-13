@@ -3,7 +3,7 @@
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.default = void 0;
+exports["default"] = void 0;
 var DateUtilities = {
   pad: function pad(value, length) {
     while (value.length < length) {
@@ -49,4 +49,4 @@ var DateUtilities = {
   }
 };
 var _default = DateUtilities;
-exports.default = _default;
+exports["default"] = _default;
