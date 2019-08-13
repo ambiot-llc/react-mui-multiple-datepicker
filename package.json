@@ -5,7 +5,7 @@
   "main": "./build/index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "build": "npx babel ./lib -d ./build"
+    "build": "npx babel ./example/src/lib -d ./build"
   },
   "repository": {
     "type": "git",
@@ -35,6 +35,7 @@
     "@material-ui/core": "^4.3.2",
     "@material-ui/icons": "^4.2.1",
     "@material-ui/styles": "^4.3.0",
+    "classnames": "^2.2.6",
     "warning": "^3.0.0"
   },
   "devDependencies": {

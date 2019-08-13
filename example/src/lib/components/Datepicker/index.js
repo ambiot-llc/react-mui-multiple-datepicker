@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import DateUtilities from './utils'
 import Calendar from './Calendar'
-import { Dialog } from '@material-ui/core'
+import { Dialog, DialogContent } from '@material-ui/core'
 
 class DatePicker extends Component {
   constructor (props) {
@@ -14,7 +14,7 @@ class DatePicker extends Component {
       selectedDates: props.selected ? [DateUtilities.clone(def)] : [],
       minDate: null,
       maxDate: null,
-      open: false
+      open: true
     }
   }
 
@@ -27,6 +27,16 @@ class DatePicker extends Component {
     } else {
       this.setState({ selectedDates: [...selectedDates, day] })
     }
+  }
+
+  onRemoveAtIndex = index => {
+    const { selectedDates } = this.state
+    const newDates = [...selectedDates]
+    if (index > -1) {
+      newDates.splice(index, 1)
+    }
+
+    this.setState({ selectedDates: newDates })
   }
 
   onSubmit = () => {}
@@ -84,23 +94,22 @@ class DatePicker extends Component {
             onClick={this.toggleOpen}
           />
         )}{' '}
-        <StyledDatePicker open={this.state.open}>
-          <Dialog>
-            <DialogContent>
-              <Calendar
-                visible={this.state.visible}
-                view={this.state.view}
-                selected={this.state.selected}
-                selectedDates={this.state.selectedDates}
-                onSelect={this.onSelect}
-                minDate={this.props.minDate}
-                maxDate={this.props.maxDate}
-                onCancel={this.handleCancel}
-                onOk={this.handleOk}
-              />
-            </DialogContent>
-          </Dialog>
-        </StyledDatePicker>
+        <Dialog open={this.state.open}>
+          {/* <DialogContent> */}
+          <Calendar
+            visible={this.state.visible}
+            view={this.state.view}
+            selected={this.state.selected}
+            selectedDates={this.state.selectedDates}
+            onSelect={this.onSelect}
+            onRemoveAtIndex={this.onRemoveAtIndex}
+            minDate={this.props.minDate}
+            maxDate={this.props.maxDate}
+            onCancel={this.handleCancel}
+            onOk={this.handleOk}
+          />
+          {/* </DialogContent> */}
+        </Dialog>
       </div>
     )
   }
