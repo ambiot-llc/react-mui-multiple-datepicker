@@ -4,7 +4,7 @@
   "description": "Date Picker with multiple selection based on Material UI",
   "main": "./build/index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
+    "test": "echo \"Error: no test specified\"",
     "build": "npx babel ./app/src/lib -d ./build"
   },
   "repository": {
