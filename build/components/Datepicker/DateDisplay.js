@@ -7,9 +7,11 @@ exports["default"] = void 0;
 
 var _react = _interopRequireWildcard(require("react"));
 
-var _styledComponents = _interopRequireDefault(require("styled-components"));
+var _core = require("@material-ui/core");
 
-var _dateUtils = require("./dateUtils");
+var _Clear = _interopRequireDefault(require("@material-ui/icons/Clear"));
+
+var _moment = _interopRequireDefault(require("moment"));
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { "default": obj }; }
 
@@ -35,31 +37,28 @@ function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || func
 
 function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
 
-function _templateObject2() {
-  var data = _taggedTemplateLiteral(["\n  position: relative;\n  overflow: hidden;\n  height: 16px;\n  margin: 0px 0px 10px;\n  font-size: 16px;\n  font-weight: 500;\n  line-height: 16px;\n  transition: all 450ms cubic-bezier(0.23, 1, 0.32, 1) 0ms;\n"]);
-
-  _templateObject2 = function _templateObject2() {
-    return data;
+var styles = function styles(theme) {
+  return {
+    root: {
+      width: theme.spacing(30),
+      backgroundColor: theme.palette.background["default"],
+      display: 'flex',
+      flexDirection: 'column'
+    },
+    header: {
+      margin: theme.spacing(2),
+      // width: '100%',
+      display: 'flex',
+      alignItems: 'center',
+      alignContent: 'center',
+      justifyContent: 'space-between'
+    },
+    list: {
+      flex: '1',
+      overflowY: 'scroll'
+    }
   };
-
-  return data;
-}
-
-function _templateObject() {
-  var data = _taggedTemplateLiteral(["\n  width: 165px;\n  height: 330px;\n  float: left;\n  font-weight: 700;\n  display: inline-block;\n  background-color: rgb(0, 188, 212);\n  border-top-left-radius: 2px;\n  border-top-right-radius: 0px;\n  border-bottom-left-radius: 2px;\n  color: rgb(255, 255, 255);\n  padding: 20px;\n  box-sizing: border-box;\n  overflow-y: auto;\n  @media (max-width: 400px) {\n    display: none;\n  }\n"]);
-
-  _templateObject = function _templateObject() {
-    return data;
-  };
-
-  return data;
-}
-
-function _taggedTemplateLiteral(strings, raw) { if (!raw) { raw = strings.slice(0); } return Object.freeze(Object.defineProperties(strings, { raw: { value: Object.freeze(raw) } })); }
-
-var Root = _styledComponents["default"].div(_templateObject());
-
-var DateTime = _styledComponents["default"].div(_templateObject2());
+};
 
 var DateDisplay =
 /*#__PURE__*/
@@ -84,20 +83,27 @@ function (_Component) {
     });
 
     _defineProperty(_assertThisInitialized(_this), "getFormatedDate", function (date) {
-      var dateTime = new _dateUtils.dateTimeFormat('en-US', {
-        year: 'numeric',
-        month: 'short',
-        day: '2-digit'
-      }).format(date);
-      return "".concat(dateTime);
+      // const dateTime = new dateTimeFormat('en-US', {
+      //   year: 'numeric',
+      //   month: 'short',
+      //   day: '2-digit'
+      // }).format(date)
+      // return `${dateTime}`
+      return (0, _moment["default"])(date).format('ll');
+    });
+
+    _defineProperty(_assertThisInitialized(_this), "removeDateAtIndex", function (index) {
+      return function () {
+        _this.props.onRemoveAtIndex(index);
+      };
     });
 
     return _this;
   }
 
   _createClass(DateDisplay, [{
-    key: "componentWillMount",
-    value: function componentWillMount() {
+    key: "componentDidMount",
+    value: function componentDidMount() {
       if (!this.props.monthDaySelected) {
         this.setState({
           selectedYear: true
@@ -109,17 +115,39 @@ function (_Component) {
     value: function render() {
       var _this2 = this;
 
-      var selectedDates = this.props.selectedDates;
-      return _react["default"].createElement(Root, null, selectedDates.map(function (date) {
-        return _react["default"].createElement(DateTime, {
-          key: "".concat(date.toString())
-        }, _this2.getFormatedDate(date));
-      }));
+      var _this$props = this.props,
+          classes = _this$props.classes,
+          selectedDates = _this$props.selectedDates;
+      console.log('selected dates', selectedDates);
+      return _react["default"].createElement("div", {
+        className: classes.root
+      }, _react["default"].createElement("div", {
+        className: classes.header
+      }, _react["default"].createElement(_core.Typography, {
+        variant: "subtitle1"
+      }, this.props.selectedDatesTitle), _react["default"].createElement(_core.Typography, {
+        variant: "subtitle1",
+        color: "primary"
+      }, selectedDates.length)), _react["default"].createElement(_core.List, {
+        dense: true,
+        className: classes.list
+      }, selectedDates.map(function (date, index) {
+        return _react["default"].createElement(_core.ListItem, {
+          key: "".concat(date.toString()),
+          button: true,
+          onClick: _this2.removeDateAtIndex(index)
+        }, _react["default"].createElement(_core.ListItemText, {
+          primary: _this2.getFormatedDate(date)
+        }), _react["default"].createElement(_Clear["default"], {
+          color: "error"
+        }));
+      })));
     }
   }]);
 
   return DateDisplay;
 }(_react.Component);
 
-var _default = DateDisplay;
+var _default = (0, _core.withStyles)(styles)(DateDisplay);
+
 exports["default"] = _default;

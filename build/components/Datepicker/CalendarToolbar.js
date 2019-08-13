@@ -9,9 +9,13 @@ var _react = _interopRequireWildcard(require("react"));
 
 var _propTypes = _interopRequireDefault(require("prop-types"));
 
-var _dateUtils = require("./dateUtils");
+var _core = require("@material-ui/core");
 
-var _styledComponents = _interopRequireDefault(require("styled-components"));
+var _ArrowLeft = _interopRequireDefault(require("@material-ui/icons/ArrowLeft"));
+
+var _ArrowRight = _interopRequireDefault(require("@material-ui/icons/ArrowRight"));
+
+var _moment = _interopRequireDefault(require("moment"));
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { "default": obj }; }
 
@@ -37,55 +41,17 @@ function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || func
 
 function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
 
-function _templateObject4() {
-  var data = _taggedTemplateLiteral(["\n  height: inherit;\n  padding-top: 12px;\n"]);
-
-  _templateObject4 = function _templateObject4() {
-    return data;
+var styles = function styles(theme) {
+  return {
+    root: {
+      display: 'flex',
+      alignItems: 'center',
+      alignContent: 'center',
+      justifyContent: 'space-between',
+      margin: "".concat(theme.spacing(1), "px 0")
+    }
   };
-
-  return data;
-}
-
-function _templateObject3() {
-  var data = _taggedTemplateLiteral(["\n  font-size: 14px;\n  font-weight: 500;\n  text-align: center;\n  width: 100%;\n"]);
-
-  _templateObject3 = function _templateObject3() {
-    return data;
-  };
-
-  return data;
-}
-
-function _templateObject2() {
-  var data = _taggedTemplateLiteral(["\n  display: flex;\n  justify-content: space-between;\n  background-color: inherit;\n  height: 48px;\n"]);
-
-  _templateObject2 = function _templateObject2() {
-    return data;
-  };
-
-  return data;
-}
-
-function _templateObject() {
-  var data = _taggedTemplateLiteral(["\n  border: none;\n  font-family: Roboto, sans-serif;\n  text-decoration: none;\n  outline: none;\n  position: relative;\n  z-index: 1;\n  height: 36px;\n  line-height: 1.25;\n  overflow: hidden;\n  background-color: rgba(0, 0, 0, 0);\n  text-align: center;\n\n  font-weight: bold;\n  padding: 5px 8px;\n  border-radius: 4px;\n  cursor: pointer;\n  font-style: normal;\n  font-size: 0.7em;\n\n  :hover {\n    color: rgb(0, 188, 212);\n  }\n"]);
-
-  _templateObject = function _templateObject() {
-    return data;
-  };
-
-  return data;
-}
-
-function _taggedTemplateLiteral(strings, raw) { if (!raw) { raw = strings.slice(0); } return Object.freeze(Object.defineProperties(strings, { raw: { value: Object.freeze(raw) } })); }
-
-var Icon = _styledComponents["default"].button(_templateObject());
-
-var Root = _styledComponents["default"].div(_templateObject2());
-
-var TitleDiv = _styledComponents["default"].div(_templateObject3());
-
-var TitleText = _styledComponents["default"].div(_templateObject4());
+};
 
 var CalendarToolbar =
 /*#__PURE__*/
@@ -141,20 +107,25 @@ function (_Component) {
   }, {
     key: "render",
     value: function render() {
-      var displayDate = this.props.displayDate;
-      var dateTimeFormatted = new _dateUtils.dateTimeFormat('en-US', {
-        month: 'long',
-        year: 'numeric'
-      }).format(displayDate);
-      return _react["default"].createElement(Root, null, _react["default"].createElement(Icon, {
+      var _this$props = this.props,
+          classes = _this$props.classes,
+          displayDate = _this$props.displayDate;
+      var dateTimeFormatted = (0, _moment["default"])(displayDate).format('MMMM YYYY'); // const dateTimeFormatted = new dateTimeFormat('en-US', {
+      //   month: 'long',
+      //   year: 'numeric'
+      // }).format(displayDate)
+
+      return _react["default"].createElement("div", {
+        className: classes.root
+      }, _react["default"].createElement(_core.IconButton, {
         disabled: !this.props.prevMonth,
         onClick: this.handleTouchTapPrevMonth
-      }, String.fromCharCode(9664)), _react["default"].createElement(TitleDiv, null, _react["default"].createElement(TitleText, {
-        key: dateTimeFormatted
-      }, dateTimeFormatted)), _react["default"].createElement(Icon, {
+      }, _react["default"].createElement(_ArrowLeft["default"], null)), _react["default"].createElement(_core.Typography, {
+        variant: "subtitle1"
+      }, dateTimeFormatted), _react["default"].createElement(_core.IconButton, {
         disabled: !this.props.nextMonth,
         onClick: this.handleTouchTapNextMonth
-      }, String.fromCharCode(9654)));
+      }, _react["default"].createElement(_ArrowRight["default"], null)));
     }
   }]);
 
@@ -173,5 +144,6 @@ _defineProperty(CalendarToolbar, "defaultProps", {
   prevMonth: true
 });
 
-var _default = CalendarToolbar;
+var _default = (0, _core.withStyles)(styles)(CalendarToolbar);
+
 exports["default"] = _default;

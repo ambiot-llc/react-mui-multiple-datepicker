@@ -7,42 +7,56 @@ exports["default"] = void 0;
 
 var _react = _interopRequireDefault(require("react"));
 
-var _styledComponents = _interopRequireDefault(require("styled-components"));
+var _core = require("@material-ui/core");
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { "default": obj }; }
 
-function _templateObject2() {
-  var data = _taggedTemplateLiteral(["\n  border: 10px;\n  box-sizing: border-box;\n  display: inline-block;\n  font-family: Roboto, sans-serif;\n  -webkit-tap-highlight-color: rgba(0, 0, 0, 0);\n  cursor: pointer;\n  text-decoration: none;\n  margin: 4px 8px 8px 0px;\n  padding: 0px;\n  outline: none;\n  font-size: inherit;\n  font-weight: inherit;\n  position: relative;\n  z-index: 1;\n  height: 36px;\n  line-height: 36px;\n  min-width: 64px;\n  color: rgb(0, 188, 212);\n  transition: all 450ms cubic-bezier(0.23, 1, 0.32, 1) 0ms;\n  border-radius: 2px;\n  user-select: none;\n  overflow: hidden;\n  background-color: rgba(0, 0, 0, 0);\n  text-align: center;\n  max-height: 36px;\n"]);
-
-  _templateObject2 = function _templateObject2() {
-    return data;
-  };
-
-  return data;
-}
-
-function _templateObject() {
-  var data = _taggedTemplateLiteral(["\n  display: flex;\n  flex-direction: row;\n  justify-content: flex-end;\n  margin: 0px;\n  max-height: 48px;\n  padding: 0px;\n"]);
-
-  _templateObject = function _templateObject() {
-    return data;
-  };
-
-  return data;
-}
-
-function _taggedTemplateLiteral(strings, raw) { if (!raw) { raw = strings.slice(0); } return Object.freeze(Object.defineProperties(strings, { raw: { value: Object.freeze(raw) } })); }
-
-var Root = _styledComponents["default"].div(_templateObject());
-
-var Button = _styledComponents["default"].button(_templateObject2());
-
-var CalendarActionButton = function CalendarActionButton(props) {
-  return _react["default"].createElement(Root, null, _react["default"].createElement(Button, {
-    onClick: props.onCancel
-  }, "Cancel"), _react["default"].createElement(Button, {
-    onClick: props.onOk
-  }, "Ok"));
+// const Root = styled.div`
+//   display: flex;
+//   flex-direction: row;
+//   justify-content: flex-end;
+//   margin: 0px;
+//   max-height: 48px;
+//   padding: 0px;
+// `
+// const Button = styled.button`
+//   border: 10px;
+//   box-sizing: border-box;
+//   display: inline-block;
+//   font-family: Roboto, sans-serif;
+//   -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+//   cursor: pointer;
+//   text-decoration: none;
+//   margin: 4px 8px 8px 0px;
+//   padding: 0px;
+//   outline: none;
+//   font-size: inherit;
+//   font-weight: inherit;
+//   position: relative;
+//   z-index: 1;
+//   height: 36px;
+//   line-height: 36px;
+//   min-width: 64px;
+//   color: rgb(0, 188, 212);
+//   transition: all 450ms cubic-bezier(0.23, 1, 0.32, 1) 0ms;
+//   border-radius: 2px;
+//   user-select: none;
+//   overflow: hidden;
+//   background-color: rgba(0, 0, 0, 0);
+//   text-align: center;
+//   max-height: 36px;
+// `;
+var CalendarActionButton = function CalendarActionButton(_ref) {
+  var cancelButtonText = _ref.cancelButtonText,
+      submitButtonText = _ref.submitButtonText,
+      onCancel = _ref.onCancel,
+      onOk = _ref.onOk;
+  return _react["default"].createElement(_core.DialogActions, null, _react["default"].createElement(_core.Button, {
+    onClick: onCancel
+  }, cancelButtonText), _react["default"].createElement(_core.Button, {
+    color: "primary",
+    onClick: onOk
+  }, submitButtonText));
 };
 
 var _default = CalendarActionButton;

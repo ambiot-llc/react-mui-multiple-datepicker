@@ -7,8 +7,6 @@ exports["default"] = void 0;
 
 var _react = _interopRequireWildcard(require("react"));
 
-var _styledComponents = _interopRequireDefault(require("styled-components"));
-
 var _WeekHeader = _interopRequireDefault(require("./WeekHeader"));
 
 var _Month = _interopRequireDefault(require("./Month"));
@@ -20,6 +18,8 @@ var _CalendarToolbar = _interopRequireDefault(require("./CalendarToolbar"));
 var _CalendarButtons = _interopRequireDefault(require("./CalendarButtons"));
 
 var _DateDisplay = _interopRequireDefault(require("./DateDisplay"));
+
+var _core = require("@material-ui/core");
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { "default": obj }; }
 
@@ -45,43 +45,48 @@ function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || func
 
 function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
 
-function _templateObject3() {
-  var data = _taggedTemplateLiteral(["\n  display: flex;\n  flex-direction: column;\n"]);
-
-  _templateObject3 = function _templateObject3() {
-    return data;
+// const Root = styled.div`
+//   color: rgba(0, 0, 0, 0.87);
+//   user-select: none;
+//   overflow: auto;
+//   max-width: 479px:
+// `
+// const CalendarContainer = styled.div`
+//   display: flex;
+//   justify-items: space-between;
+//   flex-direction: column;
+//   font-size: 12px;
+//   font-weight: 400;
+//   padding: 0px 8px;
+//   transition: all 450ms cubic-bezier(0.23, 1, 0.32, 1) 0ms;
+// `
+var styles = function styles(theme) {
+  return {
+    root: {
+      flex: '1',
+      display: 'flex',
+      maxHeight: '100%',
+      overflow: 'hidden'
+    },
+    selectorContainer: {
+      // marginTop: theme.spacing(2)
+      // boxShadow: 'inset 0 0 10px #000000'
+      display: 'flex',
+      flexDirection: 'column',
+      justifyContent: 'space-between'
+    },
+    calendarContainer: {
+      display: 'flex',
+      justifyContent: 'space-between',
+      flexDirection: 'column',
+      padding: "0 ".concat(theme.spacing(1), "px")
+    }
   };
+}; // const StyledCalendar = styled.div`
+//   display: flex;
+//   flex-direction: column;
+// `
 
-  return data;
-}
-
-function _templateObject2() {
-  var data = _taggedTemplateLiteral(["\n  display: flex;\n  justify-items: space-between;\n  flex-direction: column;\n  font-size: 12px;\n  font-weight: 400;\n  padding: 0px 8px;\n  transition: all 450ms cubic-bezier(0.23, 1, 0.32, 1) 0ms;\n"]);
-
-  _templateObject2 = function _templateObject2() {
-    return data;
-  };
-
-  return data;
-}
-
-function _templateObject() {
-  var data = _taggedTemplateLiteral(["\n  color: rgba(0, 0, 0, 0.87);\n  user-select: none;\n  overflow: auto;\n  max-width: 479px:\n"]);
-
-  _templateObject = function _templateObject() {
-    return data;
-  };
-
-  return data;
-}
-
-function _taggedTemplateLiteral(strings, raw) { if (!raw) { raw = strings.slice(0); } return Object.freeze(Object.defineProperties(strings, { raw: { value: Object.freeze(raw) } })); }
-
-var Root = _styledComponents["default"].div(_templateObject());
-
-var CalendarContainer = _styledComponents["default"].div(_templateObject2());
-
-var StyledCalendar = _styledComponents["default"].div(_templateObject3());
 
 var Calendar =
 /*#__PURE__*/
@@ -172,20 +177,20 @@ function (_Component) {
     value: function render() {
       var _this2 = this;
 
+      var classes = this.props.classes;
       var toolbarInteractions = this.getToolbarInteractions();
-      return _react["default"].createElement(Root, {
-        hideCalendarDate: this.props.hideCalendarDate,
-        visible: this.props.visible
-      }, _react["default"].createElement(_DateDisplay["default"], {
-        selectedDates: this.props.selectedDates
-      }), _react["default"].createElement(StyledCalendar, null, _react["default"].createElement(CalendarContainer, null, _react["default"].createElement(_CalendarToolbar["default"], {
+      return _react["default"].createElement("div", {
+        className: classes.root
+      }, _react["default"].createElement("div", {
+        className: classes.selectorContainer
+      }, _react["default"].createElement("div", {
+        className: classes.calendarContainer
+      }, _react["default"].createElement(_CalendarToolbar["default"], {
         displayDate: this.state.displayDate,
         onMonthChange: this.handleMonthChange,
         prevMonth: toolbarInteractions.prevMonth,
         nextMonth: toolbarInteractions.nextMonth
       }), _react["default"].createElement(_WeekHeader["default"], null), _react["default"].createElement(_Month["default"], {
-        view: this.props.view,
-        selected: this.props.selected,
         displayDate: this.state.displayDate,
         key: this.state.displayDate.toDateString(),
         selectedDates: this.props.selectedDates,
@@ -197,8 +202,14 @@ function (_Component) {
         }
       })), _react["default"].createElement(_CalendarButtons["default"], {
         onCancel: this.props.onCancel,
-        onOk: this.props.onOk
-      })));
+        onOk: this.props.onOk,
+        cancelButtonText: this.props.cancelButtonText,
+        submitButtonText: this.props.submitButtonText
+      })), _react["default"].createElement(_DateDisplay["default"], {
+        selectedDatesTitle: this.props.selectedDatesTitle,
+        selectedDates: this.props.selectedDates,
+        onRemoveAtIndex: this.props.onRemoveAtIndex
+      }));
     }
   }]);
 
@@ -210,5 +221,6 @@ _defineProperty(Calendar, "defaultProps", {
   initialDate: new Date()
 });
 
-var _default = Calendar;
+var _default = (0, _core.withStyles)(styles)(Calendar);
+
 exports["default"] = _default;

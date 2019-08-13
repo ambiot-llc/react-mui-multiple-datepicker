@@ -7,11 +7,13 @@ exports["default"] = void 0;
 
 var _react = _interopRequireWildcard(require("react"));
 
-var _styledComponents = _interopRequireDefault(require("styled-components"));
-
 var _utils = _interopRequireDefault(require("./utils"));
 
 var _dateUtils = require("./dateUtils");
+
+var _styles = require("@material-ui/styles");
+
+var _Circle = _interopRequireDefault(require("./Circle"));
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { "default": obj }; }
 
@@ -37,85 +39,25 @@ function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || func
 
 function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
 
-function _templateObject5() {
-  var data = _taggedTemplateLiteral(["\n  color: ", ";\n  font-weight: ", ";\n  font-size: ", ";\n  position: relative;\n  color: ", ";\n"]);
-
-  _templateObject5 = function _templateObject5() {
-    return data;
+var styles = function styles(theme) {
+  return {
+    root: {
+      display: 'flex',
+      flexDirection: 'row',
+      justifyContent: 'space-between',
+      height: 34,
+      marginBottom: theme.spacing(2)
+    },
+    day: {
+      margin: "0 ".concat(theme.spacing(1), "px")
+    },
+    blank: {
+      width: 36,
+      height: 36,
+      margin: "0 ".concat(theme.spacing(1), "px")
+    }
   };
-
-  return data;
-}
-
-function _templateObject4() {
-  var data = _taggedTemplateLiteral(["\n  background-color: rgb(0, 151, 167);\n  height: 34px;\n  border-radius: 50%;\n  left: 0;\n  opacity: ", ";\n  position: absolute;\n  top: 0;\n  transform: scale(", ");\n  transition: all 450ms cubic-bezier(0.23, 1, 0.32, 1) 0ms;\n  width: 34px;\n"]);
-
-  _templateObject4 = function _templateObject4() {
-    return data;
-  };
-
-  return data;
-}
-
-function _templateObject3() {
-  var data = _taggedTemplateLiteral(["\n  border: 10px;\n  box-sizing: border-box;\n  display: inline-block;\n  font-family: Roboto, sans-serif;\n  text-decoration: none;\n  margin: 0;\n  padding: 0.5rem;\n  outline: none;\n  font-size: inherit;\n  font-weight: 400;\n  position: relative;\n  z-index: 1;\n  background: none;\n"]);
-
-  _templateObject3 = function _templateObject3() {
-    return data;
-  };
-
-  return data;
-}
-
-function _templateObject2() {
-  var data = _taggedTemplateLiteral(["\n  border: 10px;\n  box-sizing: border-box;\n  display: inline-block;\n  font-family: Roboto, sans-serif;\n  -webkit-tap-highlight-color: rgba(0, 0, 0, 0);\n  cursor: pointer;\n  text-decoration: none;\n  margin: 0;\n  padding: 0.5rem;\n  outline: none;\n  font-size: inherit;\n  font-weight: 400;\n  position: relative;\n  z-index: 1;\n  background: none;\n  text-align: right;\n"]);
-
-  _templateObject2 = function _templateObject2() {
-    return data;
-  };
-
-  return data;
-}
-
-function _templateObject() {
-  var data = _taggedTemplateLiteral(["\n  display: flex;\n  flex-direction: row;\n  justify-content: space-between;\n  height: 34px;\n  margin-bottom: 2px;\n"]);
-
-  _templateObject = function _templateObject() {
-    return data;
-  };
-
-  return data;
-}
-
-function _taggedTemplateLiteral(strings, raw) { if (!raw) { raw = strings.slice(0); } return Object.freeze(Object.defineProperties(strings, { raw: { value: Object.freeze(raw) } })); }
-
-var StyledWeek = _styledComponents["default"].div(_templateObject());
-
-var DayButton = _styledComponents["default"].button(_templateObject2());
-
-var Blank = _styledComponents["default"].div(_templateObject3());
-
-var DayBackdrop = _styledComponents["default"].div(_templateObject4(), function (_ref) {
-  var selected = _ref.selected;
-  return selected ? '1' : '0';
-}, function (_ref2) {
-  var selected = _ref2.selected;
-  return selected ? '1' : '0';
-});
-
-var Day = _styledComponents["default"].div(_templateObject5(), function (_ref3) {
-  var selected = _ref3.selected;
-  return selected ? 'rgb(255, 255, 255)' : 'rgba(0, 0, 0, 0.87)';
-}, function (_ref4) {
-  var today = _ref4.today;
-  return today ? 'bold' : '400';
-}, function (_ref5) {
-  var today = _ref5.today;
-  return today ? '1.1rem' : 'auto';
-}, function (_ref6) {
-  var disabled = _ref6.disabled;
-  return disabled ? 'lightgrey' : 'auto';
-});
+};
 
 var Week =
 /*#__PURE__*/
@@ -140,8 +82,8 @@ function (_Component) {
     });
 
     _defineProperty(_assertThisInitialized(_this), "isDisabled", function (day) {
-      var minDate = _this.props.minDate,
-          maxDate = _this.props.maxDate;
+      var minDate = _this.props.minDate;
+      var maxDate = _this.props.maxDate;
       return minDate && _utils["default"].isBefore(day, minDate) || maxDate && _utils["default"].isAfter(day, maxDate);
     });
 
@@ -157,6 +99,7 @@ function (_Component) {
     value: function render() {
       var _this2 = this;
 
+      var classes = this.props.classes;
       var dateInNumberic = new _dateUtils.dateTimeFormat('en-US', {
         day: 'numeric',
         month: 'numeric',
@@ -166,7 +109,9 @@ function (_Component) {
       var dayInNumeric = new _dateUtils.dateTimeFormat('en-US', {
         day: 'numeric'
       });
-      return _react["default"].createElement(StyledWeek, null, this.props.week.map(function (day, i) {
+      return _react["default"].createElement("div", {
+        className: classes.root
+      }, this.props.week.map(function (day, i) {
         if (day) {
           var isToday = day && dateToday === dateInNumberic.format(day);
 
@@ -174,25 +119,36 @@ function (_Component) {
 
           var isSelected = _this2.isSelected(day);
 
-          return _react["default"].createElement(DayButton, {
+          return _react["default"].createElement(_Circle["default"], {
             key: "day-".concat(day),
-            onClick: function onClick(e) {
-              e.preventDefault();
-
+            label: dayInNumeric.format(day),
+            disabled: isDisabled,
+            checked: isSelected,
+            onCheck: function onCheck(e) {
               _this2.onSelect(day);
             },
-            disabled: isDisabled,
-            selected: isSelected
-          }, _react["default"].createElement(DayBackdrop, {
-            selected: isSelected
-          }), _react["default"].createElement(Day, {
-            selected: isSelected,
-            disabled: isDisabled,
-            today: isToday
-          }, dayInNumeric.format(day)));
+            isToday: isToday,
+            className: classes.day
+          }); // return (
+          //   <DayButton
+          //     key={`day-${day}`}
+          //     onClick={e => {
+          //       e.preventDefault()
+          //       this.onSelect(day)
+          //     }}
+          //     disabled={isDisabled}
+          //     selected={isSelected}
+          //   >
+          //     <DayBackdrop selected={isSelected} />
+          //     <Day selected={isSelected} disabled={isDisabled} today={isToday}>
+          //       {dayInNumeric.format(day)}
+          //     </Day>
+          //   </DayButton>
+          // )
         }
 
-        return _react["default"].createElement(Blank, {
+        return _react["default"].createElement("div", {
+          className: classes.blank,
           key: "blank-".concat(i)
         });
       }));
@@ -202,5 +158,6 @@ function (_Component) {
   return Week;
 }(_react.Component);
 
-var _default = Week;
+var _default = (0, _styles.withStyles)(styles)(Week);
+
 exports["default"] = _default;

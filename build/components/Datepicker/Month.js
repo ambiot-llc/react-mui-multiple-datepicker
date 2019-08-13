@@ -7,11 +7,11 @@ exports["default"] = void 0;
 
 var _react = _interopRequireWildcard(require("react"));
 
-var _styledComponents = _interopRequireDefault(require("styled-components"));
-
 var _Week = _interopRequireDefault(require("./Week"));
 
 var _dateUtils = require("./dateUtils");
+
+var _styles = require("@material-ui/styles");
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { "default": obj }; }
 
@@ -37,19 +37,18 @@ function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || func
 
 function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
 
-function _templateObject() {
-  var data = _taggedTemplateLiteral(["\n  display: flex;\n  flex-direction: column;\n  justify-content: flex-start;\n  font-weight: 400;\n  height: 214px;\n  line-height: 1.25;\n  position: relative;\n  text-align: center;\n"]);
-
-  _templateObject = function _templateObject() {
-    return data;
+var styles = function styles(theme) {
+  return {
+    root: {
+      display: 'flex',
+      flexDirection: 'column',
+      justifyContent: 'flex-start',
+      // height: 214,
+      lineHeight: '1.25',
+      position: 'relative'
+    }
   };
-
-  return data;
-}
-
-function _taggedTemplateLiteral(strings, raw) { if (!raw) { raw = strings.slice(0); } return Object.freeze(Object.defineProperties(strings, { raw: { value: Object.freeze(raw) } })); }
-
-var MonthWrapper = _styledComponents["default"].div(_templateObject());
+};
 
 var Weeks =
 /*#__PURE__*/
@@ -76,7 +75,6 @@ function (_Component) {
         return _react["default"].createElement(_Week["default"], {
           key: i,
           week: s,
-          selected: _this.props.selected,
           selectedDates: _this.props.selectedDates,
           onSelect: _this.props.onSelect,
           minDate: _this.props.minDate,
@@ -91,12 +89,16 @@ function (_Component) {
   _createClass(Weeks, [{
     key: "render",
     value: function render() {
-      return _react["default"].createElement(MonthWrapper, null, this.renderWeeks(this.props.displayDate));
+      var classes = this.props.classes;
+      return _react["default"].createElement("div", {
+        className: classes.root
+      }, this.renderWeeks(this.props.displayDate));
     }
   }]);
 
   return Weeks;
 }(_react.Component);
 
-var _default = Weeks;
+var _default = (0, _styles.withStyles)(styles)(Weeks);
+
 exports["default"] = _default;
