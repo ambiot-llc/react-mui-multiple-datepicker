@@ -64,5 +64,10 @@ I don't enough time to maintain this library, so pull requests will be greatly a
 1. Clone the repository: `git clone https://github.com/randex/material-ui-multiple-dates-picker.git`
 2. Get inside the folder: `cd material-ui-multiple-dates-picker`
 3. Install all the general dependencies: `npm i`
-4. Get inside the demo
+4. Get inside the `app` folder: `cd app`
+5. Install all dependencies needed to launch the demo app: `npm i`
+6. Run `npm start` to launch the demo app.
+7. Library is located under `app/src/lib`. Edit the code and watch the changes in the browser.
+
+Happy coding and thank you for your help!
 
