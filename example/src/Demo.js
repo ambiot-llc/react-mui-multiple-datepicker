@@ -41,9 +41,6 @@ const Demo = props => {
         selectedDates={dates}
         onCancel={onCancel}
         onSubmit={onSubmit}
-        cancelButtonText='No'
-        submitButtonText='Yes'
-        selectedDatesTitle='Selected'
       />
       <Typography color='textSecondary'>
         <code>{JSON.stringify(dates)}</code>
