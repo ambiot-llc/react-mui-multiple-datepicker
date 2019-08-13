@@ -3,6 +3,15 @@ import PropTypes from 'prop-types'
 import DateUtilities from './utils'
 import Calendar from './Calendar'
 import { Dialog, DialogContent, Button } from '@material-ui/core'
+import { makeStyles } from '@material-ui/styles'
+
+const useStyles = makeStyles(theme => ({
+  dialogPaper: {
+    minHeight: 448,
+    maxHeight: 448,
+    display: 'flex'
+  }
+}))
 
 function initState (selectedDates) {
   return {
@@ -35,6 +44,8 @@ const DatePicker = ({
     outerSelectedDates,
     initState
   )
+
+  const classes = useStyles()
 
   const onSelect = useCallback(
     day => {
@@ -100,7 +111,7 @@ const DatePicker = ({
 
   return (
     <div>
-      <Dialog open={open}>
+      <Dialog open={open} classes={{ paper: classes.dialogPaper }}>
         {/* <DialogContent> */}
         <Calendar
           selectedDates={selectedDates}

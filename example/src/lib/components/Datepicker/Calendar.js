@@ -26,11 +26,17 @@ import { withStyles } from '@material-ui/core'
 
 const styles = theme => ({
   root: {
-    display: 'flex'
+    flex: '1',
+    display: 'flex',
+    maxHeight: '100%',
+    overflow: 'hidden'
   },
   selectorContainer: {
     // marginTop: theme.spacing(2)
     // boxShadow: 'inset 0 0 10px #000000'
+    display: 'flex',
+    flexDirection: 'column',
+    justifyContent: 'space-between'
   },
   calendarContainer: {
     display: 'flex',

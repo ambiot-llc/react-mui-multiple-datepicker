@@ -7,7 +7,9 @@ import moment from 'moment'
 const styles = theme => ({
   root: {
     width: theme.spacing(30),
-    backgroundColor: theme.palette.background.default
+    backgroundColor: theme.palette.background.default,
+    display: 'flex',
+    flexDirection: 'column'
   },
   header: {
     margin: theme.spacing(2),
@@ -16,6 +18,10 @@ const styles = theme => ({
     alignItems: 'center',
     alignContent: 'center',
     justifyContent: 'space-between'
+  },
+  list: {
+    flex: '1',
+    overflowY: 'scroll'
   }
 })
 
@@ -47,7 +53,7 @@ class DateDisplay extends Component {
   }
 
   render () {
-    const { classes, selectedDates, onRemoveAtIndex } = this.props
+    const { classes, selectedDates } = this.props
 
     console.log('selected dates', selectedDates)
 
@@ -59,7 +65,7 @@ class DateDisplay extends Component {
             {selectedDates.length}
           </Typography>
         </div>
-        <List dense>
+        <List dense className={classes.list}>
           {selectedDates.map((date, index) => (
             <ListItem key={`${date.toString()}`} button onClick={this.removeDateAtIndex(index)}>
               <ListItemText primary={this.getFormatedDate(date)} />
