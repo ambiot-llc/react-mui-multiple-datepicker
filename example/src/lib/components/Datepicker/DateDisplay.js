@@ -1,7 +1,8 @@
 import React, { Component } from 'react'
-import { dateTimeFormat } from './dateUtils'
 import { withStyles, List, ListItem, ListItemText, Typography } from '@material-ui/core'
 import DeleteIcon from '@material-ui/icons/Clear'
+import { dateTimeFormat } from './dateUtils'
+import moment from 'moment'
 
 const styles = theme => ({
   root: {
@@ -30,13 +31,15 @@ class DateDisplay extends Component {
   }
 
   getFormatedDate = date => {
-    const dateTime = new dateTimeFormat('en-US', {
-      year: 'numeric',
-      month: 'short',
-      day: '2-digit'
-    }).format(date)
+    // const dateTime = new dateTimeFormat('en-US', {
+    //   year: 'numeric',
+    //   month: 'short',
+    //   day: '2-digit'
+    // }).format(date)
 
-    return `${dateTime}`
+    // return `${dateTime}`
+
+    return moment(date).format('ll')
   }
 
   removeDateAtIndex = index => () => {
@@ -51,7 +54,7 @@ class DateDisplay extends Component {
     return (
       <div className={classes.root}>
         <div className={classes.header}>
-          <Typography variant='subtitle1'>Selected dates</Typography>
+          <Typography variant='subtitle1'>{this.props.selectedDatesTitle}</Typography>
           <Typography variant='subtitle1' color='primary'>
             {selectedDates.length}
           </Typography>

@@ -28,7 +28,6 @@ class Weeks extends Component {
         <Week
           key={i}
           week={s}
-          selected={this.props.selected}
           selectedDates={this.props.selectedDates}
           onSelect={this.props.onSelect}
           minDate={this.props.minDate}

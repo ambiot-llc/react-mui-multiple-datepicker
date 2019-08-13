@@ -1,118 +1,214 @@
-import React, { Component } from 'react'
+import React, { Component, useReducer, useCallback, useEffect } from 'react'
+import PropTypes from 'prop-types'
 import DateUtilities from './utils'
 import Calendar from './Calendar'
-import { Dialog, DialogContent } from '@material-ui/core'
+import { Dialog, DialogContent, Button } from '@material-ui/core'
 
-class DatePicker extends Component {
-  constructor (props) {
-    super(props)
-    const def = props.selected || new Date()
-
-    this.state = {
-      view: DateUtilities.clone(def),
-      selected: DateUtilities.clone(def),
-      selectedDates: props.selected ? [DateUtilities.clone(def)] : [],
-      minDate: null,
-      maxDate: null,
-      open: true
-    }
-  }
-
-  onSelect = day => {
-    const { selectedDates } = this.state
-    if (DateUtilities.dateIn(selectedDates, day)) {
-      this.setState({
-        selectedDates: selectedDates.filter(date => !DateUtilities.isSameDay(date, day))
-      })
-    } else {
-      this.setState({ selectedDates: [...selectedDates, day] })
-    }
-  }
-
-  onRemoveAtIndex = index => {
-    const { selectedDates } = this.state
-    const newDates = [...selectedDates]
-    if (index > -1) {
-      newDates.splice(index, 1)
-    }
-
-    this.setState({ selectedDates: newDates })
-  }
-
-  onSubmit = () => {}
-
-  toggleOpen = () => {
-    this.setState({ open: !this.state.open })
-  }
-
-  handleCancel = e => {
-    e.preventDefault()
-    this.dismiss()
-  }
-
-  handleRequestClose = () => {
-    this.dismiss()
-  }
-
-  handleOk = e => {
-    e.preventDefault()
-    if (this.props.onSubmit) {
-      this.props.onSubmit(this.state.selectedDates)
-    }
-
-    this.setState({
-      open: false
-    })
-  }
-
-  dismiss = () => {
-    if (this.props.onDismiss && this.state.open) {
-      this.props.onDismiss()
-    }
-
-    this.setState({
-      open: false
-    })
-  }
-
-  render () {
-    const { children } = this.props
-
-    return (
-      <div>
-        {children ? (
-          React.cloneElement(React.Children.only(children), {
-            onClick: this.toggleOpen,
-            value: this.state.selectedDates.map(date => DateUtilities.toString(date)).join(', '),
-            readOnly: true
-          })
-        ) : (
-          <input
-            type='text'
-            readOnly
-            value={this.state.selectedDates.map(date => DateUtilities.toString(date)).join(', ')}
-            onClick={this.toggleOpen}
-          />
-        )}{' '}
-        <Dialog open={this.state.open}>
-          {/* <DialogContent> */}
-          <Calendar
-            visible={this.state.visible}
-            view={this.state.view}
-            selected={this.state.selected}
-            selectedDates={this.state.selectedDates}
-            onSelect={this.onSelect}
-            onRemoveAtIndex={this.onRemoveAtIndex}
-            minDate={this.props.minDate}
-            maxDate={this.props.maxDate}
-            onCancel={this.handleCancel}
-            onOk={this.handleOk}
-          />
-          {/* </DialogContent> */}
-        </Dialog>
-      </div>
-    )
+function initState (selectedDates) {
+  return {
+    selectedDates: selectedDates ? [...selectedDates] : [],
+    minDate: null,
+    maxDate: null
   }
 }
+
+function reducer (state, action) {
+  switch (action.type) {
+    case 'setSelectedDates':
+      return { ...state, selectedDates: action.payload }
+    default:
+      return new Error('wrong action type in multiple date picker reducer')
+  }
+}
+
+const DatePicker = ({
+  open,
+  onCancel,
+  onSubmit,
+  selectedDates: outerSelectedDates,
+  cancelButtonText = 'Cancel',
+  submitButtonText = 'Submit',
+  selectedDatesTitle = 'Selected Dates'
+}) => {
+  const [{ selectedDates, minDate, maxDate }, dispatch] = useReducer(
+    reducer,
+    outerSelectedDates,
+    initState
+  )
+
+  const onSelect = useCallback(
+    day => {
+      if (DateUtilities.dateIn(selectedDates, day)) {
+        dispatch({
+          type: 'setSelectedDates',
+          payload: selectedDates.filter(date => !DateUtilities.isSameDay(date, day))
+        })
+      } else {
+        dispatch({ type: 'setSelectedDates', payload: [...selectedDates, day] })
+      }
+    },
+    [selectedDates, dispatch]
+  )
+
+  const onRemoveAtIndex = useCallback(
+    index => {
+      const newDates = [...selectedDates]
+      if (index > -1) {
+        newDates.splice(index, 1)
+      }
+
+      dispatch({ type: 'setSelectedDates', payload: newDates })
+    },
+    [selectedDates, dispatch]
+  )
+
+  const dismiss = useCallback(
+    () => {
+      dispatch({ type: 'setSelectedDates', payload: [] })
+      onCancel()
+    },
+    [dispatch]
+  )
+
+  const handleCancel = useCallback(
+    e => {
+      e.preventDefault()
+      dismiss()
+    },
+    [dismiss]
+  )
+
+  const handleOk = useCallback(
+    e => {
+      e.preventDefault()
+      onSubmit(selectedDates)
+    },
+    [onSubmit, selectedDates]
+  )
+
+  useEffect(
+    () => {
+      if (open) {
+        dispatch({
+          type: 'setSelectedDates',
+          payload: outerSelectedDates != null ? outerSelectedDates : []
+        })
+      }
+    },
+    [open]
+  )
+
+  return (
+    <div>
+      <Dialog open={open}>
+        {/* <DialogContent> */}
+        <Calendar
+          selectedDates={selectedDates}
+          onSelect={onSelect}
+          onRemoveAtIndex={onRemoveAtIndex}
+          minDate={minDate}
+          maxDate={maxDate}
+          onCancel={handleCancel}
+          onOk={handleOk}
+          cancelButtonText={cancelButtonText}
+          submitButtonText={submitButtonText}
+          selectedDatesTitle={selectedDatesTitle}
+        />
+        {/* </DialogContent> */}
+      </Dialog>
+    </div>
+  )
+}
+
+DatePicker.propTypes = {
+  open: PropTypes.bool.isRequired,
+  onCancel: PropTypes.func.isRequired,
+  onSubmit: PropTypes.func.isRequired
+}
+
+// class DatePicker extends Component {
+//   static propTypes = {
+//     open: PropTypes.bool.isRequired,
+//     onCancel: PropTypes.func.isRequired,
+//     onSubmit: PropTypes.func.isRequired
+//   }
+
+//   constructor (props) {
+//     super(props)
+//     const def = props.selected || new Date()
+
+//     this.state = {
+//       view: DateUtilities.clone(def),
+//       selected: DateUtilities.clone(def),
+//       selectedDates: props.selected ? [DateUtilities.clone(def)] : [],
+//       minDate: null,
+//       maxDate: null
+//     }
+//   }
+
+//   onSelect = day => {
+//     const { selectedDates } = this.state
+//     if (DateUtilities.dateIn(selectedDates, day)) {
+//       this.setState({
+//         selectedDates: selectedDates.filter(date => !DateUtilities.isSameDay(date, day))
+//       })
+//     } else {
+//       this.setState({ selectedDates: [...selectedDates, day] })
+//     }
+//   }
+
+//   onRemoveAtIndex = index => {
+//     const { selectedDates } = this.state
+//     const newDates = [...selectedDates]
+//     if (index > -1) {
+//       newDates.splice(index, 1)
+//     }
+
+//     this.setState({ selectedDates: newDates })
+//   }
+
+//   handleCancel = e => {
+//     e.preventDefault()
+//     this.dismiss()
+//   }
+
+//   handleRequestClose = () => {
+//     this.dismiss()
+//   }
+
+//   handleOk = e => {
+//     e.preventDefault()
+//     this.props.onSubmit(this.state.selectedDates)
+//   }
+
+//   dismiss = () => {
+//     this.setState({ selectedDates: [] })
+//     this.props.onCancel()
+//   }
+
+//   render () {
+//     const { open } = this.props
+
+//     return (
+//       <div>
+//         <Dialog open={open}>
+//           {/* <DialogContent> */}
+//           <Calendar
+//             view={this.state.view}
+//             selected={this.state.selected}
+//             selectedDates={this.state.selectedDates}
+//             onSelect={this.onSelect}
+//             onRemoveAtIndex={this.onRemoveAtIndex}
+//             minDate={this.props.minDate}
+//             maxDate={this.props.maxDate}
+//             onCancel={this.handleCancel}
+//             onOk={this.handleOk}
+//           />
+//           {/* </DialogContent> */}
+//         </Dialog>
+//       </div>
+//     )
+//   }
+// }
 
 export default DatePicker

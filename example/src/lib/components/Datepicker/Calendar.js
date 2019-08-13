@@ -122,8 +122,6 @@ class Calendar extends Component {
             />
             <WeekHeader />
             <Month
-              view={this.props.view}
-              selected={this.props.selected}
               displayDate={this.state.displayDate}
               key={this.state.displayDate.toDateString()}
               selectedDates={this.props.selectedDates}
@@ -133,9 +131,15 @@ class Calendar extends Component {
               ref={ref => (this.calendarRefs.calendar = ref)}
             />
           </div>
-          <CalendarButtons onCancel={this.props.onCancel} onOk={this.props.onOk} />
+          <CalendarButtons
+            onCancel={this.props.onCancel}
+            onOk={this.props.onOk}
+            cancelButtonText={this.props.cancelButtonText}
+            submitButtonText={this.props.submitButtonText}
+          />
         </div>
         <DateDisplay
+          selectedDatesTitle={this.props.selectedDatesTitle}
           selectedDates={this.props.selectedDates}
           onRemoveAtIndex={this.props.onRemoveAtIndex}
         />

@@ -36,6 +36,7 @@
     "@material-ui/icons": "^4.2.1",
     "@material-ui/styles": "^4.3.0",
     "classnames": "^2.2.6",
+    "moment": "^2.24.0",
     "warning": "^3.0.0"
   },
   "devDependencies": {

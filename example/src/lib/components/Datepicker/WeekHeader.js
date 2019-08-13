@@ -1,6 +1,7 @@
 import React from 'react'
 import { Typography } from '@material-ui/core'
 import { makeStyles } from '@material-ui/styles'
+import moment from 'moment'
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -22,15 +23,15 @@ const Week = props => <Typography variant='overline' color='textSecondary' {...p
 const WeekHeader = () => {
   const classes = useStyles()
 
+  const weekdayNames = moment.weekdaysShort()
+
+  console.log('weekday names', moment.weekdaysMin())
+
   return (
     <div className={classes.root}>
-      <Week>S</Week>
-      <Week>M</Week>
-      <Week>T</Week>
-      <Week>W</Week>
-      <Week>T</Week>
-      <Week>F</Week>
-      <Week>S</Week>
+      {weekdayNames.map(name => (
+        <Week key={name}>{name}</Week>
+      ))}
     </div>
   )
 }

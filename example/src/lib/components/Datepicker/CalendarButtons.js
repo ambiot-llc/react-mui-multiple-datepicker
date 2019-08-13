@@ -38,11 +38,11 @@ import { Button, DialogActions } from '@material-ui/core'
 //   max-height: 36px;
 // `;
 
-const CalendarActionButton = props => (
+const CalendarActionButton = ({ cancelButtonText, submitButtonText, onCancel, onOk }) => (
   <DialogActions>
-    <Button onClick={props.onCancel}>Cancel</Button>
-    <Button color='primary' onClick={props.onOk}>
-      Ok
+    <Button onClick={onCancel}>{cancelButtonText}</Button>
+    <Button color='primary' onClick={onOk}>
+      {submitButtonText}
     </Button>
   </DialogActions>
 )
