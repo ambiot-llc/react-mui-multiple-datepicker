@@ -1,4 +1,4 @@
-# Material UI Multiple Dates Picker
+# Material-UI Multiple Dates Picker
 
 ![](https://raw.githubusercontent.com/randex/react-multiple-datepicker/master/demo/datepicker-screenshot.png)
 
@@ -10,11 +10,12 @@ This is a fork of `react-multiple-datepicker`. I needed a date picker that is bu
 
  ## Features
 
-- Based on Material-UI components with `Dialog` component being the root of it.
+- Based on Material-UI components with `Dialog` component being the root of it
 - Choose dates right from the calendar
 - See all selected dates on the list
 - Click on any selected date to remove it (either on calendar or on the list)
 - Customize button labels and titles
+- Its appearance is based on your configuration of Material-UI theme
 
 ## Installation
 
