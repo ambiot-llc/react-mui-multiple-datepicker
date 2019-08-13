@@ -1,8 +1,8 @@
-import React, { Component, useReducer, useCallback, useEffect } from 'react'
+import React, { useReducer, useCallback, useEffect } from 'react'
 import PropTypes from 'prop-types'
 import DateUtilities from './utils'
 import Calendar from './Calendar'
-import { Dialog, DialogContent, Button } from '@material-ui/core'
+import { Dialog } from '@material-ui/core'
 import { makeStyles } from '@material-ui/styles'
 
 const useStyles = makeStyles(theme => ({
@@ -78,7 +78,7 @@ const DatePicker = ({
       dispatch({ type: 'setSelectedDates', payload: [] })
       onCancel()
     },
-    [dispatch]
+    [dispatch, onCancel]
   )
 
   const handleCancel = useCallback(
@@ -106,35 +106,39 @@ const DatePicker = ({
         })
       }
     },
-    [open]
+    [open, outerSelectedDates]
   )
 
+  console.log('selected dates', selectedDates)
+
   return (
-    <div>
-      <Dialog open={open} classes={{ paper: classes.dialogPaper }}>
-        {/* <DialogContent> */}
-        <Calendar
-          selectedDates={selectedDates}
-          onSelect={onSelect}
-          onRemoveAtIndex={onRemoveAtIndex}
-          minDate={minDate}
-          maxDate={maxDate}
-          onCancel={handleCancel}
-          onOk={handleOk}
-          cancelButtonText={cancelButtonText}
-          submitButtonText={submitButtonText}
-          selectedDatesTitle={selectedDatesTitle}
-        />
-        {/* </DialogContent> */}
-      </Dialog>
-    </div>
+    <Dialog open={open} classes={{ paper: classes.dialogPaper }}>
+      {/* <DialogContent> */}
+      <Calendar
+        selectedDates={selectedDates}
+        onSelect={onSelect}
+        onRemoveAtIndex={onRemoveAtIndex}
+        minDate={minDate}
+        maxDate={maxDate}
+        onCancel={handleCancel}
+        onOk={handleOk}
+        cancelButtonText={cancelButtonText}
+        submitButtonText={submitButtonText}
+        selectedDatesTitle={selectedDatesTitle}
+      />
+      {/* </DialogContent> */}
+    </Dialog>
   )
 }
 
 DatePicker.propTypes = {
   open: PropTypes.bool.isRequired,
   onCancel: PropTypes.func.isRequired,
-  onSubmit: PropTypes.func.isRequired
+  onSubmit: PropTypes.func.isRequired,
+  selectedDates: PropTypes.array,
+  cancelButtonText: PropTypes.string,
+  submitButtonText: PropTypes.string,
+  selectedDatesTitle: PropTypes.string
 }
 
 // class DatePicker extends Component {

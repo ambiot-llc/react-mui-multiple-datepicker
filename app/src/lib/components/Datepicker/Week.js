@@ -72,6 +72,7 @@ class Week extends Component {
                 onCheck={e => {
                   this.onSelect(day)
                 }}
+                isToday={isToday}
                 className={classes.day}
               />
             )

@@ -3,9 +3,7 @@ import PropTypes from 'prop-types'
 import { IconButton, Typography, withStyles } from '@material-ui/core'
 import LeftIcon from '@material-ui/icons/ArrowLeft'
 import RightIcon from '@material-ui/icons/ArrowRight'
-import { makeStyles } from '@material-ui/styles'
 import moment from 'moment'
-import { dateTimeFormat } from './dateUtils'
 
 const styles = theme => ({
   root: {

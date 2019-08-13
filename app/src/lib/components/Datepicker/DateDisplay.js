@@ -1,7 +1,6 @@
 import React, { Component } from 'react'
 import { withStyles, List, ListItem, ListItemText, Typography } from '@material-ui/core'
 import DeleteIcon from '@material-ui/icons/Clear'
-import { dateTimeFormat } from './dateUtils'
 import moment from 'moment'
 
 const styles = theme => ({
@@ -30,7 +29,7 @@ class DateDisplay extends Component {
     selectedYear: false
   }
 
-  componentWillMount () {
+  componentDidMount () {
     if (!this.props.monthDaySelected) {
       this.setState({ selectedYear: true })
     }
