@@ -118,7 +118,6 @@ function (_Component) {
       var _this$props = this.props,
           classes = _this$props.classes,
           selectedDates = _this$props.selectedDates;
-      console.log('selected dates', selectedDates);
       return _react["default"].createElement("div", {
         className: classes.root
       }, _react["default"].createElement("div", {

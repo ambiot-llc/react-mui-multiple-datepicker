@@ -46,7 +46,6 @@ var WeekHeader = function WeekHeader() {
 
   var weekdayNames = _moment["default"].weekdaysShort();
 
-  console.log('weekday names', _moment["default"].weekdaysMin());
   return _react["default"].createElement("div", {
     className: classes.root
   }, weekdayNames.map(function (name) {

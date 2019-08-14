@@ -71,10 +71,6 @@ function (_Component) {
 
     _this = _possibleConstructorReturn(this, (_getPrototypeOf2 = _getPrototypeOf(CalendarToolbar)).call.apply(_getPrototypeOf2, [this].concat(args)));
 
-    _defineProperty(_assertThisInitialized(_this), "state", {
-      transitionDirection: 'up'
-    });
-
     _defineProperty(_assertThisInitialized(_this), "handleTouchTapPrevMonth", function (e) {
       e.preventDefault();
 
@@ -95,16 +91,6 @@ function (_Component) {
   }
 
   _createClass(CalendarToolbar, [{
-    key: "componentWillReceiveProps",
-    value: function componentWillReceiveProps(nextProps) {
-      if (nextProps.displayDate !== this.props.displayDate) {
-        var direction = nextProps.displayDate > this.props.displayDate ? 'left' : 'right';
-        this.setState({
-          transitionDirection: direction
-        });
-      }
-    }
-  }, {
     key: "render",
     value: function render() {
       var _this$props = this.props,

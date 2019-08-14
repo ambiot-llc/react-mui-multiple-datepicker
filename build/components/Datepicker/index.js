@@ -144,7 +144,6 @@ var DatePicker = function DatePicker(_ref) {
       });
     }
   }, [open, outerSelectedDates]);
-  console.log('selected dates', selectedDates);
   return _react["default"].createElement(_core.Dialog, {
     open: open,
     classes: {
