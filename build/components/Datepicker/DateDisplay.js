@@ -55,7 +55,7 @@ var styles = function styles(theme) {
     },
     list: {
       flex: '1',
-      overflowY: 'scroll'
+      overflowY: 'auto'
     }
   };
 };
