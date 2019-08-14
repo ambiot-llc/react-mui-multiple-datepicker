@@ -25,8 +25,6 @@ const WeekHeader = () => {
 
   const weekdayNames = moment.weekdaysShort()
 
-  console.log('weekday names', moment.weekdaysMin())
-
   return (
     <div className={classes.root}>
       {weekdayNames.map(name => (

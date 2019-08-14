@@ -54,8 +54,6 @@ class DateDisplay extends Component {
   render () {
     const { classes, selectedDates } = this.props
 
-    console.log('selected dates', selectedDates)
-
     return (
       <div className={classes.root}>
         <div className={classes.header}>

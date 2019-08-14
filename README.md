@@ -1,12 +1,14 @@
 # Material-UI Multiple Dates Picker
 
+[![npm version](https://img.shields.io/npm/v/@randex/material-ui-multiple-dates-picker)](https://www.npmjs.com/package/@randex/material-ui-multiple-dates-picker)
+
 ![](https://raw.githubusercontent.com/randex/react-multiple-datepicker/master/demo/datepicker-screenshot.png)
 
 Lets user pick more than one date from the date picker.
 
 ## Motivation
 
-This is a fork of `react-multiple-datepicker`. I needed a date picker that is built on [Material-UI](https://github.com/mui-org/material-ui) and supports multiple dates selections, couldn't find one, so here it is! 
+This is a fork of `react-multiple-datepicker`. I needed a date picker that is built on [Material-UI](https://github.com/mui-org/material-ui) and supports multiple dates selections, couldn't find one, so here it is!
 
  ## Features
 
@@ -62,7 +64,7 @@ const Example = () => {
 
 ## Contributing
 
-I don't enough time to maintain this library, so pull requests will be greatly appreciated!
+I don't have enough time to maintain this library, so pull requests will be greatly appreciated!
 
 1. Clone the repository: `git clone https://github.com/randex/material-ui-multiple-dates-picker.git`
 2. Get inside the folder: `cd material-ui-multiple-dates-picker`

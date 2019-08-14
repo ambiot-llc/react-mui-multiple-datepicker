@@ -288,8 +288,6 @@ export const ThemeContext = createContext({})
 function ThemeProvider ({ children }) {
   const [theme, setTheme] = useState(createTheme(false))
 
-  console.log('theme', theme)
-
   function setThemeType (type) {
     setTheme(createTheme(type === 'light'))
   }

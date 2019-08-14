@@ -109,8 +109,6 @@ const DatePicker = ({
     [open, outerSelectedDates]
   )
 
-  console.log('selected dates', selectedDates)
-
   return (
     <Dialog open={open} classes={{ paper: classes.dialogPaper }}>
       {/* <DialogContent> */}

@@ -28,19 +28,6 @@ class CalendarToolbar extends Component {
     prevMonth: true
   }
 
-  state = {
-    transitionDirection: 'up'
-  }
-
-  componentWillReceiveProps (nextProps) {
-    if (nextProps.displayDate !== this.props.displayDate) {
-      const direction = nextProps.displayDate > this.props.displayDate ? 'left' : 'right'
-      this.setState({
-        transitionDirection: direction
-      })
-    }
-  }
-
   handleTouchTapPrevMonth = e => {
     e.preventDefault()
     if (this.props.onMonthChange) {
@@ -66,11 +53,17 @@ class CalendarToolbar extends Component {
 
     return (
       <div className={classes.root}>
-        <IconButton disabled={!this.props.prevMonth} onClick={this.handleTouchTapPrevMonth}>
+        <IconButton
+          disabled={!this.props.prevMonth}
+          onClick={this.handleTouchTapPrevMonth}
+        >
           <LeftIcon />
         </IconButton>
         <Typography variant='subtitle1'>{dateTimeFormatted}</Typography>
-        <IconButton disabled={!this.props.nextMonth} onClick={this.handleTouchTapNextMonth}>
+        <IconButton
+          disabled={!this.props.nextMonth}
+          onClick={this.handleTouchTapNextMonth}
+        >
           <RightIcon />
         </IconButton>
       </div>
