@@ -2,9 +2,11 @@
 
 [![npm version](https://img.shields.io/npm/v/@randex/material-ui-multiple-dates-picker)](https://www.npmjs.com/package/@randex/material-ui-multiple-dates-picker)
 
-![](https://raw.githubusercontent.com/randex/react-multiple-datepicker/master/demo/datepicker-screenshot.png)
+[![](https://raw.githubusercontent.com/randex/react-multiple-datepicker/master/demo/datepicker-screenshot.png)](http://demos.randexdev.com/material-ui-multiple-dates-picker/)
 
 Lets user pick more than one date from the date picker.
+
+## [Demo](http://demos.randexdev.com/material-ui-multiple-dates-picker/)
 
 ## Motivation
 
