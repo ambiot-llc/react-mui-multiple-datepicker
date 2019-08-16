@@ -6,7 +6,7 @@
 
 Lets user pick more than one date from the date picker.
 
-## [Demo](http://demos.randexdev.com/material-ui-multiple-dates-picker/)
+### [Demo](http://demos.randexdev.com/material-ui-multiple-dates-picker/)
 
 ## Motivation
 
