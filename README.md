@@ -62,6 +62,10 @@ const Example = () => {
 | onCancel      | func, required  | null    | Fires when user clicks Cancel button. You need to handle closing the picker when this handler fires. |
 | onSubmit      | func, required  | null    | Fires when user clicks Submit button with only one parameter: array of selected `Date`s: `onSubmit(selectedDates)`. You need to handle closing the picker when this handler fires. |
 
+## To-Do
+
+* [ ] Add locale support
+
 ## Contributing
 
 I don't have enough time to maintain this library, so pull requests will be greatly appreciated!
