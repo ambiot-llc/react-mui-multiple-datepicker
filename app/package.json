@@ -2,7 +2,7 @@
   "name": "example",
   "version": "0.1.0",
   "private": true,
-  "homepage" : "https://randex.github.io/material-ui-multiple-dates-picker/",
+  "homepage": "https://randex.github.io/material-ui-multiple-dates-picker/",
   "dependencies": {
     "react": "^16.9.0",
     "react-dom": "^16.9.0",
