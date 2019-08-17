@@ -19,7 +19,7 @@ function createTheme (light) {
 export const ThemeContext = createContext({})
 
 function ThemeProvider ({ children }) {
-  const [theme, setTheme] = useState(createTheme(false))
+  const [theme, setTheme] = useState(createTheme(true))
 
   const setThemeType = useCallback(
     type => {
