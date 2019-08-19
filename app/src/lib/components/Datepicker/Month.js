@@ -32,6 +32,7 @@ class Weeks extends Component {
           onSelect={this.props.onSelect}
           minDate={this.props.minDate}
           maxDate={this.props.maxDate}
+          readOnly={this.props.readOnly}
         />
       ),
       this

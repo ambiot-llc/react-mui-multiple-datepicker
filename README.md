@@ -12,7 +12,7 @@ Lets user pick more than one date from the date picker.
 
 This is a fork of `react-multiple-datepicker`. I needed a date picker that is built on [Material-UI](https://github.com/mui-org/material-ui) and supports multiple dates selections, couldn't find one, so here it is!
 
- ## Features
+## Features
 
 - Based on Material-UI components with `Dialog` component being the root of it
 - Choose dates right from the calendar
@@ -63,6 +63,7 @@ const Example = () => {
 | selectedDates | Array of `Date` | []      | `MultipleDatesPicker` uses its own internal array of selected date and sends it only when user clicks Submit button. But you can still use this variable to pass initial value to it — array will be copied. |
 | onCancel      | func, required  | null    | Fires when user clicks Cancel button. You need to handle closing the picker when this handler fires. |
 | onSubmit      | func, required  | null    | Fires when user clicks Submit button with only one parameter: array of selected `Date`s: `onSubmit(selectedDates)`. You need to handle closing the picker when this handler fires. |
+| readOnly      | bool            | false   | Is Date Picker interactive. Use this if you just want to display dates to the user. Submit button will be hidden and `onCancel` will be fired when user presses "Dismiss" button. |
 
 ## To-Do
 

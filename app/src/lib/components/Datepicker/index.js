@@ -32,13 +32,18 @@ function reducer (state, action) {
 
 const DatePicker = ({
   open,
+  readOnly,
   onCancel,
   onSubmit,
   selectedDates: outerSelectedDates,
-  cancelButtonText = 'Cancel',
+  cancelButtonText,
   submitButtonText = 'Submit',
   selectedDatesTitle = 'Selected Dates'
 }) => {
+  if (cancelButtonText == null) {
+    cancelButtonText = readOnly ? 'Dismiss' : 'Cancel'
+  }
+
   const [{ selectedDates, minDate, maxDate }, dispatch] = useReducer(
     reducer,
     outerSelectedDates,
@@ -49,6 +54,8 @@ const DatePicker = ({
 
   const onSelect = useCallback(
     day => {
+      if (readOnly) return
+
       if (DateUtilities.dateIn(selectedDates, day)) {
         dispatch({
           type: 'setSelectedDates',
@@ -58,11 +65,12 @@ const DatePicker = ({
         dispatch({ type: 'setSelectedDates', payload: [...selectedDates, day] })
       }
     },
-    [selectedDates, dispatch]
+    [selectedDates, dispatch, readOnly]
   )
 
   const onRemoveAtIndex = useCallback(
     index => {
+      if (readOnly) return
       const newDates = [...selectedDates]
       if (index > -1) {
         newDates.splice(index, 1)
@@ -70,7 +78,7 @@ const DatePicker = ({
 
       dispatch({ type: 'setSelectedDates', payload: newDates })
     },
-    [selectedDates, dispatch]
+    [selectedDates, dispatch, readOnly]
   )
 
   const dismiss = useCallback(
@@ -92,9 +100,10 @@ const DatePicker = ({
   const handleOk = useCallback(
     e => {
       e.preventDefault()
+      if (readOnly) return
       onSubmit(selectedDates)
     },
-    [onSubmit, selectedDates]
+    [onSubmit, selectedDates, readOnly]
   )
 
   useEffect(
@@ -120,6 +129,7 @@ const DatePicker = ({
         maxDate={maxDate}
         onCancel={handleCancel}
         onOk={handleOk}
+        readOnly={readOnly}
         cancelButtonText={cancelButtonText}
         submitButtonText={submitButtonText}
         selectedDatesTitle={selectedDatesTitle}
@@ -131,6 +141,7 @@ const DatePicker = ({
 
 DatePicker.propTypes = {
   open: PropTypes.bool.isRequired,
+  readOnly: PropTypes.bool.isRequired,
   onCancel: PropTypes.func.isRequired,
   onSubmit: PropTypes.func.isRequired,
   selectedDates: PropTypes.array,
@@ -138,90 +149,5 @@ DatePicker.propTypes = {
   submitButtonText: PropTypes.string,
   selectedDatesTitle: PropTypes.string
 }
-
-// class DatePicker extends Component {
-//   static propTypes = {
-//     open: PropTypes.bool.isRequired,
-//     onCancel: PropTypes.func.isRequired,
-//     onSubmit: PropTypes.func.isRequired
-//   }
-
-//   constructor (props) {
-//     super(props)
-//     const def = props.selected || new Date()
-
-//     this.state = {
-//       view: DateUtilities.clone(def),
-//       selected: DateUtilities.clone(def),
-//       selectedDates: props.selected ? [DateUtilities.clone(def)] : [],
-//       minDate: null,
-//       maxDate: null
-//     }
-//   }
-
-//   onSelect = day => {
-//     const { selectedDates } = this.state
-//     if (DateUtilities.dateIn(selectedDates, day)) {
-//       this.setState({
-//         selectedDates: selectedDates.filter(date => !DateUtilities.isSameDay(date, day))
-//       })
-//     } else {
-//       this.setState({ selectedDates: [...selectedDates, day] })
-//     }
-//   }
-
-//   onRemoveAtIndex = index => {
-//     const { selectedDates } = this.state
-//     const newDates = [...selectedDates]
-//     if (index > -1) {
-//       newDates.splice(index, 1)
-//     }
-
-//     this.setState({ selectedDates: newDates })
-//   }
-
-//   handleCancel = e => {
-//     e.preventDefault()
-//     this.dismiss()
-//   }
-
-//   handleRequestClose = () => {
-//     this.dismiss()
-//   }
-
-//   handleOk = e => {
-//     e.preventDefault()
-//     this.props.onSubmit(this.state.selectedDates)
-//   }
-
-//   dismiss = () => {
-//     this.setState({ selectedDates: [] })
-//     this.props.onCancel()
-//   }
-
-//   render () {
-//     const { open } = this.props
-
-//     return (
-//       <div>
-//         <Dialog open={open}>
-//           {/* <DialogContent> */}
-//           <Calendar
-//             view={this.state.view}
-//             selected={this.state.selected}
-//             selectedDates={this.state.selectedDates}
-//             onSelect={this.onSelect}
-//             onRemoveAtIndex={this.onRemoveAtIndex}
-//             minDate={this.props.minDate}
-//             maxDate={this.props.maxDate}
-//             onCancel={this.handleCancel}
-//             onOk={this.handleOk}
-//           />
-//           {/* </DialogContent> */}
-//         </Dialog>
-//       </div>
-//     )
-//   }
-// }
 
 export default DatePicker

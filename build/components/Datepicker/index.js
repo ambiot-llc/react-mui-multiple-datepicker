@@ -75,15 +75,19 @@ function reducer(state, action) {
 
 var DatePicker = function DatePicker(_ref) {
   var open = _ref.open,
+      readOnly = _ref.readOnly,
       onCancel = _ref.onCancel,
       onSubmit = _ref.onSubmit,
       outerSelectedDates = _ref.selectedDates,
-      _ref$cancelButtonText = _ref.cancelButtonText,
-      cancelButtonText = _ref$cancelButtonText === void 0 ? 'Cancel' : _ref$cancelButtonText,
+      cancelButtonText = _ref.cancelButtonText,
       _ref$submitButtonText = _ref.submitButtonText,
       submitButtonText = _ref$submitButtonText === void 0 ? 'Submit' : _ref$submitButtonText,
       _ref$selectedDatesTit = _ref.selectedDatesTitle,
       selectedDatesTitle = _ref$selectedDatesTit === void 0 ? 'Selected Dates' : _ref$selectedDatesTit;
+
+  if (cancelButtonText == null) {
+    cancelButtonText = readOnly ? 'Dismiss' : 'Cancel';
+  }
 
   var _useReducer = (0, _react.useReducer)(reducer, outerSelectedDates, initState),
       _useReducer2 = _slicedToArray(_useReducer, 2),
@@ -95,6 +99,8 @@ var DatePicker = function DatePicker(_ref) {
 
   var classes = useStyles();
   var onSelect = (0, _react.useCallback)(function (day) {
+    if (readOnly) return;
+
     if (_utils["default"].dateIn(selectedDates, day)) {
       dispatch({
         type: 'setSelectedDates',
@@ -108,8 +114,10 @@ var DatePicker = function DatePicker(_ref) {
         payload: [].concat(_toConsumableArray(selectedDates), [day])
       });
     }
-  }, [selectedDates, dispatch]);
+  }, [selectedDates, dispatch, readOnly]);
   var onRemoveAtIndex = (0, _react.useCallback)(function (index) {
+    if (readOnly) return;
+
     var newDates = _toConsumableArray(selectedDates);
 
     if (index > -1) {
@@ -120,7 +128,7 @@ var DatePicker = function DatePicker(_ref) {
       type: 'setSelectedDates',
       payload: newDates
     });
-  }, [selectedDates, dispatch]);
+  }, [selectedDates, dispatch, readOnly]);
   var dismiss = (0, _react.useCallback)(function () {
     dispatch({
       type: 'setSelectedDates',
@@ -134,8 +142,9 @@ var DatePicker = function DatePicker(_ref) {
   }, [dismiss]);
   var handleOk = (0, _react.useCallback)(function (e) {
     e.preventDefault();
+    if (readOnly) return;
     onSubmit(selectedDates);
-  }, [onSubmit, selectedDates]);
+  }, [onSubmit, selectedDates, readOnly]);
   (0, _react.useEffect)(function () {
     if (open) {
       dispatch({
@@ -157,6 +166,7 @@ var DatePicker = function DatePicker(_ref) {
     maxDate: maxDate,
     onCancel: handleCancel,
     onOk: handleOk,
+    readOnly: readOnly,
     cancelButtonText: cancelButtonText,
     submitButtonText: submitButtonText,
     selectedDatesTitle: selectedDatesTitle
@@ -165,85 +175,13 @@ var DatePicker = function DatePicker(_ref) {
 
 DatePicker.propTypes = {
   open: _propTypes["default"].bool.isRequired,
+  readOnly: _propTypes["default"].bool.isRequired,
   onCancel: _propTypes["default"].func.isRequired,
   onSubmit: _propTypes["default"].func.isRequired,
   selectedDates: _propTypes["default"].array,
   cancelButtonText: _propTypes["default"].string,
   submitButtonText: _propTypes["default"].string,
-  selectedDatesTitle: _propTypes["default"].string // class DatePicker extends Component {
-  //   static propTypes = {
-  //     open: PropTypes.bool.isRequired,
-  //     onCancel: PropTypes.func.isRequired,
-  //     onSubmit: PropTypes.func.isRequired
-  //   }
-  //   constructor (props) {
-  //     super(props)
-  //     const def = props.selected || new Date()
-  //     this.state = {
-  //       view: DateUtilities.clone(def),
-  //       selected: DateUtilities.clone(def),
-  //       selectedDates: props.selected ? [DateUtilities.clone(def)] : [],
-  //       minDate: null,
-  //       maxDate: null
-  //     }
-  //   }
-  //   onSelect = day => {
-  //     const { selectedDates } = this.state
-  //     if (DateUtilities.dateIn(selectedDates, day)) {
-  //       this.setState({
-  //         selectedDates: selectedDates.filter(date => !DateUtilities.isSameDay(date, day))
-  //       })
-  //     } else {
-  //       this.setState({ selectedDates: [...selectedDates, day] })
-  //     }
-  //   }
-  //   onRemoveAtIndex = index => {
-  //     const { selectedDates } = this.state
-  //     const newDates = [...selectedDates]
-  //     if (index > -1) {
-  //       newDates.splice(index, 1)
-  //     }
-  //     this.setState({ selectedDates: newDates })
-  //   }
-  //   handleCancel = e => {
-  //     e.preventDefault()
-  //     this.dismiss()
-  //   }
-  //   handleRequestClose = () => {
-  //     this.dismiss()
-  //   }
-  //   handleOk = e => {
-  //     e.preventDefault()
-  //     this.props.onSubmit(this.state.selectedDates)
-  //   }
-  //   dismiss = () => {
-  //     this.setState({ selectedDates: [] })
-  //     this.props.onCancel()
-  //   }
-  //   render () {
-  //     const { open } = this.props
-  //     return (
-  //       <div>
-  //         <Dialog open={open}>
-  //           {/* <DialogContent> */}
-  //           <Calendar
-  //             view={this.state.view}
-  //             selected={this.state.selected}
-  //             selectedDates={this.state.selectedDates}
-  //             onSelect={this.onSelect}
-  //             onRemoveAtIndex={this.onRemoveAtIndex}
-  //             minDate={this.props.minDate}
-  //             maxDate={this.props.maxDate}
-  //             onCancel={this.handleCancel}
-  //             onOk={this.handleOk}
-  //           />
-  //           {/* </DialogContent> */}
-  //         </Dialog>
-  //       </div>
-  //     )
-  //   }
-  // }
-
+  selectedDatesTitle: _propTypes["default"].string
 };
 var _default = DatePicker;
 exports["default"] = _default;

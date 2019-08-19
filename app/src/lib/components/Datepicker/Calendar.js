@@ -59,6 +59,7 @@ const Calendar = ({
   onSelect,
   onCancel,
   onOk,
+  readOnly,
   onRemoveAtIndex,
   cancelButtonText,
   submitButtonText,
@@ -111,10 +112,12 @@ const Calendar = ({
             minDate={minDate}
             maxDate={maxDate}
             onSelect={onSelect}
+            readOnly={readOnly}
             ref={calendar}
           />
         </div>
         <CalendarButtons
+          readOnly={readOnly}
           onCancel={onCancel}
           onOk={onOk}
           cancelButtonText={cancelButtonText}
@@ -124,6 +127,7 @@ const Calendar = ({
       <DateDisplay
         selectedDatesTitle={selectedDatesTitle}
         selectedDates={selectedDates}
+        readOnly={readOnly}
         onRemoveAtIndex={onRemoveAtIndex}
       />
     </div>
@@ -131,56 +135,3 @@ const Calendar = ({
 }
 
 export default Calendar
-
-// class Calendar extends Component {
-//   static defaultProps = {
-//     disableYearSelection: false,
-//     initialDate: new Date()
-//   }
-
-//   constructor (props) {
-//     super(props)
-//     this.state = {
-//       displayDate: utils.getFirstDayOfMonth(props.initialDate),
-//       displayMonthDay: !props.openToYearSelection,
-//       selectedDate: props.initialDate,
-//       transitionDirection: 'left',
-//       open: false,
-//       transitionEnter: true
-//     }
-//   }
-
-//   componentWillReceiveProps (nextProps) {
-//     if (nextProps.initialDate !== this.props.initialDate) {
-//       const date = nextProps.initialDate || new Date()
-//       this.setState({
-//         displayDate: utils.getFirstDayOfMonth(date),
-//         selectedDate: date
-//       })
-//     }
-//   }
-
-//   getMinDate () {
-//     return this.props.minDate || utils.addYears(new Date(), -100)
-//   }
-
-//   getMaxDate () {
-//     return this.props.maxDate || utils.addYears(new Date(), 100)
-//   }
-
-//   getSelectedDate () {
-//     return this.state.selectedDate
-//   }
-
-//   handleMonthChange = months => {
-//     const direction = months >= 0 ? 'left' : 'right'
-//     this.setState({
-//       transitionDirection: direction,
-//       displayDate: utils.addMonths(this.state.displayDate, months)
-//     })
-//   }
-
-//   calendarRefs = {}
-// }
-
-// export default withStyles(styles)(Calendar)

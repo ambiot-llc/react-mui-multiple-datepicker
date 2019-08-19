@@ -78,7 +78,8 @@ function (_Component) {
           selectedDates: _this.props.selectedDates,
           onSelect: _this.props.onSelect,
           minDate: _this.props.minDate,
-          maxDate: _this.props.maxDate
+          maxDate: _this.props.maxDate,
+          readOnly: _this.props.readOnly
         });
       }, _assertThisInitialized(_this));
     });
