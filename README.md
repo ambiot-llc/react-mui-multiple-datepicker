@@ -57,13 +57,16 @@ const Example = () => {
 
 ### MultipleDatesPicker (default export)
 
-| Prop Name     | Type            | Default | Description                                                  |
-| ------------- | --------------- | ------- | ------------------------------------------------------------ |
-| open          | bool, required  | false   | Is Date Picker Dialog open or not                            |
-| selectedDates | Array of `Date` | []      | `MultipleDatesPicker` uses its own internal array of selected date and sends it only when user clicks Submit button. But you can still use this variable to pass initial value to it — array will be copied. |
-| onCancel      | func, required  | null    | Fires when user clicks Cancel button. You need to handle closing the picker when this handler fires. |
-| onSubmit      | func, required  | null    | Fires when user clicks Submit button with only one parameter: array of selected `Date`s: `onSubmit(selectedDates)`. You need to handle closing the picker when this handler fires. |
-| readOnly      | bool            | false   | Is Date Picker interactive. Use this if you just want to display dates to the user. Submit button will be hidden and `onCancel` will be fired when user presses "Dismiss" button. |
+| Prop Name          | Type            | Default                                           | Description                                                  |
+| ------------------ | --------------- | ------------------------------------------------- | ------------------------------------------------------------ |
+| open               | bool, required  | `false                                            | Is Date Picker Dialog open or not                            |
+| selectedDates      | Array of `Date` | `[]`                                              | `MultipleDatesPicker` uses its own internal array of selected date and sends it only when user clicks Submit button. But you can still use this variable to pass initial value to it — array will be copied. |
+| onCancel           | func, required  | `null`                                            | Fires when user clicks Cancel button. You need to handle closing the picker when this handler fires. |
+| onSubmit           | func, required  | `null`                                            | Fires when user clicks Submit button with only one parameter: array of selected `Date`s: `onSubmit(selectedDates)`. You need to handle closing the picker when this handler fires. |
+| readOnly           | bool            | `false`                                           | Is Date Picker interactive. Use this if you just want to display dates to the user. Submit button will be hidden and `onCancel` will be fired when user presses "Dismiss" button. |
+| cancelButtonText   | string          | if `readOnly` then "Dismiss" is not then "Cancel" | Cancel button title                                          |
+| submitButtonText   | string          | Submit                                            | Submit button title                                          |
+| selectedDatesTitle | string          | Selected Dates                                    | Selected dates list header title                             |
 
 ## To-Do
 
