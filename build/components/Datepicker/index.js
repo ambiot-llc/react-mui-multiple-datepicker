@@ -175,7 +175,7 @@ var DatePicker = function DatePicker(_ref) {
 
 DatePicker.propTypes = {
   open: _propTypes["default"].bool.isRequired,
-  readOnly: _propTypes["default"].bool.isRequired,
+  readOnly: _propTypes["default"].bool,
   onCancel: _propTypes["default"].func.isRequired,
   onSubmit: _propTypes["default"].func.isRequired,
   selectedDates: _propTypes["default"].array,

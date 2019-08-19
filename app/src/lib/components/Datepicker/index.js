@@ -141,7 +141,7 @@ const DatePicker = ({
 
 DatePicker.propTypes = {
   open: PropTypes.bool.isRequired,
-  readOnly: PropTypes.bool.isRequired,
+  readOnly: PropTypes.bool,
   onCancel: PropTypes.func.isRequired,
   onSubmit: PropTypes.func.isRequired,
   selectedDates: PropTypes.array,
