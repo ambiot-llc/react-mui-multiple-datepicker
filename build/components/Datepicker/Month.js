@@ -71,8 +71,6 @@ function (_Component) {
     _this = _possibleConstructorReturn(this, (_getPrototypeOf2 = _getPrototypeOf(Weeks)).call.apply(_getPrototypeOf2, [this].concat(args)));
 
     _defineProperty(_assertThisInitialized(_this), "renderWeeks", function () {
-      console.log('first day of week', _moment["default"].localeData().firstDayOfWeek());
-
       var weekArray = _dateUtils.defaultUtils.getWeekArray(_this.props.displayDate, _moment["default"].localeData().firstDayOfWeek());
 
       return weekArray.map(function (s, i) {

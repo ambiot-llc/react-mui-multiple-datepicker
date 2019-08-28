@@ -22,7 +22,6 @@ class Weeks extends Component {
   }
 
   renderWeeks = () => {
-    console.log('first day of week', moment.localeData().firstDayOfWeek())
     const weekArray = utils.getWeekArray(
       this.props.displayDate,
       moment.localeData().firstDayOfWeek()
