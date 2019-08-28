@@ -70,7 +70,7 @@ const Example = () => {
 
 ## To-Do
 
-* [ ] Add locale support
+* [x] Add locale support
 
 ## Contributing
 
