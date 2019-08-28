@@ -3,6 +3,7 @@
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
+exports.capitalizeFirstLetter = capitalizeFirstLetter;
 exports["default"] = void 0;
 var DateUtilities = {
   pad: function pad(value, length) {
@@ -50,3 +51,7 @@ var DateUtilities = {
 };
 var _default = DateUtilities;
 exports["default"] = _default;
+
+function capitalizeFirstLetter(string) {
+  return string.charAt(0).toUpperCase() + string.slice(1);
+}

@@ -46,8 +46,8 @@ function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) { for (var i = 0, arr
 var useStyles = (0, _styles.makeStyles)(function (theme) {
   return {
     dialogPaper: {
-      minHeight: 448,
-      maxHeight: 448,
+      minHeight: 482,
+      maxHeight: 482,
       display: 'flex'
     }
   };

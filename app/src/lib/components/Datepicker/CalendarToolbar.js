@@ -4,6 +4,7 @@ import { IconButton, Typography, withStyles } from '@material-ui/core'
 import LeftIcon from '@material-ui/icons/ArrowLeft'
 import RightIcon from '@material-ui/icons/ArrowRight'
 import moment from 'moment'
+import { capitalizeFirstLetter } from './utils'
 
 const styles = theme => ({
   root: {
@@ -53,17 +54,11 @@ class CalendarToolbar extends Component {
 
     return (
       <div className={classes.root}>
-        <IconButton
-          disabled={!this.props.prevMonth}
-          onClick={this.handleTouchTapPrevMonth}
-        >
+        <IconButton disabled={!this.props.prevMonth} onClick={this.handleTouchTapPrevMonth}>
           <LeftIcon />
         </IconButton>
-        <Typography variant='subtitle1'>{dateTimeFormatted}</Typography>
-        <IconButton
-          disabled={!this.props.nextMonth}
-          onClick={this.handleTouchTapNextMonth}
-        >
+        <Typography variant='subtitle1'>{capitalizeFirstLetter(dateTimeFormatted)}</Typography>
+        <IconButton disabled={!this.props.nextMonth} onClick={this.handleTouchTapNextMonth}>
           <RightIcon />
         </IconButton>
       </div>

@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import moment from 'moment'
 import Week from './Week'
 import { defaultUtils as utils } from './dateUtils'
 import { withStyles } from '@material-ui/styles'
@@ -21,7 +22,11 @@ class Weeks extends Component {
   }
 
   renderWeeks = () => {
-    const weekArray = utils.getWeekArray(this.props.displayDate, 1)
+    console.log('first day of week', moment.localeData().firstDayOfWeek())
+    const weekArray = utils.getWeekArray(
+      this.props.displayDate,
+      moment.localeData().firstDayOfWeek()
+    )
 
     return weekArray.map(
       (s, i) => (

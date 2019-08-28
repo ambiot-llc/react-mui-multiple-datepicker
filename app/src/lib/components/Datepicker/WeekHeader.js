@@ -23,7 +23,7 @@ const Week = props => <Typography variant='overline' color='textSecondary' {...p
 const WeekHeader = () => {
   const classes = useStyles()
 
-  const weekdayNames = moment.weekdaysShort()
+  const weekdayNames = moment.weekdaysShort(true)
 
   return (
     <div className={classes.root}>

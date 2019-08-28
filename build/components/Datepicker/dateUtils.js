@@ -13,9 +13,7 @@ exports.cloneDate = cloneDate;
 exports.cloneAsDate = cloneAsDate;
 exports.getDaysInMonth = getDaysInMonth;
 exports.getFirstDayOfMonth = getFirstDayOfMonth;
-exports.getFirstDayOfWeek = getFirstDayOfWeek;
 exports.getWeekArray = getWeekArray;
-exports.localizedWeekday = localizedWeekday;
 exports.formatIso = formatIso;
 exports.isEqualDate = isEqualDate;
 exports.isBeforeDate = isBeforeDate;
@@ -26,6 +24,8 @@ exports.yearDiff = yearDiff;
 exports.defaultUtils = void 0;
 
 var _warning = _interopRequireDefault(require("warning"));
+
+var _moment = _interopRequireDefault(require("moment"));
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { "default": obj }; }
 
@@ -101,17 +101,12 @@ function getDaysInMonth(d) {
 }
 
 function getFirstDayOfMonth(d) {
-  return new Date(d.getFullYear(), d.getMonth(), 1);
-}
-
-function getFirstDayOfWeek() {
-  var now = new Date();
-  return new Date(now.setDate(now.getDate() - now.getDay()));
+  return (0, _moment["default"])(d).startOf('month').toDate();
 }
 
 function getWeekArray(d, firstDayOfWeek) {
   var dayArray = [];
-  var daysInMonth = getDaysInMonth(d);
+  var daysInMonth = (0, _moment["default"])(d).daysInMonth();
   var weekArray = [];
   var week = [];
 
@@ -130,7 +125,7 @@ function getWeekArray(d, firstDayOfWeek) {
   };
 
   dayArray.forEach(function (day) {
-    if (week.length > 0 && day.getDay() === 0) {
+    if (week.length > 0 && day.getDay() === firstDayOfWeek) {
       addWeek(week);
       week = [];
     }
@@ -142,14 +137,6 @@ function getWeekArray(d, firstDayOfWeek) {
     }
   });
   return weekArray;
-}
-
-function localizedWeekday(DateTimeFormat, locale, day, firstDayOfWeek) {
-  var weekdayFormatter = new DateTimeFormat(locale, {
-    weekday: 'narrow'
-  });
-  var firstDayDate = getFirstDayOfWeek();
-  return weekdayFormatter.format(addDays(firstDayDate, day + firstDayOfWeek));
 } // Convert date to ISO 8601 (YYYY-MM-DD) date string, accounting for current timezone
 
 

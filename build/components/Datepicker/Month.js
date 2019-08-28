@@ -7,6 +7,8 @@ exports["default"] = void 0;
 
 var _react = _interopRequireWildcard(require("react"));
 
+var _moment = _interopRequireDefault(require("moment"));
+
 var _Week = _interopRequireDefault(require("./Week"));
 
 var _dateUtils = require("./dateUtils");
@@ -69,7 +71,9 @@ function (_Component) {
     _this = _possibleConstructorReturn(this, (_getPrototypeOf2 = _getPrototypeOf(Weeks)).call.apply(_getPrototypeOf2, [this].concat(args)));
 
     _defineProperty(_assertThisInitialized(_this), "renderWeeks", function () {
-      var weekArray = _dateUtils.defaultUtils.getWeekArray(_this.props.displayDate, 1);
+      console.log('first day of week', _moment["default"].localeData().firstDayOfWeek());
+
+      var weekArray = _dateUtils.defaultUtils.getWeekArray(_this.props.displayDate, _moment["default"].localeData().firstDayOfWeek());
 
       return weekArray.map(function (s, i) {
         return _react["default"].createElement(_Week["default"], {

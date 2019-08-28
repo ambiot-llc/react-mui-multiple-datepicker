@@ -44,7 +44,7 @@ var Week = function Week(props) {
 var WeekHeader = function WeekHeader() {
   var classes = useStyles();
 
-  var weekdayNames = _moment["default"].weekdaysShort();
+  var weekdayNames = _moment["default"].weekdaysShort(true);
 
   return _react["default"].createElement("div", {
     className: classes.root
