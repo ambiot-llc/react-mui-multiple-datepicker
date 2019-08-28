@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useCallback } from 'react'
 import PropTypes from 'prop-types'
 import classNames from 'classnames'
 import { makeStyles, Typography, ButtonBase } from '@material-ui/core'
@@ -39,13 +39,23 @@ const useCircleStyles = makeStyles(theme => ({
 
 const Circle = ({ label, disabled, checked, onCheck, className, isToday }) => {
   const classes = useCircleStyles()
+
+  const handleClick = useCallback(
+    () => {
+      if (!disabled) {
+        onCheck(!checked)
+      }
+    },
+    [onCheck, disabled, checked]
+  )
+
   return (
     <ButtonBase
       className={classNames(
         classes.root,
         {
           [classes.rootText]: !checked && !disabled,
-          [classes.rootTextDisabled]: disabled,
+          // [classes.rootTextDisabled]: disabled,
           [classes.todayRoot]: isToday,
           [classes.checkedRoot]: checked && !disabled,
           [classes.checkedRootDisabled]: checked && disabled
@@ -53,7 +63,7 @@ const Circle = ({ label, disabled, checked, onCheck, className, isToday }) => {
         className
       )}
       disabled={disabled}
-      onClick={() => onCheck(!checked)}
+      onClick={handleClick}
     >
       <Typography
         color='inherit'

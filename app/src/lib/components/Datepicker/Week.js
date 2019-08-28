@@ -28,6 +28,8 @@ class Week extends Component {
   }
 
   isDisabled = day => {
+    if (this.props.readOnly) return true
+
     let minDate = this.props.minDate
 
     let maxDate = this.props.maxDate

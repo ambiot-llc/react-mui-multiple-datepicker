@@ -117,7 +117,8 @@ function (_Component) {
 
       var _this$props = this.props,
           classes = _this$props.classes,
-          selectedDates = _this$props.selectedDates;
+          selectedDates = _this$props.selectedDates,
+          readOnly = _this$props.readOnly;
       return _react["default"].createElement("div", {
         className: classes.root
       }, _react["default"].createElement("div", {
@@ -126,18 +127,19 @@ function (_Component) {
         variant: "subtitle1"
       }, this.props.selectedDatesTitle), _react["default"].createElement(_core.Typography, {
         variant: "subtitle1",
-        color: "primary"
+        color: readOnly ? 'textSecondary' : 'primary'
       }, selectedDates.length)), _react["default"].createElement(_core.List, {
         dense: true,
         className: classes.list
       }, selectedDates.map(function (date, index) {
         return _react["default"].createElement(_core.ListItem, {
           key: "".concat(date.toString()),
-          button: true,
+          button: readOnly,
+          disabled: readOnly,
           onClick: _this2.removeDateAtIndex(index)
         }, _react["default"].createElement(_core.ListItemText, {
           primary: _this2.getFormatedDate(date)
-        }), _react["default"].createElement(_Clear["default"], {
+        }), !readOnly && _react["default"].createElement(_Clear["default"], {
           color: "error"
         }));
       })));

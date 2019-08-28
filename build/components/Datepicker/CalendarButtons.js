@@ -50,10 +50,11 @@ var CalendarActionButton = function CalendarActionButton(_ref) {
   var cancelButtonText = _ref.cancelButtonText,
       submitButtonText = _ref.submitButtonText,
       onCancel = _ref.onCancel,
-      onOk = _ref.onOk;
+      onOk = _ref.onOk,
+      readOnly = _ref.readOnly;
   return _react["default"].createElement(_core.DialogActions, null, _react["default"].createElement(_core.Button, {
     onClick: onCancel
-  }, cancelButtonText), _react["default"].createElement(_core.Button, {
+  }, cancelButtonText), !readOnly && _react["default"].createElement(_core.Button, {
     color: "primary",
     onClick: onOk
   }, submitButtonText));

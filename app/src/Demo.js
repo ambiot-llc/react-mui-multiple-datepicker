@@ -1,7 +1,8 @@
 import React, { useState, useCallback } from 'react'
 import { makeStyles } from '@material-ui/styles'
-import MultipleDatePicker from './lib'
 import { Button, Typography } from '@material-ui/core'
+import moment from 'moment'
+import MultipleDatePicker from './lib'
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -20,7 +21,7 @@ const useStyles = makeStyles(theme => ({
 const Demo = props => {
   const classes = useStyles()
   const [open, setOpen] = useState(false)
-  const [dates, setDates] = useState(null)
+  const [dates, setDates] = useState([])
   const toggleOpen = useCallback(() => setOpen(o => !o), [setOpen])
   const onCancel = useCallback(() => setOpen(false), [setOpen])
   const onSubmit = useCallback(

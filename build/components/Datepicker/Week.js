@@ -82,6 +82,7 @@ function (_Component) {
     });
 
     _defineProperty(_assertThisInitialized(_this), "isDisabled", function (day) {
+      if (_this.props.readOnly) return true;
       var minDate = _this.props.minDate;
       var maxDate = _this.props.maxDate;
       return minDate && _utils["default"].isBefore(day, minDate) || maxDate && _utils["default"].isAfter(day, maxDate);
