@@ -9,7 +9,10 @@ const useStyles = makeStyles(theme => ({
   dialogPaper: {
     minHeight: 482,
     maxHeight: 482,
-    display: 'flex'
+    display: 'flex',
+    [theme.breakpoints.down('xs')]: {
+      margin: `${theme.spacing(1)}px`,
+    }
   }
 }))
 

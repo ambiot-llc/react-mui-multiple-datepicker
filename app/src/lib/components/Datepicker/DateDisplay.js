@@ -8,7 +8,10 @@ const styles = theme => ({
     width: theme.spacing(30),
     backgroundColor: theme.palette.background.default,
     display: 'flex',
-    flexDirection: 'column'
+    flexDirection: 'column',
+    [theme.breakpoints.down('xs')]: {
+      display: 'none'
+    }
   },
   header: {
     margin: theme.spacing(2),
