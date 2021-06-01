@@ -13,12 +13,18 @@ const styles = theme => ({
     marginBottom: theme.spacing(2)
   },
   day: {
-    margin: `0 ${theme.spacing(1)}px`
+    margin: `0 ${theme.spacing(1)}px`,
+    [theme.breakpoints.down('xs')]: {
+      margin: `0 2px`,
+    }
   },
   blank: {
     width: 36,
     height: 36,
-    margin: `0 ${theme.spacing(1)}px`
+    margin: `0 ${theme.spacing(1)}px`,
+    [theme.breakpoints.down('xs')]: {
+      margin: `0 2px`,
+    }
   }
 })
 
