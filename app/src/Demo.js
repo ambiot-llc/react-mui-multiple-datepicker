@@ -1,7 +1,6 @@
 import React, { useState, useCallback } from 'react'
 import { makeStyles } from '@material-ui/styles'
 import { Button, Typography } from '@material-ui/core'
-import moment from 'moment'
 import MultipleDatePicker from './lib'
 
 const useStyles = makeStyles(theme => ({
