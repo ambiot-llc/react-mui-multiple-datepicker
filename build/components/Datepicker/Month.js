@@ -78,6 +78,7 @@ function (_Component) {
           key: i,
           week: s,
           selectedDates: _this.props.selectedDates,
+          disabledDates: _this.props.disabledDates,
           onSelect: _this.props.onSelect,
           minDate: _this.props.minDate,
           maxDate: _this.props.maxDate,

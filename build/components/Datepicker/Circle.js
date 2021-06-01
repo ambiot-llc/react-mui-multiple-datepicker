@@ -68,7 +68,7 @@ var Circle = function Circle(_ref) {
     }
   }, [onCheck, disabled, checked]);
   return _react["default"].createElement(_core.ButtonBase, {
-    className: (0, _classnames["default"])(classes.root, (_classNames = {}, _defineProperty(_classNames, classes.rootText, !checked && !disabled), _defineProperty(_classNames, classes.todayRoot, isToday), _defineProperty(_classNames, classes.checkedRoot, checked && !disabled), _defineProperty(_classNames, classes.checkedRootDisabled, checked && disabled), _classNames), className),
+    className: (0, _classnames["default"])(classes.root, (_classNames = {}, _defineProperty(_classNames, classes.rootText, !checked && !disabled), _defineProperty(_classNames, classes.rootTextDisabled, disabled), _defineProperty(_classNames, classes.todayRoot, isToday), _defineProperty(_classNames, classes.checkedRoot, checked && !disabled), _defineProperty(_classNames, classes.checkedRootDisabled, checked && disabled), _classNames), className),
     disabled: disabled,
     onClick: handleClick
   }, _react["default"].createElement(_core.Typography, {

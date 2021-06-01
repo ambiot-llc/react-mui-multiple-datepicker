@@ -48,14 +48,18 @@ var styles = function styles(theme) {
       height: 34,
       marginBottom: theme.spacing(2)
     },
-    day: {
+    day: _defineProperty({
       margin: "0 ".concat(theme.spacing(1), "px")
-    },
-    blank: {
+    }, theme.breakpoints.down('xs'), {
+      margin: "0 2px"
+    }),
+    blank: _defineProperty({
       width: 36,
       height: 36,
       margin: "0 ".concat(theme.spacing(1), "px")
-    }
+    }, theme.breakpoints.down('xs'), {
+      margin: "0 2px"
+    })
   };
 };
 
@@ -83,6 +87,12 @@ function (_Component) {
 
     _defineProperty(_assertThisInitialized(_this), "isDisabled", function (day) {
       if (_this.props.readOnly) return true;
+
+      var disabledDate = _this.props.disabledDates && _this.props.disabledDates.find(function (d) {
+        return _utils["default"].isSameDay(d, day);
+      });
+
+      if (disabledDate != null) return true;
       var minDate = _this.props.minDate;
       var maxDate = _this.props.maxDate;
       return minDate && _utils["default"].isBefore(day, minDate) || maxDate && _utils["default"].isAfter(day, maxDate);
