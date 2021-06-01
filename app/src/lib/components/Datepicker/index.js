@@ -39,6 +39,7 @@ const DatePicker = ({
   onCancel,
   onSubmit,
   selectedDates: outerSelectedDates,
+  disabledDates,
   cancelButtonText,
   submitButtonText = 'Submit',
   selectedDatesTitle = 'Selected Dates'
@@ -126,6 +127,7 @@ const DatePicker = ({
       {/* <DialogContent> */}
       <Calendar
         selectedDates={selectedDates}
+        disabledDates={disabledDates}
         onSelect={onSelect}
         onRemoveAtIndex={onRemoveAtIndex}
         minDate={minDate}

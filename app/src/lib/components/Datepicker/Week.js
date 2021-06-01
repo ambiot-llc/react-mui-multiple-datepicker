@@ -36,6 +36,9 @@ class Week extends Component {
   isDisabled = day => {
     if (this.props.readOnly) return true
 
+    const disabledDate = this.props.disabledDates && this.props.disabledDates.find(d => DateUtilities.isSameDay(d, day))
+    if (disabledDate != null) return true
+
     let minDate = this.props.minDate
 
     let maxDate = this.props.maxDate

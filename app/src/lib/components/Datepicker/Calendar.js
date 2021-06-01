@@ -56,6 +56,7 @@ const Calendar = ({
   maxDate,
   minDate,
   selectedDates,
+  disabledDates,
   onSelect,
   onCancel,
   onOk,
@@ -109,6 +110,7 @@ const Calendar = ({
             displayDate={displayDate}
             key={displayDate.toDateString()}
             selectedDates={selectedDates}
+            disabledDates={disabledDates}
             minDate={minDate}
             maxDate={maxDate}
             onSelect={onSelect}

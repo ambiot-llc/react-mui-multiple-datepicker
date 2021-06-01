@@ -55,7 +55,7 @@ const Circle = ({ label, disabled, checked, onCheck, className, isToday }) => {
         classes.root,
         {
           [classes.rootText]: !checked && !disabled,
-          // [classes.rootTextDisabled]: disabled,
+          [classes.rootTextDisabled]: disabled,
           [classes.todayRoot]: isToday,
           [classes.checkedRoot]: checked && !disabled,
           [classes.checkedRootDisabled]: checked && disabled
