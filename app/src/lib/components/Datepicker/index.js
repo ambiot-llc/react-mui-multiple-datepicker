@@ -116,14 +116,17 @@ const DatePicker = ({
       {...DialogProps}
       open={open} 
       PaperProps={{
+        ...DialogProps?.PaperProps,
         sx: {
+          ...DialogProps?.PaperProps?.sx,
           minHeight: 482,
           maxHeight: 482,
           display: 'flex',
+          xs: {
+            ...DialogProps?.PaperProps?.sx?.xs,
+            margin: theme.spacing(1)
+          }
         }
-      }}
-      xs={{
-        margin: theme.spacing(1)
       }}
     >
       {/* <DialogContent> */}
