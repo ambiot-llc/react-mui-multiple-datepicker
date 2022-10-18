@@ -1,5 +1,5 @@
 import React from 'react'
-import { Button, DialogActions } from '@material-ui/core'
+import { Button, DialogActions, useTheme } from '@mui/material'
 
 // const Root = styled.div`
 //   display: flex;
@@ -38,15 +38,29 @@ import { Button, DialogActions } from '@material-ui/core'
 //   max-height: 36px;
 // `;
 
-const CalendarActionButton = ({ cancelButtonText, submitButtonText, onCancel, onOk, readOnly }) => (
-  <DialogActions>
-    <Button onClick={onCancel}>{cancelButtonText}</Button>
-    {!readOnly && (
-      <Button color='primary' onClick={onOk}>
-        {submitButtonText}
+const CalendarActionButton = ({ cancelButtonText, submitButtonText, onCancel, onOk, readOnly }) => {
+  const theme = useTheme()
+
+  return (
+    <DialogActions>
+      <Button
+        onClick={onCancel}
+        sx={{
+          color: 'rgba(0, 0, 0, 0.87)',
+          '&:hover': {
+            backgroundColor: theme.palette.action.hover
+          }
+        }}
+      >
+        {cancelButtonText}
       </Button>
-    )}
-  </DialogActions>
-)
+      {!readOnly && (
+        <Button onClick={onOk}>
+          {submitButtonText}
+        </Button>
+      )}
+    </DialogActions>
+  )
+}
 
 export default CalendarActionButton

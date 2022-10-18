@@ -5,51 +5,7 @@ import { defaultUtils as utils } from './dateUtils'
 import CalendarToolbar from './CalendarToolbar'
 import CalendarButtons from './CalendarButtons'
 import DateDisplay from './DateDisplay'
-import { makeStyles } from '@material-ui/core'
-
-// const Root = styled.div`
-//   color: rgba(0, 0, 0, 0.87);
-//   user-select: none;
-//   overflow: auto;
-//   max-width: 479px:
-// `
-
-// const CalendarContainer = styled.div`
-//   display: flex;
-//   justify-items: space-between;
-//   flex-direction: column;
-//   font-size: 12px;
-//   font-weight: 400;
-//   padding: 0px 8px;
-//   transition: all 450ms cubic-bezier(0.23, 1, 0.32, 1) 0ms;
-// `
-
-const useStyles = makeStyles(theme => ({
-  root: {
-    flex: '1',
-    display: 'flex',
-    maxHeight: '100%',
-    overflow: 'hidden'
-  },
-  selectorContainer: {
-    // marginTop: theme.spacing(2)
-    // boxShadow: 'inset 0 0 10px #000000'
-    display: 'flex',
-    flexDirection: 'column',
-    justifyContent: 'space-between'
-  },
-  calendarContainer: {
-    display: 'flex',
-    justifyContent: 'space-between',
-    flexDirection: 'column',
-    padding: `0 ${theme.spacing(1)}px`
-  }
-}))
-
-// const StyledCalendar = styled.div`
-//   display: flex;
-//   flex-direction: column;
-// `
+import { Box } from '@mui/material'
 
 const Calendar = ({
   initialDate,
@@ -67,7 +23,6 @@ const Calendar = ({
   selectedDatesTitle
 }) => {
   const calendar = useRef(null)
-  const classes = useStyles()
 
   const [displayDate, setDisplayDate] = useState(() =>
     utils.getFirstDayOfMonth(initialDate || new Date())
@@ -96,9 +51,23 @@ const Calendar = ({
   }
 
   return (
-    <div className={classes.root}>
-      <div className={classes.selectorContainer}>
-        <div className={classes.calendarContainer}>
+    <Box
+      flex='1'
+      display='flex'
+      maxHeight='100%'
+      overflow='hidden'
+    >
+      <Box
+        display='flex'
+        flexDirection='column'
+        justifyContent='space-between'
+      >
+        <Box
+          display='flex'
+          justifyContent='space-between'
+          flexDirection='column'
+          px={1}
+        >
           <CalendarToolbar
             displayDate={displayDate}
             onMonthChange={handleMonthChange}
@@ -117,7 +86,7 @@ const Calendar = ({
             readOnly={readOnly}
             ref={calendar}
           />
-        </div>
+        </Box>
         <CalendarButtons
           readOnly={readOnly}
           onCancel={onCancel}
@@ -125,14 +94,14 @@ const Calendar = ({
           cancelButtonText={cancelButtonText}
           submitButtonText={submitButtonText}
         />
-      </div>
+      </Box>
       <DateDisplay
         selectedDatesTitle={selectedDatesTitle}
         selectedDates={selectedDates}
         readOnly={readOnly}
         onRemoveAtIndex={onRemoveAtIndex}
       />
-    </div>
+    </Box>
   )
 }
 

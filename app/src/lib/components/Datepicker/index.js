@@ -2,19 +2,7 @@ import React, { useReducer, useCallback, useEffect } from 'react'
 import PropTypes from 'prop-types'
 import DateUtilities from './utils'
 import Calendar from './Calendar'
-import { Dialog } from '@material-ui/core'
-import { makeStyles } from '@material-ui/styles'
-
-const useStyles = makeStyles(theme => ({
-  dialogPaper: {
-    minHeight: 482,
-    maxHeight: 482,
-    display: 'flex',
-    [theme.breakpoints.down('xs')]: {
-      margin: `${theme.spacing(1)}px`,
-    }
-  }
-}))
+import { Dialog, useTheme } from '@mui/material'
 
 function initState (selectedDates) {
   return {
@@ -40,10 +28,13 @@ const DatePicker = ({
   onSubmit,
   selectedDates: outerSelectedDates,
   disabledDates,
+  DialogProps,
   cancelButtonText,
   submitButtonText = 'Submit',
   selectedDatesTitle = 'Selected Dates'
 }) => {
+  const theme = useTheme()
+
   if (cancelButtonText == null) {
     cancelButtonText = readOnly ? 'Dismiss' : 'Cancel'
   }
@@ -53,8 +44,6 @@ const DatePicker = ({
     outerSelectedDates,
     initState
   )
-
-  const classes = useStyles()
 
   const onSelect = useCallback(
     day => {
@@ -123,7 +112,20 @@ const DatePicker = ({
   )
 
   return (
-    <Dialog open={open} classes={{ paper: classes.dialogPaper }}>
+    <Dialog
+      {...DialogProps}
+      open={open} 
+      PaperProps={{
+        sx: {
+          minHeight: 482,
+          maxHeight: 482,
+          display: 'flex',
+        }
+      }}
+      xs={{
+        margin: theme.spacing(1)
+      }}
+    >
       {/* <DialogContent> */}
       <Calendar
         selectedDates={selectedDates}

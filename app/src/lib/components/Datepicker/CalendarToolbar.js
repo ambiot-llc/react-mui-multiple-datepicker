@@ -1,21 +1,10 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
-import { IconButton, Typography, withStyles } from '@material-ui/core'
-import LeftIcon from '@material-ui/icons/ArrowLeft'
-import RightIcon from '@material-ui/icons/ArrowRight'
+import { Box, IconButton, Typography } from '@mui/material'
+import LeftIcon from '@mui/icons-material/ArrowLeft'
+import RightIcon from '@mui/icons-material/ArrowRight'
 import moment from 'moment'
 import { capitalizeFirstLetter } from './utils'
-
-const styles = theme => ({
-  root: {
-    display: 'flex',
-    alignItems: 'center',
-    alignContent: 'center',
-    justifyContent: 'space-between',
-    margin: `${theme.spacing(1)}px 0`
-  }
-})
-
 class CalendarToolbar extends Component {
   static propTypes = {
     displayDate: PropTypes.object.isRequired,
@@ -44,7 +33,7 @@ class CalendarToolbar extends Component {
   }
 
   render () {
-    const { classes, displayDate } = this.props
+    const { displayDate } = this.props
 
     const dateTimeFormatted = moment(displayDate).format('MMMM YYYY')
     // const dateTimeFormatted = new dateTimeFormat('en-US', {
@@ -53,7 +42,13 @@ class CalendarToolbar extends Component {
     // }).format(displayDate)
 
     return (
-      <div className={classes.root}>
+      <Box
+        display='flex'
+        alignItems='center'
+        alignContent='center'
+        justifyContent='space-between'
+        my={1}
+      >
         <IconButton disabled={!this.props.prevMonth} onClick={this.handleTouchTapPrevMonth}>
           <LeftIcon />
         </IconButton>
@@ -61,9 +56,9 @@ class CalendarToolbar extends Component {
         <IconButton disabled={!this.props.nextMonth} onClick={this.handleTouchTapNextMonth}>
           <RightIcon />
         </IconButton>
-      </div>
+      </Box>
     )
   }
 }
 
-export default withStyles(styles)(CalendarToolbar)
+export default CalendarToolbar

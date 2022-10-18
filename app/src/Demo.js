@@ -1,24 +1,19 @@
 import React, { useState, useCallback } from 'react'
-import { makeStyles } from '@material-ui/styles'
-import { Button, Typography } from '@material-ui/core'
+import { Button, Typography, styled, useTheme } from '@mui/material'
 import MultipleDatePicker from './lib'
 
-const useStyles = makeStyles(theme => ({
-  root: {
-    backgroundColor: theme.palette.background.default,
-    minHeight: '100vh',
-    display: 'flex',
-    flexDirection: 'column',
-    alignItems: 'center',
-    justifyContent: 'center'
-  },
-  button: {
-    marginBottom: theme.spacing(3)
-  }
+const BoxRoot = styled('div')(({ theme }) => ({
+  backgroundColor: theme.palette.background.default,
+  minHeight: '100vh',
+  display: 'flex',
+  flexDirection: 'column',
+  alignItems: 'center',
+  justifyContent: 'center'
 }))
 
+
 const Demo = props => {
-  const classes = useStyles()
+  const theme = useTheme()
   const [open, setOpen] = useState(false)
   const [dates, setDates] = useState([])
   const toggleOpen = useCallback(() => setOpen(o => !o), [setOpen])
@@ -32,8 +27,13 @@ const Demo = props => {
   )
 
   return (
-    <div className={classes.root}>
-      <Button variant='contained' color='primary' className={classes.button} onClick={toggleOpen}>
+    <BoxRoot>
+      <Button 
+        variant='contained' 
+        color='primary'
+        onClick={toggleOpen}
+        style={{ marginBottom: theme.spacing(3) }}
+      >
         Select Dates
       </Button>
       <MultipleDatePicker
@@ -45,7 +45,7 @@ const Demo = props => {
       <Typography color='textSecondary'>
         <code>{JSON.stringify(dates)}</code>
       </Typography>
-    </div>
+    </BoxRoot>
   )
 }
 

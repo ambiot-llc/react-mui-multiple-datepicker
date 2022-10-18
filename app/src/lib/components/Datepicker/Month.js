@@ -2,23 +2,20 @@ import React, { Component } from 'react'
 import moment from 'moment'
 import Week from './Week'
 import { defaultUtils as utils } from './dateUtils'
-import { withStyles } from '@material-ui/styles'
-
-const styles = theme => ({
-  root: {
-    display: 'flex',
-    flexDirection: 'column',
-    justifyContent: 'flex-start',
-    // height: 214,
-    lineHeight: '1.25',
-    position: 'relative'
-  }
-})
 
 class Weeks extends Component {
   render () {
-    const { classes } = this.props
-    return <div className={classes.root}>{this.renderWeeks(this.props.displayDate)}</div>
+    return (
+      <div style={{
+        display: 'flex',
+        flexDirection: 'column',
+        justifyContent: 'flex-start',
+        lineHeight: '1.25',
+        position: 'relative'
+      }}>
+        {this.renderWeeks(this.props.displayDate)}
+      </div>
+    )
   }
 
   renderWeeks = () => {
@@ -45,4 +42,4 @@ class Weeks extends Component {
   }
 }
 
-export default withStyles(styles)(Weeks)
+export default Weeks

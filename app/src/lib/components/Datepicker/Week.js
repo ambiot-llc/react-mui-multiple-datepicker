@@ -1,32 +1,8 @@
 import React, { Component } from 'react'
+import { Box } from '@mui/material'
 import DateUtilities from './utils'
 import { dateTimeFormat } from './dateUtils'
-import { withStyles } from '@material-ui/styles'
 import Circle from './Circle'
-
-const styles = theme => ({
-  root: {
-    display: 'flex',
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-    height: 34,
-    marginBottom: theme.spacing(2)
-  },
-  day: {
-    margin: `0 ${theme.spacing(1)}px`,
-    [theme.breakpoints.down('xs')]: {
-      margin: `0 2px`,
-    }
-  },
-  blank: {
-    width: 36,
-    height: 36,
-    margin: `0 ${theme.spacing(1)}px`,
-    [theme.breakpoints.down('xs')]: {
-      margin: `0 2px`,
-    }
-  }
-})
 
 class Week extends Component {
   onSelect = day => {
@@ -53,8 +29,6 @@ class Week extends Component {
     this.props.selectedDates && DateUtilities.dateIn(this.props.selectedDates, day)
 
   render () {
-    const { classes } = this.props
-
     const dateInNumberic = new dateTimeFormat('en-US', {
       day: 'numeric',
       month: 'numeric',
@@ -66,8 +40,15 @@ class Week extends Component {
     const dayInNumeric = new dateTimeFormat('en-US', {
       day: 'numeric'
     })
+
     return (
-      <div className={classes.root}>
+      <Box
+        display='flex'
+        flexDirection='row'
+        justifyContent='space-between'
+        height={34}
+        marginBottom={2}
+      >
         {this.props.week.map((day, i) => {
           if (day) {
             const isToday = day && dateToday === dateInNumberic.format(day)
@@ -84,32 +65,30 @@ class Week extends Component {
                   this.onSelect(day)
                 }}
                 isToday={isToday}
-                className={classes.day}
+                xs={{
+                  margin: `0 2px`,
+                }}
+                sx={{
+                  margin: '0 8px'
+                }}
               />
             )
-
-            // return (
-            //   <DayButton
-            //     key={`day-${day}`}
-            //     onClick={e => {
-            //       e.preventDefault()
-            //       this.onSelect(day)
-            //     }}
-            //     disabled={isDisabled}
-            //     selected={isSelected}
-            //   >
-            //     <DayBackdrop selected={isSelected} />
-            //     <Day selected={isSelected} disabled={isDisabled} today={isToday}>
-            //       {dayInNumeric.format(day)}
-            //     </Day>
-            //   </DayButton>
-            // )
           }
-          return <div className={classes.blank} key={`blank-${i}`} />
+          return (
+            <Box 
+              key={`blank-${i}`}
+              xs={{
+                margin: `0 2px`,
+              }}
+              mx={1}
+              width={36}
+              height={36}
+            />
+          )
         })}
-      </div>
+      </Box>
     )
   }
 }
 
-export default withStyles(styles)(Week)
+export default Week

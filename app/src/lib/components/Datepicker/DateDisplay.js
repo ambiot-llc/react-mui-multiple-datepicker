@@ -1,33 +1,9 @@
 import React, { Component } from 'react'
-import { withStyles, List, ListItem, ListItemText, Typography } from '@material-ui/core'
-import DeleteIcon from '@material-ui/icons/Clear'
+import { Box, List, ListItem, ListItemText, Typography, useTheme } from '@mui/material'
+import DeleteIcon from '@mui/icons-material/Clear'
 import moment from 'moment'
 
-const styles = theme => ({
-  root: {
-    width: theme.spacing(30),
-    backgroundColor: theme.palette.background.default,
-    display: 'flex',
-    flexDirection: 'column',
-    [theme.breakpoints.down('xs')]: {
-      display: 'none'
-    }
-  },
-  header: {
-    margin: theme.spacing(2),
-    // width: '100%',
-    display: 'flex',
-    alignItems: 'center',
-    alignContent: 'center',
-    justifyContent: 'space-between'
-  },
-  list: {
-    flex: '1',
-    overflowY: 'auto'
-  }
-})
-
-class DateDisplay extends Component {
+class DateDisplayWithoutTheme extends Component {
   state = {
     selectedYear: false
   }
@@ -55,17 +31,37 @@ class DateDisplay extends Component {
   }
 
   render () {
-    const { classes, selectedDates, readOnly } = this.props
+    const { theme, selectedDates, readOnly } = this.props
+    console.log('fdgdfgfdg', theme)
 
     return (
-      <div className={classes.root}>
-        <div className={classes.header}>
+      <Box
+        width={240}
+        backgroundColor={theme.palette.background.default}
+        flexDirection='column'
+        sx={{
+          display: { xs: 'none', sm: 'flex' }
+        }}
+      >
+        <Box
+          margin={2}
+          display='flex'
+          alignItems='center'
+          alignContent='center'
+          justifyContent='space-between'
+        >
           <Typography variant='subtitle1'>{this.props.selectedDatesTitle}</Typography>
           <Typography variant='subtitle1' color={readOnly ? 'textSecondary' : 'primary'}>
             {selectedDates.length}
           </Typography>
-        </div>
-        <List dense className={classes.list}>
+        </Box>
+        <List 
+          dense 
+          style={{
+            flex: '1',
+            overflowY: 'auto'
+          }}
+        >
           {selectedDates.map((date, index) => (
             <ListItem
               key={`${date.toString()}`}
@@ -78,9 +74,16 @@ class DateDisplay extends Component {
             </ListItem>
           ))}
         </List>
-      </div>
+      </Box>
     )
   }
 }
 
-export default withStyles(styles)(DateDisplay)
+const DateDisplay = props => (
+  <DateDisplayWithoutTheme
+    {...props}
+    theme={useTheme()}
+  />
+)
+
+export default DateDisplay

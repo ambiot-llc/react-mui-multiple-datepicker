@@ -1,6 +1,6 @@
 {
-  "name": "@randex/material-ui-multiple-dates-picker",
-  "version": "0.4.0",
+  "name": "@ambiot/material-ui-multiple-dates-picker",
+  "version": "1.0.0",
   "description": "Date Picker with multiple selection based on Material UI",
   "main": "./build/index.js",
   "scripts": {
@@ -9,7 +9,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/randex/react-multiple-datepicker.git"
+    "url": "git+https://github.com/ambiot-llc/react-mui-multiple-datepicker.git"
   },
   "keywords": [
     "multi-datepicker",
@@ -21,21 +21,22 @@
     "datepicker"
   ],
   "author": {
-    "name": "Ruslan Murin",
-    "email": "randexdev@gmail.com",
-    "url": "http://randexdev.com"
+    "name": "Ámbiot",
+    "email": "opensource@ambiot.io",
+    "url": "https://ambiot.io/"
   },
   "contributors": [],
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/randex/react-multiple-datepicker/issues"
+    "url": "https://github.com/ambiot-llc/react-mui-multiple-datepicker/issues"
   },
-  "homepage": "https://github.com/randex/react-multiple-datepicker#readme",
+  "homepage": "hhttps://github.com/ambiot-llc/react-mui-multiple-datepicker#readme",
   "dependencies": {
-    "@material-ui/core": "^4.3.2",
-    "@material-ui/icons": "^4.2.1",
-    "@material-ui/styles": "^4.3.0",
-    "classnames": "^2.2.6",
+    "@mui/icons-material": "^5.10.9",
+    "@mui/lab": "^5.0.0-alpha.103",
+    "@mui/material": "^5.10.9",
+    "@emotion/react": "^11.10.4",
+    "@emotion/styled": "^11.10.4",
     "moment": "^2.24.0",
     "warning": "^3.0.0"
   },
