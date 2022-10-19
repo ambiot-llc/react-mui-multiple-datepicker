@@ -1,12 +1,8 @@
-# Material-UI Multiple Dates Picker
+# MUI Multiple Dates Picker
 
-[![npm version](https://img.shields.io/npm/v/@randex/material-ui-multiple-dates-picker)](https://www.npmjs.com/package/@randex/material-ui-multiple-dates-picker)
-
-[![](https://raw.githubusercontent.com/randex/react-multiple-datepicker/master/demo/datepicker-screenshot.png)](http://demos.randexdev.com/material-ui-multiple-dates-picker/)
+[![](https://raw.githubusercontent.com/randex/react-multiple-datepicker/master/demo/datepicker-screenshot.png)]
 
 Lets user pick more than one date from the date picker.
-
-### [Demo](http://demos.randexdev.com/material-ui-multiple-dates-picker/)
 
 ## Motivation
 
@@ -26,13 +22,13 @@ This is a fork of `react-multiple-datepicker`. I needed a date picker that is bu
 To install the component run this command:
 
 ```
-npm i -S @randex/material-ui-multiple-dates-picker
+npm i -S @ambiot/material-ui-multiple-dates-picker react @mui/material @mui/lab @mui/icons-material @emotion/styled @emotion/react
 ```
 
 ## Usage example
 
 ```javascript
-import MultipleDatesPicker from '@randex/material-ui-multiple-dates-picker'
+import MultipleDatesPicker from '@ambiot/material-ui-multiple-dates-picker'
 
 const Example = () => {
   const [open, setOpen] = useState(false)
@@ -68,10 +64,16 @@ const Example = () => {
 | cancelButtonText   | string          | if `readOnly` then "Dismiss" is not then "Cancel" | Cancel button title                                          |
 | submitButtonText   | string          | Submit                                            | Submit button title                                          |
 | selectedDatesTitle | string          | Selected Dates                                    | Selected dates list header title                             |
+| DialogProps | object          | {}                                    | properties for the Dialog component. [See more](https://mui.com/material-ui/api/dialog/#props)                             |
 
 ## To-Do
 
 * [x] Add locale support
+## Changelog of version 1.0.2
+
+1. Migrated to react 18 and mui 5.
+2. React and mui moved to peerDependencies.
+3. Added DialogProps property, now you can forward properties for the Dialog component.
 
 ## Contributing
 
