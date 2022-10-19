@@ -1,6 +1,6 @@
 {
   "name": "@ambiot/material-ui-multiple-dates-picker",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "Date Picker with multiple selection based on Material UI",
   "main": "./build/index.js",
   "scripts": {
