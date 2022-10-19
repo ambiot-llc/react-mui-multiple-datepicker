@@ -46,7 +46,7 @@ const CalendarActionButton = ({ cancelButtonText, submitButtonText, onCancel, on
       <Button
         onClick={onCancel}
         sx={{
-          color: 'rgba(0, 0, 0, 0.87)',
+          color: theme.palette.text.primary,
           '&:hover': {
             backgroundColor: theme.palette.action.hover
           }
