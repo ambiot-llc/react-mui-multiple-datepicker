@@ -54,7 +54,7 @@ var CalendarActionButton = function CalendarActionButton(_ref) {
   return /*#__PURE__*/_react["default"].createElement(_material.DialogActions, null, /*#__PURE__*/_react["default"].createElement(_material.Button, {
     onClick: onCancel,
     sx: {
-      color: 'rgba(0, 0, 0, 0.87)',
+      color: theme.palette.text.primary,
       '&:hover': {
         backgroundColor: theme.palette.action.hover
       }
